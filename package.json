@@ -1,9 +1,23 @@
 {
-  "name": "gumball",
-  "version": "1.0.0",
+  "name": "gumball-css",
+  "version": "1.0.2",
   "description": "A responsive Sass/CSS framework with BEM style components",
-  "main": "gruntfile.js",
-  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jl-welch/gumball.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jl-welch/gumball/issues"
+  },
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "gulp"
+  },
+  "style": "dist/stylesheets/gumball.css",
+  "sass": "src/stylesheets/gumball.scss",
+  "main": "dist/javascripts/gumball.js",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
@@ -13,12 +27,15 @@
     "gulp-clean-css": "^3.9.4",
     "gulp-concat": "^2.6.1",
     "gulp-group-css-media-queries": "^1.2.2",
+    "gulp-rename": "^1.3.0",
     "gulp-sass": "^4.0.1"
   },
-  "scripts": {
-    "build": "gulp"
-  },
-  "keywords": [],
-  "author": "James Welch",
-  "license": "ISC"
+  "keywords": [
+    "gumball",
+    "sass",
+    "css",
+    "bem"
+  ],
+  "author": "James Welch <dev.jlw@gmail.com> (jameslw.me)",
+  "license": "MIT"
 }

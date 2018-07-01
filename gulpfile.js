@@ -4,6 +4,7 @@ const gulp   = require("gulp"),
       mq     = require("gulp-group-css-media-queries"),
       clean  = require("gulp-clean-css"),
       babel  = require("gulp-babel"),
+      rename = require("gulp-rename"),
       concat = require("gulp-concat");
 
 gulp.task("sass", function() {
@@ -14,11 +15,10 @@ gulp.task("sass", function() {
       browsers: ['last 3 versions'],
       cascade: false
     }))
+    .pipe(gulp.dest("dist/stylesheets"))
+    .pipe(clean())
+    .pipe(rename("gumball.min.css"))
     .pipe(gulp.dest("dist/stylesheets"));
-});
-
-gulp.task("watch:sass", function() {
-  gulp.watch("src/stylesheets/**/*.scss", ["sass"]);
 });
 
 gulp.task("js", function() {
@@ -28,8 +28,12 @@ gulp.task("js", function() {
     .pipe(gulp.dest("dist/javascripts/"));
 });
 
+gulp.task("watch:sass", function() {
+  gulp.watch("src/stylesheets/**/*.scss", ["sass"]);
+});
+
 gulp.task("watch:js", function() {
-  gulp.watch(["src/javascripts/polyfills/*.js", "src/javascripts/*.js"], ["js"]);
+  gulp.watch(["src/javascripts/**/*.js"], ["js"]);
 });
 
 gulp.task("default", ["sass", "js"]);
