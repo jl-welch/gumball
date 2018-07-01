@@ -1,0 +1,8 @@
+@mixin color-variant($map: $colors) {
+  @each $key, $value in $map {
+    &--#{$key} {
+      @include bg($value);
+      @content;
+    }
+  }
+}

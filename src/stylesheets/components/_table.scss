@@ -1,0 +1,27 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+
+  &__column {
+    position: relative;
+    padding: $spacing-y;
+    text-align: left;
+    vertical-align: middle;
+
+    &--heading {
+      font-size: map-get($heading-sizes, h5);
+    }
+  }
+
+  &__row {
+    border-bottom: $border-width solid $border-color;
+    transition: opacity .3s ease-out;
+  }
+
+  &__caption {
+    text-align: right;
+    font-weight: 300;
+    color: $grey-500;
+  }
+}

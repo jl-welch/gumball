@@ -1,0 +1,24 @@
+{
+  "name": "gumball",
+  "version": "1.0.0",
+  "description": "A responsive Sass/CSS framework with BEM style components",
+  "main": "gruntfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-group-css-media-queries": "^1.2.2",
+    "gulp-sass": "^4.0.1"
+  },
+  "scripts": {
+    "build": "gulp"
+  },
+  "keywords": [],
+  "author": "James Welch",
+  "license": "ISC"
+}

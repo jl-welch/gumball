@@ -1,0 +1,40 @@
+@mixin breakpoint-up($key) {
+  $min: map-min($breakpoints, $key);
+  @if $min != null {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($key) {
+  $max: map-max($breakpoints, $key);
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin breakpoint-between($key-min, $key-max: $key-min) {
+  $min: map-min($breakpoints, $key-min);
+  $max: map-max($breakpoints, $key-max);
+
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @include breakpoint-up($key-min) {
+      @content;
+    }
+  } @else if $min == null {
+    @include breakpoint-down($key-max) {
+      @content;
+    }
+  }
+}

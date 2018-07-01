@@ -1,0 +1,147 @@
+.navbar {
+  @include bg($grey-900);
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  z-index: $zindex-nav;
+
+  &__icon {
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+
+    &--sm {
+      font-size: 1.2rem;
+    }
+
+    &--lg {
+      font-size: 2.8rem;
+    }
+  }
+
+  .container {
+    display: flex;
+    flex: 1 1 100%;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.nav {
+  @include transition($transition-base);
+  position: fixed;
+  top: 0;
+  left: -100%;
+  display: flex;
+  height: 100%;
+  min-width: 70%;
+  padding: $spacing-y-lg $spacing-x-lg;
+  flex-direction: column;
+  background-color: $primary;
+  
+  &--active {
+    left: 0;
+  }
+
+  &__item,
+  &__link {
+    display: block;
+    width: 100%;
+  }
+
+  &__link {
+    position: relative;
+    margin-bottom: $spacing-y;
+    padding: $spacing-y-lg $spacing-x;
+    border-bottom: $border-width solid rgba($border-color, .4);
+    font-size: 1.6rem;
+    font-weight: $font-weight-normal;
+    color: $light;
+    background-color: darken($primary, 2%);
+  }
+
+  &--tabs {
+    position: relative;
+    top: unset;
+    left: unset;
+    display: flex;
+    height: auto;
+    width: 100%;
+    padding: 0;
+    flex-direction: row;
+    text-align: center;
+    background: $site-color linear-gradient(to right, $site-color, darken($site-color, 10%));
+
+    @include breakpoint-down(sm) {
+      overflow-x: auto;
+    }
+
+    .nav__item,
+    .nav__link {
+      width: auto;
+    }
+
+    .nav__item {
+      flex: 1 0 auto;
+    }
+
+    .nav__link {
+      margin-bottom: 0;
+      border-bottom: 0;
+      color: rgba($white, .8);
+      background-color: inherit;
+      transition: $transition-base;
+      overflow: hidden;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        display: block;
+        height: 4px;
+        width: 100%;
+        background: darken($site-color, 10%) linear-gradient(to right, darken($site-color, 10%), $site-color);
+        transition: $transition-base;
+      }
+
+      &:hover {
+        color: $white;
+
+        &::after {
+          bottom: 0;
+        }
+      }
+    }
+  }
+
+  @include breakpoint-up(md) {
+    position: static;
+    height: auto;
+    min-width: auto;
+    padding: 0;
+    flex-direction: row;
+    color: initial;
+    background-color: initial;
+    z-index: 0;
+
+    &__item,
+    &__link {
+      width: auto;
+    }
+
+    &__link {
+      margin-bottom: 0;
+      border-bottom: 0;
+      font-size: 1.4rem;
+      color: rgba($light, .6);
+      background-color: inherit;
+
+      &:hover {
+        color: $light;
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+.dropdown {
+  position: relative;
+  z-index: $zindex-dropdown;
+
+  &:hover,
+  &--visible {
+    .dropdown__list {
+      visibility: visible;
+      opacity: 1;
+      transition: .3s;
+    }
+  }
+}
+
+.dropdown__list {
+  @include transition($transition-base);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 100%;
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.dropdown__list,
+.dropdown__item,
+.dropdown__link {
+  display: block;
+}
+
+.dropdown__link {
+  position: relative;
+  padding: $spacing-y-lg $spacing-x-lg;
+  text-align: center;
+}

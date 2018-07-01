@@ -1,0 +1,65 @@
+.card {
+  @include border-radius($border-radius);
+  @include bg($light);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-clip: border-box;
+
+  @each $color, $value in $colors {
+    &--#{$color} {
+      @include bg($value);
+
+      .card__header,
+      .card__footer {
+        border-color: lighten($value, 10%);
+      }
+    }
+  }
+}
+
+.card__header,
+.card__body,
+.card__footer {
+  padding: $spacing-y $spacing-x;
+}
+
+.card__header {
+  @include border-top-radius($border-radius);
+  border-bottom: 2px solid rgba($grey-200, .6);
+}
+
+.card__body {
+  flex: 1 1 auto;
+}
+
+.card__footer {
+  @include border-bottom-radius($border-radius);
+  border-top: 2px solid rgba($grey-200, .6);
+}
+
+.card__overlay {
+  @include bg(rgba($grey-800, .5));
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: $spacing-x-lg;
+}
+
+.card__img {
+  @include border-radius($border-radius);
+  width: 100%;
+  overflow: hidden;
+
+  &--top {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &--bottom {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}

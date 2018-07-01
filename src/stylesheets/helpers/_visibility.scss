@@ -1,0 +1,31 @@
+@each $bp, $value in $breakpoints {
+  @include breakpoint-between($bp) {
+    .visible-#{$bp} {
+      display: block !important;
+    }
+
+    .hidden-#{$bp} {
+      display: none !important;
+    }
+  }
+
+  @include breakpoint-up($bp) {
+    .visible-up-#{$bp} {
+      display: block !important;
+    }
+
+    .hidden-up-#{$bp} {
+      display: none !important;
+    }
+  }
+
+  @include breakpoint-down($bp) {
+    .visible-down-#{$bp} {
+      display: block !important;
+    }
+
+    .hidden-down-#{$bp} {
+      display: none !important;
+    }
+  }
+}

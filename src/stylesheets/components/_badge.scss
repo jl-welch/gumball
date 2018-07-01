@@ -1,0 +1,13 @@
+.badge {
+  @include border-radius($border-radius);
+  @include color-variant($colors);
+  display: inline-block;
+  padding: $spacing-y-sm $spacing-x-sm;
+  font-size: $font-size-sm;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  color: $white;
+  background-color: $primary;
+}

@@ -1,0 +1,46 @@
+.row {
+  margin-right: -$grid-gutter;
+  margin-left: -$grid-gutter;
+  flex: 1;
+  justify-content: space-around;
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  &--no-spacing {
+    margin: 0;
+
+    [class*="col-"] {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+[class*="col-"] {
+  position: relative;
+  width: 100%;
+  float: left;
+  padding-right: $grid-gutter;
+  padding-left: $grid-gutter;
+}
+
+@for $i from 1 to $grid-columns + 1 {
+  @each $bp, $size in $breakpoints {
+    @include breakpoint-up($bp) {
+      $infix: if($bp != xs, "-#{$bp}", "");
+
+      .col#{$infix}-#{$i} {
+        width: percentage($i / $grid-columns);
+      }
+
+      .offset#{$infix}-#{$i} {
+        margin-left: (percentage($i / $grid-columns));
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@mixin button($background, $border: $background, $hover-background: darken($border, 5%), $active-background: darken($background, 10%), $active-border: $active-background) {
+  @include box-shadow($box-shadow);
+  @include bg($background);
+  border-color: $border;
+
+  &--disabled,
+  &:disabled {
+    @include bg($background);
+    border-color: $border;
+  }
+
+  &:not(:disabled):not(.btn--disabled) {
+    &:hover {
+      @include bg($hover-background);
+    }
+
+    &:active,
+    .btn--active {
+      @include bg($active-background);
+      border-color: $active-border;
+    }
+  }
+}
+
+@mixin button-size($spacing-y, $spacing-x, $border-radius) {
+  padding: $spacing-y $spacing-x;
+  @if $enable-radius {
+    border-radius: $border-radius;
+  }
+}

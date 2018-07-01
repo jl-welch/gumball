@@ -1,0 +1,13 @@
+.container {
+  width: 85%;
+  padding-right: ($grid-gutter / 2);
+  padding-left: ($grid-gutter / 2);
+  margin-right: auto;
+  margin-left: auto;
+
+  @each $width, $value in $container-widths {
+    @include breakpoint-up($width) {
+      max-width: $value;
+    }
+  }
+}

@@ -1,0 +1,177 @@
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+code,
+em,
+img,
+small,
+strong,
+sub,
+sup,
+ol,
+ul,
+li,
+button,
+input,
+textarea,
+fieldset,
+form,
+label,
+legend,
+table,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+footer,
+header,
+nav,
+section,
+main,
+time,
+audio,
+video {
+  font-family: inherit;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  background: transparent;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  font-size: $font-size-base;
+  font-family: $font-family-base;
+  color: $grey-600;
+  background-color: $grey-100;
+}
+
+article,
+aside,
+figure,
+footer,
+header,
+nav,
+section,
+main {
+  display: block;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img,
+object {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+ul, li {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th {
+  font-weight: bold;
+  vertical-align: bottom;
+}
+
+td {
+  font-weight: normal;
+  vertical-align: top;
+}
+
+input[type="submit"],
+button {
+  cursor: pointer;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+input[type='radio'] {
+  vertical-align: text-bottom;
+}
+
+input[type='checkbox'] {
+  vertical-align: bottom;
+}
+
+strong {
+  font-weight: bold;
+}
+
+label,
+input[type="file"],
+input[type="button"],
+input[type="submit"],
+button {
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  border: 0;
+  margin: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  outline: 0;
+  background: transparent;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}

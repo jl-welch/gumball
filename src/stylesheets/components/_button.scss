@@ -1,0 +1,37 @@
+.btn {
+  @include button-size($spacing-y, $spacing-x, $border-radius);
+  @include transition($transition-base);
+  display: inline-block;
+  font-weight: 300;
+  text-align: center;
+  user-select: none;
+  border: $border-width solid transparent;
+  outline: none;
+
+  &:disabled,
+  &--disabled {
+    border: 0;
+    color: rgba($disabled, .4) !important;
+    background: rgba($disabled, .4) !important;
+    cursor: not-allowed;
+  }
+
+  &--sm {
+    @include button-size($spacing-y-sm, $spacing-x-sm, $border-radius-sm);
+  }
+
+  &--lg {
+    @include button-size($spacing-y-lg, $spacing-x-lg, $border-radius-lg);
+  }
+
+  &--block {
+    display: block;
+    width: 100%;
+  }
+
+  @each $key, $value in $colors {
+    &--#{$key} {
+      @include button($value);
+    }
+  }
+}

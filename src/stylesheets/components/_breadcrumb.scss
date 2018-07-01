@@ -1,0 +1,15 @@
+.breadcrumb__item,
+.breadcrumb__link {
+  display: inline-block;
+}
+
+.breadcrumb__item + .breadcrumb__item {
+  padding-left: $spacing-x;
+
+  &::before {
+    content: "\002F";
+    display: inline-block;
+    padding-right: $spacing-x;
+    color: $grey-700;
+  }
+}
