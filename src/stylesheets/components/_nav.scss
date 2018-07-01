@@ -1,5 +1,6 @@
 .navbar {
-  @include bg($grey-900);
+  @include bg($light);
+  @include color-variant($colors);
   position: relative;
   display: flex;
   flex-flow: row wrap;
@@ -54,7 +55,7 @@
   &__link {
     position: relative;
     margin-bottom: $spacing-y;
-    padding: $spacing-y-lg $spacing-x;
+    padding: $spacing-y-lg $spacing-x-lg;
     border-bottom: $border-width solid rgba($border-color, .4);
     font-size: 1.6rem;
     font-weight: $font-weight-normal;
@@ -72,7 +73,7 @@
     padding: 0;
     flex-direction: row;
     text-align: center;
-    background: $site-color linear-gradient(to right, $site-color, darken($site-color, 10%));
+    background-color: $primary;
 
     @include breakpoint-down(sm) {
       overflow-x: auto;
@@ -92,10 +93,10 @@
       border-bottom: 0;
       color: rgba($white, .8);
       background-color: inherit;
-      transition: $transition-base;
       overflow: hidden;
 
       &::after {
+        @include transition($transition-base);
         content: "";
         position: absolute;
         bottom: -6px;
@@ -103,8 +104,7 @@
         display: block;
         height: 4px;
         width: 100%;
-        background: darken($site-color, 10%) linear-gradient(to right, darken($site-color, 10%), $site-color);
-        transition: $transition-base;
+        background-color: lighten($primary, 8%);
       }
 
       &:hover {
@@ -133,6 +133,7 @@
     }
 
     &__link {
+      @include transition($transition-base);
       margin-bottom: 0;
       border-bottom: 0;
       font-size: 1.4rem;

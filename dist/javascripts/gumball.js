@@ -105,12 +105,12 @@ var Dropdown = {
   init: function init() {
     Dropdown.bind();
   },
-  hide: function hide() {
-    document.querySelector("." + Dropdown.config.class).classList.remove(Dropdown.config.class);
+  hide: function hide(e) {
+    var dd = document.querySelector("." + Dropdown.config.class);
+    if (dd && dd != e.currentTarget) dd.classList.remove(Dropdown.config.class);
   },
   toggle: function toggle(e) {
-    var target = e.target.parentNode;
-    e.currentTarget.classList.toggle(className);
+    e.currentTarget.classList.toggle(Dropdown.config.class);
   },
   bind: function bind() {
     Dropdown.config.dropdowns.forEach(function (d) {

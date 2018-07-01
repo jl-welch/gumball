@@ -8,13 +8,13 @@ const Dropdown = {
     Dropdown.bind();
   },
 
-  hide() {
-    document.querySelector(`.${Dropdown.config.class}`).classList.remove(Dropdown.config.class);
+  hide(e) {
+    let dd = document.querySelector(`.${Dropdown.config.class}`);
+    if (dd && dd != e.currentTarget) dd.classList.remove(Dropdown.config.class);
   },
 
   toggle(e) {
-    let target = e.target.parentNode;
-    e.currentTarget.classList.toggle(className);
+    e.currentTarget.classList.toggle(Dropdown.config.class);
   },
 
   bind() {

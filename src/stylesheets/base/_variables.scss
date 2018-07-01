@@ -30,23 +30,13 @@ $greys: map-merge((
   "900":                    $grey-900
 ), $greys);
 
-$site-color:               #243a49 !default;
+$primary:                  #243a49 !default;
 $red:                      #ff5640 !default;
 $green:                    #06c05a !default;
 $blue:                     #4099ff !default;
-
-$primary:                   $site-color !default;
 $secondary:                 $grey-600 !default;
 $light:                     $grey-200 !default;
 $dark:                      $grey-800 !default;
-
-// Brands
-$brands: () !default;
-$brands: map-merge((
-  "facebook":                 #3b5998,
-  "google":                   #db3236,
-  "twitter":                  #1da1f2
-), $brands);
 
 $colors: () !default;
 $colors: map-merge((
@@ -57,19 +47,8 @@ $colors: map-merge((
   "light":                  $light,
   "dark":                   $dark,
   "black":                  $black,
-  "primary":                $site-color
+  "primary":                $primary
 ), $colors);
-
-$theme-colors: () !default;
-$theme-colors: map-merge((
-  "primary":                $primary,
-  "secondary":              $secondary,
-  "warning":                darken($red, 5%),
-  "success":                $green,
-  "light":                  $light,
-  "dark":                   $dark,
-  "color":                  $site-color
-), $theme-colors);
 
 //
 // Options

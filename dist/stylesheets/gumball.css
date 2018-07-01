@@ -683,9 +683,17 @@ button::-moz-focus-inner {
 }
 
 .dropdown__link {
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   position: relative;
   padding: 1.5rem 2.5rem;
   text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.dropdown__link:hover {
+  color: #fff;
 }
 
 .input {
@@ -919,8 +927,8 @@ button::-moz-focus-inner {
 }
 
 .navbar {
-  color: #eee;
-  background-color: #36454f;
+  color: #414042;
+  background-color: #eee;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -936,6 +944,46 @@ button::-moz-focus-inner {
   -ms-flex-pack: justify;
   justify-content: space-between;
   z-index: 40;
+}
+
+.navbar--red {
+  color: #eee;
+  background-color: #ff5640;
+}
+
+.navbar--green {
+  color: #eee;
+  background-color: #06c05a;
+}
+
+.navbar--blue {
+  color: #eee;
+  background-color: #4099ff;
+}
+
+.navbar--white {
+  color: #414042;
+  background-color: #fff;
+}
+
+.navbar--light {
+  color: #414042;
+  background-color: #eee;
+}
+
+.navbar--dark {
+  color: #eee;
+  background-color: #414042;
+}
+
+.navbar--black {
+  color: #eee;
+  background-color: #000;
+}
+
+.navbar--primary {
+  color: #eee;
+  background-color: #243a49;
 }
 
 .navbar__icon {
@@ -1003,7 +1051,7 @@ button::-moz-focus-inner {
 .nav__link {
   position: relative;
   margin-bottom: 1rem;
-  padding: 1.5rem 1.5rem;
+  padding: 1.5rem 2.5rem;
   border-bottom: 1px solid rgba(238, 238, 238, 0.4);
   font-size: 1.6rem;
   font-weight: 400;
@@ -1026,9 +1074,7 @@ button::-moz-focus-inner {
   -ms-flex-direction: row;
   flex-direction: row;
   text-align: center;
-  background: #243a49 -webkit-gradient(linear, left top, right top, from(#243a49), to(#131f27));
-  background: #243a49 -o-linear-gradient(left, #243a49, #131f27);
-  background: #243a49 linear-gradient(to right, #243a49, #131f27);
+  background-color: #243a49;
 }
 
 .nav--tabs .nav__item,
@@ -1047,13 +1093,13 @@ button::-moz-focus-inner {
   border-bottom: 0;
   color: rgba(255, 255, 255, 0.8);
   background-color: inherit;
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
   overflow: hidden;
 }
 
 .nav--tabs .nav__link::after {
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   content: "";
   position: absolute;
   bottom: -6px;
@@ -1061,12 +1107,7 @@ button::-moz-focus-inner {
   display: block;
   height: 4px;
   width: 100%;
-  background: #131f27 -webkit-gradient(linear, left top, right top, from(#131f27), to(#243a49));
-  background: #131f27 -o-linear-gradient(left, #131f27, #243a49);
-  background: #131f27 linear-gradient(to right, #131f27, #243a49);
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+  background-color: #315064;
 }
 
 .nav--tabs .nav__link:hover {
@@ -1444,6 +1485,7 @@ h6,
 .fixed {
   position: fixed;
   top: 0;
+  right: 0;
   left: 0;
   z-index: 60;
 }
@@ -1455,8 +1497,16 @@ h6,
   z-index: 60;
 }
 
+.fixed-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+}
+
 .fixed-bottom {
   position: fixed;
+  right: 0;
   bottom: 0;
   left: 0;
   z-index: 60;
@@ -1466,6 +1516,13 @@ h6,
   position: fixed;
   right: 0;
   bottom: 0;
+  z-index: 60;
+}
+
+.fixed-bottom-left {
+  position: fixed;
+  bottom: 0;
+  left: 0;
   z-index: 60;
 }
 
@@ -2781,6 +2838,9 @@ h6,
   }
 
   .nav__link {
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     margin-bottom: 0;
     border-bottom: 0;
     font-size: 1.4rem;
@@ -3447,6 +3507,14 @@ h6,
 
   .offset-md-12 {
     margin-left: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) and (prefers-reduced-motion: reduce) {
+  .nav__link {
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
   }
 }
 
@@ -4876,6 +4944,12 @@ h6,
     transition: none;
   }
 
+  .dropdown__link {
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+  }
+
   .input__text {
     -webkit-transition: none;
     -o-transition: none;
@@ -4895,6 +4969,12 @@ h6,
   }
 
   .nav {
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+  }
+
+  .nav--tabs .nav__link::after {
     -webkit-transition: none;
     -o-transition: none;
     transition: none;
