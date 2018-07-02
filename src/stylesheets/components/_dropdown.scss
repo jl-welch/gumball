@@ -14,9 +14,7 @@
 
 .dropdown__list {
   @include transition($transition-base);
-  position: absolute;
-  top: 100%;
-  left: 0;
+  @include absolute($top: 100%, $left: 0);
   min-width: 100%;
   white-space: nowrap;
   visibility: hidden;
@@ -36,7 +34,5 @@
   text-align: center;
   color: rgba($white, .8);
 
-  &:hover {
-    color: $white;
-  }
+  &:hover { color: $white; }
 }

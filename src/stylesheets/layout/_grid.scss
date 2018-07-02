@@ -34,13 +34,8 @@
     @include breakpoint-up($bp) {
       $infix: if($bp != xs, "-#{$bp}", "");
 
-      .col#{$infix}-#{$i} {
-        width: percentage($i / $grid-columns);
-      }
-
-      .offset#{$infix}-#{$i} {
-        margin-left: (percentage($i / $grid-columns));
-      }
+      .col#{$infix}-#{$i} { width: percentage($i / $grid-columns); }
+      .offset#{$infix}-#{$i} { margin-left: (percentage($i / $grid-columns)); }
     }
   }
 }

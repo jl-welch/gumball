@@ -9,9 +9,7 @@
     text-align: left;
     vertical-align: middle;
 
-    &--heading {
-      font-size: map-get($heading-sizes, h5);
-    }
+    &--heading { font-size: map-get($heading-sizes, h5); }
   }
 
   &__row {

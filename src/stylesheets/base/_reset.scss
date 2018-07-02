@@ -87,9 +87,7 @@ main {
   display: block;
 }
 
-main {
-  flex: 1;
-}
+main { flex: 1; }
 
 a {
   text-decoration: none;
@@ -103,7 +101,8 @@ object {
   vertical-align: middle;
 }
 
-ul, li {
+ul,
+li {
   list-style: none;
 }
 

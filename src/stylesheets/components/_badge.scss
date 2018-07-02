@@ -1,6 +1,7 @@
 .badge {
   @include border-radius($border-radius);
   @include color-variant($colors);
+  @include bg($primary);
   display: inline-block;
   padding: $spacing-y-sm $spacing-x-sm;
   font-size: $font-size-sm;
@@ -8,6 +9,4 @@
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
-  color: $white;
-  background-color: $primary;
 }

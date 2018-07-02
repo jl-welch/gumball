@@ -34,9 +34,7 @@
 .text-white { color: $white !important; }
 
 @each $color, $value in $colors {
-  .text-#{$color} {
-    color: $value;
-  }
+  .text-#{$color} { color: $value; }
 }
 
 .text-disabled { color: rgba($disabled, .6) !important; }

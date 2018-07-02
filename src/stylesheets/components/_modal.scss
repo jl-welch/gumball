@@ -1,10 +1,6 @@
 .modal {
   @include transition($transition-base);
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  @include fixed($top: 0, $right: 0, $bottom: 0, $left: 0);
   outline: 0;
   opacity: 0;
   visibility: hidden;
@@ -55,9 +51,7 @@
 
     &::before {
       content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
+      @include fixed($top: 0, $left: 0);
       height: 100vh;
       width: 100vw;
       z-index: -1;
@@ -89,9 +83,7 @@
   color: $grey-800;
 }
 
-.modal__footer {
-  padding-bottom: $spacing-y-lg;
-}
+.modal__footer { padding-bottom: $spacing-y-lg; }
 
 @include breakpoint-up(sm) {
   .modal {
@@ -99,14 +91,10 @@
       max-width: 460px;
       margin: $spacing-y-lg * 5 auto;
 
-      &--centered {
-        min-height: calc(100% - ((#{$spacing-y-lg} * 5) * 2));
-      }
+      &--centered { min-height: calc(100% - ((#{$spacing-y-lg} * 5) * 2)); }
     }
 
-    &__content {
-      @include box-shadow($box-shadow);
-    }
+    &__content { @include box-shadow($box-shadow); }
 
     &--sm { max-width: 380px; }
   }

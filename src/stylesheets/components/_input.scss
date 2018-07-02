@@ -23,9 +23,7 @@
     background-color: transparent;
     flex-direction: column;
 
-    &--area {
-      min-height: 10rem;
-    }
+    &--area { min-height: 10rem; }
 
     &:focus,
     &:active {
@@ -70,7 +68,5 @@
     }
   }
 
-  &__submit {
-    @extend .btn;
-  }
+  &__submit { @extend .btn; }
 }

@@ -16,13 +16,8 @@
     cursor: not-allowed;
   }
 
-  &--sm {
-    @include button-size($spacing-y-sm, $spacing-x-sm, $border-radius-sm);
-  }
-
-  &--lg {
-    @include button-size($spacing-y-lg, $spacing-x-lg, $border-radius-lg);
-  }
+  &--sm { @include button-size($spacing-y-sm, $spacing-x-sm, $border-radius-sm); }
+  &--lg { @include button-size($spacing-y-lg, $spacing-x-lg, $border-radius-lg); }
 
   &--block {
     display: block;
@@ -30,8 +25,6 @@
   }
 
   @each $key, $value in $colors {
-    &--#{$key} {
-      @include button($value);
-    }
+    &--#{$key} { @include button($value); }
   }
 }

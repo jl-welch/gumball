@@ -6,8 +6,6 @@
   margin-left: auto;
 
   @each $width, $value in $container-widths {
-    @include breakpoint-up($width) {
-      max-width: $value;
-    }
+    @include breakpoint-up($width) { max-width: $value; }
   }
 }
