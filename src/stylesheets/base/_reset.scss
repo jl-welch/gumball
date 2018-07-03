@@ -1,53 +1,15 @@
-html,
-body,
-div,
-span,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-abbr,
-code,
-em,
-img,
-small,
-strong,
-sub,
-sup,
-ol,
-ul,
-li,
-button,
-input,
-textarea,
-fieldset,
-form,
-label,
-legend,
-table,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-footer,
-header,
-nav,
-section,
-main,
-time,
-audio,
-video {
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, img, ins, kbd, q, samp,
+small, sub, sup, var,
+b, i, em, strong,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
   font-family: inherit;
   padding: 0;
   border: 0;
@@ -67,31 +29,36 @@ html {
 }
 
 body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  font-size: $font-size-base;
-  font-family: $font-family-base;
-  color: $grey-600;
-  background-color: $grey-100;
+  height: 100%;
+  font: $font-size-base $font-family-base;
 }
 
-article,
-aside,
-figure,
-footer,
-header,
-nav,
-section,
-main {
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
   display: block;
 }
-
-main { flex: 1; }
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+blockquote, q {
+  quotes:none;
+}
+
+blockquote::before, blockquote::after,
+q::before, q::after {
+  content: "";
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-bottom: $border-width solid $border-color;
+  margin-top: $spacing-y;
+  margin-bottom: $spacing-y;
 }
 
 img,
@@ -101,24 +68,13 @@ object {
   vertical-align: middle;
 }
 
-ul,
-li {
+nav ul {
   list-style: none;
 }
 
 table {
   border-collapse: collapse;
   border-spacing: 0;
-}
-
-th {
-  font-weight: bold;
-  vertical-align: bottom;
-}
-
-td {
-  font-weight: normal;
-  vertical-align: top;
 }
 
 input[type="submit"],
@@ -131,11 +87,11 @@ select {
   vertical-align: middle;
 }
 
-input[type='radio'] {
+input[type="radio"] {
   vertical-align: text-bottom;
 }
 
-input[type='checkbox'] {
+input[type="checkbox"] {
   vertical-align: bottom;
 }
 

@@ -1,6 +1,3 @@
-// START CONTRASTED COLOUR
-// Percieved brightness
-// SEE: https://www.w3.org/TR/AERT/#color-contrast
 @function brightness($color) {
   @if type-of($color) == color {
     @return (red($color) * 0.299 + green($color) * 0.587 + blue($color) * 0.114) / 255 * 100%;
@@ -19,7 +16,6 @@
     @return if(abs($color-brightness - $light-text-brightness) > abs($color-brightness - $dark-text-brightness), $light, $dark);
   }
 }
-// END CONTRASTED COLOUR
 
 @function color($key: "blue") {
   @return map-get($colors, $key);
@@ -33,19 +29,16 @@
   @return if(map-min($breakpoints, $name) == null, "", "-#{$name}");
 }
 
-// Get the next item in a map
 @function map-get-next($map, $key, $keys: map-keys($map)) {
   $index: index($keys, $key);
   @return if($index < length($keys), nth($keys, $index + 1), null);
 }
 
-// Find if the value passed in is 0
 @function map-min($map, $key) {
   $min: map-get($map, $key);
   @return if($min != 0, $min, null);
 }
 
-// Find if the value passed is the last item
 @function map-max($map, $key) {
   $next: map-get-next($map, $key);
   @return if($next, map-min($map, $next) - .02px, null);

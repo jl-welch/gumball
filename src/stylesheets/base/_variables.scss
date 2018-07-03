@@ -74,8 +74,7 @@ $spacers: map-merge((
   2:                        $spacing-y * .75,
   3:                        $spacing-y,
   4:                        $spacing-y * 2,
-  5:                        $spacing-y * 4,
-  6:                        $spacing-y * 8
+  5:                        $spacing-y * 4
 ), $spacers);
 
 //
@@ -132,9 +131,7 @@ $border-radius:               1.2rem !default;
 $border-radius-sm:            .6rem !default;
 $border-radius-lg:            2.2rem !default;
 
-$box-shadow:                  0 1rem .8rem -.6rem rgba($grey-600, .15) !default;
-$box-shadow-sm:               0 .125rem .05rem rgba($grey-600, .075) !default;
-$box-shadow-lg:               0 .4rem .3rem rgba($grey-600, .175) !default;
+$box-shadow:                  0 0 .3rem .3rem $border-color;
 
 $transition-base:             all .2s ease-in-out !default;
 $transition-fade:             opacity .15s linear !default;
@@ -143,11 +140,11 @@ $transition-collapse:         height .35s ease !default;
 //
 // Fonts & text
 
-$font-family-base:            -apple-system, BlinkMacSystemFont, Comfortaa, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$font-family-base:            "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 
-$font-size-base:              1.45rem !default;
-$font-size-sm:                ($font-size-base * .875) !default;
-$font-size-lg:                ($font-size-base * 1.25) !default;
+$font-size-base:              1.4rem !default;
+$font-size-sm:                ($font-size-base * .8) !default;
+$font-size-lg:                ($font-size-base * 1.2) !default;
 
 $font-weight-light:           300 !default;
 $font-weight-normal:          400 !default;
@@ -179,5 +176,5 @@ $disabled:                    $grey-600 !default;
 // Z-index
 
 $zindex-dropdown:             10 !default;
-$zindex-modal:                20 !default;
-$zindex-nav:                  40 !default;
+$zindex-nav:                  20 !default;
+$zindex-modal:                30 !default;
