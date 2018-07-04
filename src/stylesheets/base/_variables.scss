@@ -2,7 +2,7 @@
 // Colours
 
 $white:                   #fff !default;
-$grey-100:                #f8f8f8 !default;
+$grey-100:                #f4f4f4 !default;
 $grey-200:                #eee !default;
 $grey-300:                #dcdcdc !default;
 $grey-400:                #bdbdbd !default;
@@ -31,7 +31,7 @@ $red:                      #ff5640 !default;
 $green:                    #06c05a !default;
 $blue:                     #4099ff !default;
 $secondary:                 $grey-600 !default;
-$light:                     $grey-200 !default;
+$light:                     $grey-100 !default;
 $dark:                      $grey-800 !default;
 
 $colors: () !default;
