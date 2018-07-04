@@ -50,7 +50,7 @@ $colors: map-merge((
 // Options
 // Used to modify global styles depending on boolean
 
-$enable-radius:             false !default;
+$enable-radius:             true !default;
 $enable-shadows:            true !default;
 $enable-gradients:          true !default;
 $enable-transitions:        true !default;
@@ -125,11 +125,11 @@ $line-height-sm:              1.3 !default;
 $line-height-lg:              1.6 !default;
 
 $border-width:                1px !default;
-$border-color:                $grey-300 !default;
+$border-color:                $grey-100 !default;
 
-$border-radius:               1.2rem !default;
-$border-radius-sm:            .6rem !default;
-$border-radius-lg:            2.2rem !default;
+$border-radius:               .3rem !default;
+$border-radius-sm:            .2rem !default;
+$border-radius-lg:            .6rem !default;
 
 $box-shadow:                  0 0 .3rem .3rem $border-color;
 

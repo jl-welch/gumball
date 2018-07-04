@@ -1,6 +1,7 @@
 .card {
   @include border-radius($border-radius);
-  @include bg($grey-200);
+  @include box-shadow($box-shadow);
+  @include bg($grey-100);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -12,7 +13,7 @@
 
       .card__header,
       .card__footer {
-        background-color: darken($value, 3%);
+        @include bg(darken($value, 3%));
       }
     }
   }
@@ -26,7 +27,7 @@
 
 .card__header,
 .card__footer {
-  background-color: $grey-300;
+  @include bg($grey-200);
 }
 
 .card__header {
@@ -37,12 +38,14 @@
 .card__footer { @include border-bottom-radius($border-radius); }
 
 .card__overlay {
-  @include bg(rgba($grey-800, .5));
   @include absolute($top: 0, $right: 0, $bottom: 0, $left: 0);
+  @include border-radius($border-radius);
+  @include bg(rgba($grey-800, .8));
   padding: $spacing-x-lg;
 
   .card__header,
   .card__footer {
+    color: inherit;
     background-color: transparent !important;
   }
 }

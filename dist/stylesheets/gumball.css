@@ -89,6 +89,7 @@ html {
 
 body {
   height: 100%;
+  padding-top: 100px;
   font: 1.4rem "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
@@ -127,7 +128,7 @@ hr {
   display: block;
   height: 1px;
   border: 0;
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 1px solid #f8f8f8;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
@@ -203,6 +204,7 @@ button::-moz-focus-inner {
 }
 
 .badge {
+  border-radius: 0.3rem;
   color: #eee;
   background-color: #243a49;
   display: inline-block;
@@ -273,6 +275,7 @@ button::-moz-focus-inner {
 .btn,
 .input__submit {
   padding: 1rem 1.5rem;
+  border-radius: 0.3rem;
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
@@ -298,10 +301,12 @@ button::-moz-focus-inner {
 
 .btn--sm {
   padding: 0.75rem 1.25rem;
+  border-radius: 0.2rem;
 }
 
 .btn--lg {
   padding: 1.5rem 2.5rem;
+  border-radius: 0.6rem;
 }
 
 .btn--block {
@@ -310,8 +315,8 @@ button::-moz-focus-inner {
 }
 
 .btn--red {
-  -webkit-box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
-  box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
+  -webkit-box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
+  box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
   color: #eee;
   background-color: #ff5640;
   border-color: #ff5640;
@@ -337,8 +342,8 @@ button::-moz-focus-inner {
 }
 
 .btn--green {
-  -webkit-box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
-  box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
+  -webkit-box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
+  box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
   color: #eee;
   background-color: #06c05a;
   border-color: #06c05a;
@@ -364,8 +369,8 @@ button::-moz-focus-inner {
 }
 
 .btn--blue {
-  -webkit-box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
-  box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
+  -webkit-box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
+  box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
   color: #eee;
   background-color: #4099ff;
   border-color: #4099ff;
@@ -391,8 +396,8 @@ button::-moz-focus-inner {
 }
 
 .btn--white {
-  -webkit-box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
-  box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
+  -webkit-box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
+  box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
   color: #414042;
   background-color: #fff;
   border-color: #fff;
@@ -418,8 +423,8 @@ button::-moz-focus-inner {
 }
 
 .btn--light {
-  -webkit-box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
-  box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
+  -webkit-box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
+  box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
   color: #414042;
   background-color: #eee;
   border-color: #eee;
@@ -445,8 +450,8 @@ button::-moz-focus-inner {
 }
 
 .btn--dark {
-  -webkit-box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
-  box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
+  -webkit-box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
+  box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
   color: #eee;
   background-color: #414042;
   border-color: #414042;
@@ -472,8 +477,8 @@ button::-moz-focus-inner {
 }
 
 .btn--black {
-  -webkit-box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
-  box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
+  -webkit-box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
+  box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
   color: #eee;
   background-color: #000;
   border-color: #000;
@@ -499,8 +504,8 @@ button::-moz-focus-inner {
 }
 
 .btn--primary {
-  -webkit-box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
-  box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
+  -webkit-box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
+  box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
   color: #eee;
   background-color: #243a49;
   border-color: #243a49;
@@ -526,8 +531,11 @@ button::-moz-focus-inner {
 }
 
 .card {
+  border-radius: 0.3rem;
+  -webkit-box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
+  box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
   color: #414042;
-  background-color: #eee;
+  background-color: #f8f8f8;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -546,6 +554,7 @@ button::-moz-focus-inner {
 
 .card--red .card__header,
 .card--red .card__footer {
+  color: #eee;
   background-color: #ff4831;
 }
 
@@ -556,6 +565,7 @@ button::-moz-focus-inner {
 
 .card--green .card__header,
 .card--green .card__footer {
+  color: #eee;
   background-color: #06b153;
 }
 
@@ -566,6 +576,7 @@ button::-moz-focus-inner {
 
 .card--blue .card__header,
 .card--blue .card__footer {
+  color: #eee;
   background-color: #3191ff;
 }
 
@@ -576,6 +587,7 @@ button::-moz-focus-inner {
 
 .card--white .card__header,
 .card--white .card__footer {
+  color: #414042;
   background-color: #f7f7f7;
 }
 
@@ -586,6 +598,7 @@ button::-moz-focus-inner {
 
 .card--light .card__header,
 .card--light .card__footer {
+  color: #414042;
   background-color: #e6e6e6;
 }
 
@@ -596,6 +609,7 @@ button::-moz-focus-inner {
 
 .card--dark .card__header,
 .card--dark .card__footer {
+  color: #eee;
   background-color: #39383a;
 }
 
@@ -606,6 +620,7 @@ button::-moz-focus-inner {
 
 .card--black .card__header,
 .card--black .card__footer {
+  color: #eee;
   background-color: black;
 }
 
@@ -616,6 +631,7 @@ button::-moz-focus-inner {
 
 .card--primary .card__header,
 .card--primary .card__footer {
+  color: #eee;
   background-color: #1f323f;
 }
 
@@ -627,7 +643,13 @@ button::-moz-focus-inner {
 
 .card__header,
 .card__footer {
-  background-color: #dcdcdc;
+  color: #414042;
+  background-color: #eee;
+}
+
+.card__header {
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
 }
 
 .card__body {
@@ -636,25 +658,43 @@ button::-moz-focus-inner {
   flex: 1 1 auto;
 }
 
+.card__footer {
+  border-bottom-right-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+}
+
 .card__overlay {
-  color: #eee;
-  background-color: rgba(65, 64, 66, 0.5);
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+  border-radius: 0.3rem;
+  color: #eee;
+  background-color: rgba(65, 64, 66, 0.8);
   padding: 2.5rem;
 }
 
 .card__overlay .card__header,
 .card__overlay .card__footer {
+  color: inherit;
   background-color: transparent !important;
 }
 
 .card__img {
+  border-radius: 0.3rem;
   width: 100%;
   overflow: hidden;
+}
+
+.card__img--top {
+  border-bottom-right-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+}
+
+.card__img--bottom {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .dropdown {
@@ -735,12 +775,13 @@ button::-moz-focus-inner {
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
+  border-radius: 0.3rem;
   position: relative;
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   padding: 1rem 1.5rem;
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 1px solid #f8f8f8;
   -webkit-box-shadow: none;
   box-shadow: none;
   background-color: transparent;
@@ -756,8 +797,8 @@ button::-moz-focus-inner {
 
 .input__text:focus,
 .input__text:active {
-  -webkit-box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
-  box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
+  -webkit-box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
+  box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
   background: rgba(238, 238, 238, 0.4);
 }
 
@@ -849,8 +890,9 @@ button::-moz-focus-inner {
 }
 
 .modal__content {
-  -webkit-box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
-  box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
+  border-radius: 0.3rem;
+  -webkit-box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
+  box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -867,6 +909,8 @@ button::-moz-focus-inner {
 }
 
 .modal__header {
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1060,7 +1104,7 @@ button::-moz-focus-inner {
   position: relative;
   margin-bottom: 1rem;
   padding: 1.5rem 2.5rem;
-  border-bottom: 1px solid rgba(220, 220, 220, 0.4);
+  border-bottom: 1px solid rgba(248, 248, 248, 0.4);
   font-size: 1.6rem;
   font-weight: 400;
   color: #eee;
@@ -1144,7 +1188,7 @@ button::-moz-focus-inner {
 }
 
 .table__row {
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 1px solid #f8f8f8;
   -webkit-transition: opacity .3s ease-out;
   -o-transition: opacity .3s ease-out;
   transition: opacity .3s ease-out;
@@ -2107,8 +2151,8 @@ h6,
   }
 
   .modal__content {
-    -webkit-box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
-    box-shadow: 0 0 0.3rem 0.3rem #dcdcdc;
+    -webkit-box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
+    box-shadow: 0 0 0.3rem 0.3rem #f8f8f8;
   }
 
   .modal--sm {
