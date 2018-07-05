@@ -2,6 +2,8 @@
 
 A collection of reusable component, helper and layout classes
 
+[![Dependency Status](https://david-dm.org/jl-welch/gumball/dev-status.svg)](https://david-dm.org/jl-welch/gumball?type=dev)
+
 **Install through NPM**
 
 ```shell
