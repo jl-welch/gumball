@@ -1,6 +1,6 @@
 {
   "name": "gumball-css",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A responsive Sass/CSS framework with BEM style components",
   "repository": {
     "type": "git",
