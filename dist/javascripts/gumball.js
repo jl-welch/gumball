@@ -10,85 +10,76 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 }
 
 var Collapse = {
-  config: {
-    collapse: document.querySelectorAll("[data-collapse]"),
-    duration: 30 / 100 * 60,
-    collapsing: false
-  },
+  element: document.querySelectorAll("[data-collapse]"),
+  duration: 30 / 100 * 60,
+  collapsing: false,
 
   init: function init() {
     Collapse.bindCollapse();
   },
-  ancestor: function ancestor(e) {
-    for (; e && e !== document; e = e.parentNode) {
-      if (e.matches(".collapse")) return e;
+  ancestor: function ancestor(el) {
+    for (; el && el !== document; el = el.parentNode) {
+      if (el.matches(".collapse")) return el;
     }
   },
-  easeInOut: function easeInOut(t, b, c, d) {
+  ease: function ease(t, b, c, d) {
     t /= d / 2;
     if (t < 1) return c / 2 * t * t + b;
     t--;
     return -c / 2 * (t * (t - 2) - 1) + b;
   },
-  setHeight: function setHeight(e, v) {
-    e.style.height = v + "px";
-  },
-  animate: function animate(el, from, to, time, change, ancestor) {
-    ++time;
+  animate: function animate(el, from, to, change, ancestor, time) {
+    el.style.height = Collapse.ease(++time, from, change, Collapse.duration) + "px";
 
-    var value = Collapse.easeInOut(time, from, change, Collapse.config.duration);
-
-    Collapse.setHeight(el, value);
-
-    if (time < Collapse.config.duration) {
+    if (time < Collapse.duration) {
       requestAnimationFrame(function (_) {
-        Collapse.animate(el, from, to, time, change, ancestor);
+        return Collapse.animate(el, from, to, change, ancestor, time);
       });
     } else {
-      Collapse.setHeight(el, to);
-      if (!ancestor) Collapse.config.collapsing = false;
+      el.style.height = to === 0 ? "0px" : "100%";
+      if (!ancestor) Collapse.collapsing = false;
     }
   },
-  collapse: function collapse(e, f, t, c) {
-    Collapse.config.collapsing = true;
+  collapse: function collapse(el, from, to, cb) {
+    Collapse.collapsing = true;
 
-    var change = t - f,
-        time = 0,
-        ancestor = Collapse.ancestor(e.parentNode);
+    var change = to - from,
+        ancestor = Collapse.ancestor(el.parentNode);
 
-    if (ancestor && c) {
-      var ancestorHeight = ancestor.offsetHeight;
-      c(ancestor, ancestorHeight, t + ancestorHeight - f, Collapse.collapse);
+    if (ancestor && cb) {
+      var height = ancestor.offsetHeight;
+      cb(ancestor, height, to + height - from, Collapse.collapse);
     }
 
-    Collapse.animate(e, f, t, time, change, ancestor);
+    Collapse.animate(el, from, to, change, ancestor, 0);
   },
-  getAria: function getAria(e) {
-    return e.getAttribute("aria-expanded");
+  getAria: function getAria(el) {
+    return el.getAttribute("aria-expanded");
   },
-  setAria: function setAria(e) {
-    var a = Collapse.getAria(e) === "false" ? "true" : "false";
-    e.setAttribute("aria-expanded", a);
+  setAria: function setAria(el) {
+    var a = Collapse.getAria(el) === "false" ? "true" : "false";
+    el.setAttribute("aria-expanded", a);
 
     return a;
   },
-  hideOnLoad: function hideOnLoad(c, e) {
-    var a = Collapse.getAria(c);
-    if (a == 'false') e.style.height = "0px";
-    e.style.overflow = "hidden";
+  hideOnLoad: function hideOnLoad(c, el) {
+    var aria = Collapse.getAria(c);
+    if (aria == 'false') el.style.height = "0px";
+    el.style.overflow = "hidden";
   },
   bindCollapse: function bindCollapse() {
-    Collapse.config.collapse.forEach(function (c) {
+    Collapse.element.forEach(function (c) {
       var el = document.querySelector("#" + c.dataset.collapse);
       Collapse.hideOnLoad(c, el);
 
       c.addEventListener("click", function (e) {
-        var a = Collapse.setAria(c),
-            elHeight = el.scrollHeight,
-            elCurrentHeight = el.offsetHeight;
+        Collapse.setAria(c);
 
-        if (!Collapse.config.collapsing) {
-          Collapse.collapse(el, elCurrentHeight, elHeight - elCurrentHeight, Collapse.collapse);
+        var sHeight = el.scrollHeight,
+            oHeight = el.offsetHeight;
+
+        if (!Collapse.collapsing) {
+          Collapse.collapse(el, oHeight, sHeight - oHeight, Collapse.collapse);
         }
       });
     });
