@@ -1,9 +1,7 @@
 const Modal = {
-  config: {
-    modal: document.querySelectorAll("[data-modal]"),
-    close: document.querySelectorAll(".modal__close"),
-    class: "modal--open"
-  },
+  element: document.querySelectorAll("[data-modal]"),
+  dismiss: document.querySelectorAll("[data-dismiss=\"modal\"]"),
+  class:   "modal--open",
 
   init() {
     Modal.bindOpen();
@@ -11,27 +9,27 @@ const Modal = {
   },
 
   close() {
-    let previousModal = document.querySelector(`.${Modal.config.class}`);
-    if (previousModal) previousModal.classList.remove(`${Modal.config.class}`);
+    let el = document.querySelector(`.${Modal.class}`);
+    if (el) el.classList.remove(Modal.class);
   },
 
-  open(e, c) {
+  open(e, el) {
     e.preventDefault();
 
     Modal.close();
 
-    document.querySelector(`#${c.dataset.modal}`)
-    .classList.add(`${Modal.config.class}`);
+    document.querySelector(`#${el.dataset.modal}`)
+    .classList.add(Modal.class);
   },
 
   bindOpen() {
-    Modal.config.modal.forEach(c => 
-      c.addEventListener("click", e => Modal.open(e, c)));
+    Modal.element.forEach(el => 
+      el.addEventListener("click", e => Modal.open(e, el)));
   },
 
   bindClose() {
-    Modal.config.close.forEach(c => 
-      c.addEventListener("click", e => Modal.close()));
+    Modal.dismiss.forEach(el => 
+      el.addEventListener("click", _ => Modal.close()));
   }
 }
 

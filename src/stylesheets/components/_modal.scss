@@ -43,28 +43,13 @@
     justify-content: space-between;
   }
 
-  &__close {
-    color: rgba(173,181,189,.9);
-    cursor: pointer;
-    user-select: none;
-    font-size: $font-size-base;
-
-    &::before {
-      content: "";
-      @include fixed($top: 0, $left: 0);
-      height: 100vh;
-      width: 100vw;
-      z-index: -1;
-      background-color: rgba(0,0,0, .7);
-    }
-  }
-
   &__body {
     position: relative;
     flex: 1 1 auto;
   }
 
   &__footer {
+    @include border-bottom-radius($border-radius);
     display: flex;
     align-items: center;
     justify-content: flex-end;

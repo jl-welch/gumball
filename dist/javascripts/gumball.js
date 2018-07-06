@@ -119,37 +119,35 @@ var Dropdown = {
 
 Dropdown.init();
 var Modal = {
-  config: {
-    modal: document.querySelectorAll("[data-modal]"),
-    close: document.querySelectorAll(".modal__close"),
-    class: "modal--open"
-  },
+  element: document.querySelectorAll("[data-modal]"),
+  dismiss: document.querySelectorAll("[data-dismiss=\"modal\"]"),
+  class: "modal--open",
 
   init: function init() {
     Modal.bindOpen();
     Modal.bindClose();
   },
   close: function close() {
-    var previousModal = document.querySelector("." + Modal.config.class);
-    if (previousModal) previousModal.classList.remove("" + Modal.config.class);
+    var el = document.querySelector("." + Modal.class);
+    if (el) el.classList.remove(Modal.class);
   },
-  open: function open(e, c) {
+  open: function open(e, el) {
     e.preventDefault();
 
     Modal.close();
 
-    document.querySelector("#" + c.dataset.modal).classList.add("" + Modal.config.class);
+    document.querySelector("#" + el.dataset.modal).classList.add(Modal.class);
   },
   bindOpen: function bindOpen() {
-    Modal.config.modal.forEach(function (c) {
-      return c.addEventListener("click", function (e) {
-        return Modal.open(e, c);
+    Modal.element.forEach(function (el) {
+      return el.addEventListener("click", function (e) {
+        return Modal.open(e, el);
       });
     });
   },
   bindClose: function bindClose() {
-    Modal.config.close.forEach(function (c) {
-      return c.addEventListener("click", function (e) {
+    Modal.dismiss.forEach(function (el) {
+      return el.addEventListener("click", function (_) {
         return Modal.close();
       });
     });
@@ -158,17 +156,17 @@ var Modal = {
 
 Modal.init();
 var Nav = {
-  element: document.querySelector("[data-navbar]"),
+  element: document.querySelector("[data-nav]"),
   class: "nav--active",
 
   init: function init() {
     Nav.bind();
   },
   toggle: function toggle(e) {
-    document.querySelector("#" + e.currentTarget.dataset.navbar).classList.toggle(Nav.class);
+    document.querySelector("#" + e.currentTarget.dataset.nav).classList.toggle(Nav.class);
   },
   bind: function bind() {
-    if (Nav.nav) Nav.nav.addEventListener("click", function (e) {
+    if (Nav.element) Nav.element.addEventListener("click", function (e) {
       return Nav.toggle(e);
     });
   }

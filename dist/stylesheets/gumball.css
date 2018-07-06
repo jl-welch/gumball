@@ -293,8 +293,8 @@ button::-moz-focus-inner {
 .input__submit:disabled,
 .btn--disabled {
   border: 0;
-  color: rgba(96, 100, 106, 0.4) !important;
-  background: rgba(96, 100, 106, 0.4) !important;
+  color: rgba(173, 181, 189, 0.4) !important;
+  background: rgba(173, 181, 189, 0.4) !important;
   cursor: not-allowed;
 }
 
@@ -692,6 +692,31 @@ button::-moz-focus-inner {
   border-top-right-radius: 0;
 }
 
+.close {
+  color: rgba(173, 181, 189, 0.9);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 1.4rem;
+}
+
+.close:not(:disabled):not(.close--disabled) {
+  color: rgba(65, 64, 66, 0.8);
+  cursor: pointer;
+}
+
+.close--backdrop::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
 .dropdown {
   position: relative;
   z-index: 10;
@@ -917,27 +942,6 @@ button::-moz-focus-inner {
   justify-content: space-between;
 }
 
-.modal__close {
-  color: rgba(173, 181, 189, 0.9);
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  font-size: 1.4rem;
-}
-
-.modal__close::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  z-index: -1;
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
 .modal__body {
   position: relative;
   -webkit-box-flex: 1;
@@ -946,6 +950,8 @@ button::-moz-focus-inner {
 }
 
 .modal__footer {
+  border-bottom-right-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1978,7 +1984,7 @@ h6,
 }
 
 .text-disabled {
-  color: rgba(96, 100, 106, 0.6) !important;
+  color: rgba(173, 181, 189, 0.6) !important;
 }
 
 .visible-up-xs {
