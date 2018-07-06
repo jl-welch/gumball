@@ -15,7 +15,7 @@ var Collapse = {
   collapsing: false,
 
   init: function init() {
-    Collapse.bindCollapse();
+    Collapse.bind();
   },
   ancestor: function ancestor(el) {
     for (; el && el !== document; el = el.parentNode) {
@@ -40,7 +40,7 @@ var Collapse = {
       if (!ancestor) Collapse.collapsing = false;
     }
   },
-  collapse: function collapse(el, from, to, cb) {
+  toggle: function toggle(el, from, to, cb) {
     Collapse.collapsing = true;
 
     var change = to - from,
@@ -48,7 +48,7 @@ var Collapse = {
 
     if (ancestor && cb) {
       var height = ancestor.offsetHeight;
-      cb(ancestor, height, to + height - from, Collapse.collapse);
+      cb(ancestor, height, to + height - from, Collapse.toggle);
     }
 
     Collapse.animate(el, from, to, change, ancestor, 0);
@@ -62,26 +62,30 @@ var Collapse = {
 
     return a;
   },
-  hideOnLoad: function hideOnLoad(c, el) {
-    var aria = Collapse.getAria(c);
-    if (aria == 'false') el.style.height = "0px";
-    el.style.overflow = "hidden";
+  hideOnLoad: function hideOnLoad(el, target) {
+    var aria = Collapse.getAria(el);
+    if (aria == 'false') target.style.height = "0px";
+    target.style.overflow = "hidden";
   },
-  bindCollapse: function bindCollapse() {
-    Collapse.element.forEach(function (c) {
-      var el = document.querySelector("#" + c.dataset.collapse);
-      Collapse.hideOnLoad(c, el);
+  addEvent: function addEvent(el, target) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
 
-      c.addEventListener("click", function (e) {
-        Collapse.setAria(c);
+      Collapse.setAria(el);
 
-        var sHeight = el.scrollHeight,
-            oHeight = el.offsetHeight;
+      var sHeight = target.scrollHeight,
+          oHeight = target.offsetHeight;
 
-        if (!Collapse.collapsing) {
-          Collapse.collapse(el, oHeight, sHeight - oHeight, Collapse.collapse);
-        }
-      });
+      if (!Collapse.collapsing) Collapse.toggle(target, oHeight, sHeight - oHeight, Collapse.toggle);
+    });
+  },
+  bind: function bind() {
+    Collapse.element.forEach(function (el) {
+      var target = document.querySelector("#" + el.dataset.collapse);
+      if (!target) return;
+
+      Collapse.hideOnLoad(el, target);
+      Collapse.addEvent(el, target);
     });
   }
 };

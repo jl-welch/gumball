@@ -1,10 +1,10 @@
 const Collapse = {
-  element:   document.querySelectorAll("[data-collapse]"),
+  element:    document.querySelectorAll("[data-collapse]"),
   duration:   (30 / 100) * 60,
   collapsing: false,
 
   init() {
-    Collapse.bindCollapse();
+    Collapse.bind();
   },
 
   ancestor(el) {
@@ -31,7 +31,7 @@ const Collapse = {
     }
   },
 
-  collapse(el, from, to, cb) {
+  toggle(el, from, to, cb) {
     Collapse.collapsing = true;
 
     let change = to - from,
@@ -39,7 +39,7 @@ const Collapse = {
 
     if (ancestor && cb) {
       let height = ancestor.offsetHeight;
-      cb(ancestor, height, to + height - from, Collapse.collapse);
+      cb(ancestor, height, to + height - from, Collapse.toggle);
     }
 
     Collapse.animate(el, from, to, change, ancestor, 0);
@@ -56,27 +56,32 @@ const Collapse = {
     return a;
   },
 
-  hideOnLoad(c, el) {
-    let aria = Collapse.getAria(c);
-    if (aria == 'false') el.style.height = "0px";
-    el.style.overflow = "hidden";
+  hideOnLoad(el, target) {
+    let aria = Collapse.getAria(el);
+    if (aria == 'false') target.style.height = "0px";
+    target.style.overflow = "hidden";
   },
 
-  bindCollapse() {
-    Collapse.element.forEach(c => {
-      let el = document.querySelector(`#${c.dataset.collapse}`);
-      Collapse.hideOnLoad(c, el);
+  addEvent(el, target) {
+    el.addEventListener("click", e => {
+      e.preventDefault();
 
-      c.addEventListener("click", e => {
-        Collapse.setAria(c);
+      Collapse.setAria(el);
 
-        let sHeight = el.scrollHeight,
-            oHeight = el.offsetHeight;
-  
-        if (!Collapse.collapsing) {
-          Collapse.collapse(el, oHeight, sHeight - oHeight, Collapse.collapse);
-        }
-      });
+      let sHeight = target.scrollHeight,
+          oHeight = target.offsetHeight;
+
+      if (!Collapse.collapsing) Collapse.toggle(target, oHeight, sHeight - oHeight, Collapse.toggle);
+    });
+  },
+
+  bind() {
+    Collapse.element.forEach(el => {
+      let target = document.querySelector(`#${el.dataset.collapse}`);
+      if (!target) return;
+
+      Collapse.hideOnLoad(el, target);
+      Collapse.addEvent(el, target);
     });
   }
 }
