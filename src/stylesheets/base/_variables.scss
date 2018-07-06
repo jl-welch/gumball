@@ -50,9 +50,8 @@ $colors: map-merge((
 // Options
 // Used to modify global styles depending on boolean
 
-$enable-radius:             true !default;
+$enable-radius:             false !default;
 $enable-shadows:            true !default;
-$enable-gradients:          true !default;
 $enable-transitions:        true !default;
 
 //
