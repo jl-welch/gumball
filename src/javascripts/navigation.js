@@ -1,8 +1,6 @@
 const Nav = {
-  config: {
-    nav:   document.querySelector("[data-navbar]"),
-    class: "nav--active"
-  },
+  element: document.querySelector("[data-navbar]"),
+  class:   "nav--active",
 
   init() {
     Nav.bind();
@@ -10,11 +8,11 @@ const Nav = {
 
   toggle(e) {
     document.querySelector(`#${e.currentTarget.dataset.navbar}`)
-    .classList.toggle(Nav.config.class);
+    .classList.toggle(Nav.class);
   },
 
   bind() {
-    if (Nav.config.nav) Nav.config.nav.addEventListener("click", e => Nav.toggle(e));
+    if (Nav.nav) Nav.nav.addEventListener("click", e => Nav.toggle(e));
   }
 }
 

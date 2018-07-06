@@ -160,19 +160,17 @@ var Modal = {
 
 Modal.init();
 var Nav = {
-  config: {
-    nav: document.querySelector("[data-navbar]"),
-    class: "nav--active"
-  },
+  element: document.querySelector("[data-navbar]"),
+  class: "nav--active",
 
   init: function init() {
     Nav.bind();
   },
   toggle: function toggle(e) {
-    document.querySelector("#" + e.currentTarget.dataset.navbar).classList.toggle(Nav.config.class);
+    document.querySelector("#" + e.currentTarget.dataset.navbar).classList.toggle(Nav.class);
   },
   bind: function bind() {
-    if (Nav.config.nav) Nav.config.nav.addEventListener("click", function (e) {
+    if (Nav.nav) Nav.nav.addEventListener("click", function (e) {
       return Nav.toggle(e);
     });
   }
