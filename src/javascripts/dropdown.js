@@ -1,26 +1,24 @@
 const Dropdown = {
-  config: {
-    dropdowns: document.querySelectorAll(".dropdown"),
-    class:     "dropdown--visible"
-  },
+  element: document.querySelectorAll(".dropdown"),
+  class:   "dropdown--visible",
 
   init() {
     Dropdown.bind();
   },
 
   hide(e) {
-    let dd = document.querySelector(`.${Dropdown.config.class}`);
-    if (dd && dd != e.currentTarget) dd.classList.remove(Dropdown.config.class);
+    let el = document.querySelector(`.${Dropdown.class}`);
+    if (el && el != e.currentTarget) el.classList.remove(Dropdown.class);
   },
 
   toggle(e) {
-    e.currentTarget.classList.toggle(Dropdown.config.class);
+    e.currentTarget.classList.toggle(Dropdown.class);
   },
 
   bind() {
-    Dropdown.config.dropdowns.forEach(d => {
-      d.addEventListener("click", e => Dropdown.toggle(e));
-      d.addEventListener("mouseenter", e => Dropdown.hide(e));
+    Dropdown.element.forEach(el => {
+      el.addEventListener("click", e => Dropdown.toggle(e));
+      el.addEventListener("mouseenter", e => Dropdown.hide(e));
     });
   }
 }

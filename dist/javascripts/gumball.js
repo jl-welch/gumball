@@ -92,27 +92,25 @@ var Collapse = {
 
 Collapse.init();
 var Dropdown = {
-  config: {
-    dropdowns: document.querySelectorAll(".dropdown"),
-    class: "dropdown--visible"
-  },
+  element: document.querySelectorAll(".dropdown"),
+  class: "dropdown--visible",
 
   init: function init() {
     Dropdown.bind();
   },
   hide: function hide(e) {
-    var dd = document.querySelector("." + Dropdown.config.class);
-    if (dd && dd != e.currentTarget) dd.classList.remove(Dropdown.config.class);
+    var el = document.querySelector("." + Dropdown.class);
+    if (el && el != e.currentTarget) el.classList.remove(Dropdown.class);
   },
   toggle: function toggle(e) {
-    e.currentTarget.classList.toggle(Dropdown.config.class);
+    e.currentTarget.classList.toggle(Dropdown.class);
   },
   bind: function bind() {
-    Dropdown.config.dropdowns.forEach(function (d) {
-      d.addEventListener("click", function (e) {
+    Dropdown.element.forEach(function (el) {
+      el.addEventListener("click", function (e) {
         return Dropdown.toggle(e);
       });
-      d.addEventListener("mouseenter", function (e) {
+      el.addEventListener("mouseenter", function (e) {
         return Dropdown.hide(e);
       });
     });
