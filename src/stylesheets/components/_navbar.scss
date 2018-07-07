@@ -1,0 +1,81 @@
+.navbar {
+  @include bg($primary);
+  position: relative;
+  display: flex;
+  padding-top: $spacing-y;
+  padding-bottom: $spacing-y;
+  align-items: center;
+  flex-wrap: wrap;
+  z-index: $zindex-nav;
+
+  &__toggle {
+    @include border-radius($border-radius);
+    padding: $spacing-y $spacing-x;
+    border: $border-width solid $border-color;
+    align-items: center;
+    font-size: 2rem;
+    color: $light;
+  }
+
+  &__collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+  }
+
+  > .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .nav__link {
+    @include transition($transition-base);
+    color: rgba($light, .6);
+    &:hover { color: $light; }
+  }
+
+  &--dark { @include bg($dark); }
+
+  &--light {
+    @include bg($light);
+
+    .navbar__toggle {
+      border-color: $dark;
+      color: $dark;
+    }
+
+    .nav__link {
+      color: rgba($dark, .6);
+      &:hover { color: $dark; }
+    }
+  }
+
+  &--expand {
+    @each $breakpoint in map-keys($breakpoints) {
+      @include breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint);
+
+        &#{$infix} {
+          .navbar__toggle { display: none; }
+
+          .navbar__collapse {
+            height: 100% !important;
+            flex-basis: auto;
+            flex-grow: 0;
+          }
+
+          .nav {
+            flex-direction: row;
+
+            .nav__link {
+              width: auto;
+              padding-right: $spacing-x;
+              padding-left: $spacing-x;
+            }
+          }
+        }
+      }
+    }
+  }
+}
