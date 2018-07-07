@@ -3,7 +3,7 @@
   display: flex;
   flex-flow: row wrap;
 
-  &__icon {
+  &__label {
     @include bg($grey-200);
     display: flex;
     align-items: center;
@@ -19,7 +19,6 @@
     flex: 1 1 auto;
     padding: $spacing-y $spacing-x;
     border-bottom: $border-width solid $border-color;
-    box-shadow: none;
     background-color: transparent;
     flex-direction: column;
 
@@ -27,7 +26,7 @@
 
     &:focus,
     &:active {
-      box-shadow: $box-shadow;
+      @include box-shadow($box-shadow);
       background: rgba($grey-200, .4);
     }
   }

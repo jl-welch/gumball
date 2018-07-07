@@ -310,8 +310,8 @@ button::-moz-focus-inner {
 }
 
 .btn--red {
-  -webkit-box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
-  box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
+  -webkit-box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
+  box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
   color: #f4f4f4;
   background-color: #ff5640;
   border-color: #ff5640;
@@ -337,8 +337,8 @@ button::-moz-focus-inner {
 }
 
 .btn--green {
-  -webkit-box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
-  box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
+  -webkit-box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
+  box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
   color: #f4f4f4;
   background-color: #06c05a;
   border-color: #06c05a;
@@ -364,8 +364,8 @@ button::-moz-focus-inner {
 }
 
 .btn--blue {
-  -webkit-box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
-  box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
+  -webkit-box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
+  box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
   color: #f4f4f4;
   background-color: #4099ff;
   border-color: #4099ff;
@@ -391,8 +391,8 @@ button::-moz-focus-inner {
 }
 
 .btn--white {
-  -webkit-box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
-  box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
+  -webkit-box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
+  box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
   color: #414042;
   background-color: #fff;
   border-color: #fff;
@@ -418,8 +418,8 @@ button::-moz-focus-inner {
 }
 
 .btn--light {
-  -webkit-box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
-  box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
+  -webkit-box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
+  box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
   color: #414042;
   background-color: #f4f4f4;
   border-color: #f4f4f4;
@@ -445,8 +445,8 @@ button::-moz-focus-inner {
 }
 
 .btn--dark {
-  -webkit-box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
-  box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
+  -webkit-box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
+  box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
   color: #f4f4f4;
   background-color: #414042;
   border-color: #414042;
@@ -472,8 +472,8 @@ button::-moz-focus-inner {
 }
 
 .btn--black {
-  -webkit-box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
-  box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
+  -webkit-box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
+  box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
   color: #f4f4f4;
   background-color: #000;
   border-color: #000;
@@ -499,8 +499,8 @@ button::-moz-focus-inner {
 }
 
 .btn--primary {
-  -webkit-box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
-  box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
+  -webkit-box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
+  box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
   color: #f4f4f4;
   background-color: #243a49;
   border-color: #243a49;
@@ -526,8 +526,8 @@ button::-moz-focus-inner {
 }
 
 .card {
-  -webkit-box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
-  box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
+  -webkit-box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
+  box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -754,7 +754,7 @@ button::-moz-focus-inner {
   flex-flow: row wrap;
 }
 
-.input__icon {
+.input__label {
   color: #414042;
   background-color: #eee;
   display: -webkit-box;
@@ -780,8 +780,6 @@ button::-moz-focus-inner {
   flex: 1 1 auto;
   padding: 1rem 1.5rem;
   border-bottom: 1px solid #f4f4f4;
-  -webkit-box-shadow: none;
-  box-shadow: none;
   background-color: transparent;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -795,8 +793,8 @@ button::-moz-focus-inner {
 
 .input__text:focus,
 .input__text:active {
-  -webkit-box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
-  box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
+  -webkit-box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
+  box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
   background: rgba(238, 238, 238, 0.4);
 }
 
@@ -908,8 +906,8 @@ button::-moz-focus-inner {
 }
 
 .modal__content {
-  -webkit-box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
-  box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
+  -webkit-box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
+  box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
   color: #414042;
   background-color: #f4f4f4;
   position: relative;
@@ -2120,8 +2118,8 @@ h6,
   }
 
   .modal__content {
-    -webkit-box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
-    box-shadow: 0 0.3rem 0.6rem rgba(54, 69, 79, 0.2);
+    -webkit-box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
+    box-shadow: 0 0.2rem 0.3rem rgba(220, 220, 220, 0.2);
   }
 
   .modal--sm {
