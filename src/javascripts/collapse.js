@@ -26,7 +26,7 @@ const Collapse = {
     if (time < Collapse.duration) {
       requestAnimationFrame(_ => Collapse.animate(el, from, to, change, ancestor, time));
     } else {
-      el.style.height = to === 0 ? "0px" : "100%";
+      el.style.height = to <= 1 ? "0" : "100%";
       if (!ancestor) Collapse.collapsing = false;
     }
   },
@@ -77,7 +77,7 @@ const Collapse = {
 
   bind() {
     Collapse.element.forEach(el => {
-      let target = document.querySelector(`#${el.dataset.collapse}`);
+      let target = document.querySelector(`#${el.getAttribute("data-collapse")}`);
       if (!target) return;
 
       Collapse.hideOnLoad(el, target);
