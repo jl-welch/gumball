@@ -1,6 +1,6 @@
 const Dropdown = {
   element: document.querySelectorAll(".dropdown__toggle"),
-  class:   "dropdown--visible",
+  class:   "dropdown__list--visible",
 
   init() {
     Dropdown.bind();

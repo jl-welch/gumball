@@ -143,7 +143,7 @@ var Dismiss = {
 Dismiss.init();
 var Dropdown = {
   element: document.querySelectorAll(".dropdown__toggle"),
-  class: "dropdown--visible",
+  class: "dropdown__list--visible",
 
   init: function init() {
     Dropdown.bind();
