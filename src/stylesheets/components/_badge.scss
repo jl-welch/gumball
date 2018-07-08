@@ -3,8 +3,9 @@
   @include color-variant($colors);
   @include bg($primary);
   display: inline-block;
-  padding: $spacing-y-sm $spacing-x-sm;
+  padding: $spacing-y-xs $spacing-x-xs;
   font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
   line-height: 1;
   text-align: center;
   white-space: nowrap;

@@ -1,15 +1,34 @@
-.breadcrumb__item,
-.breadcrumb__link {
-  display: inline-block;
-}
+.breadcrumb {
+  @include border-radius($border-radius);
+  display: block;
+  list-style: none;
 
-.breadcrumb__item + .breadcrumb__item {
-  padding-left: $spacing-x;
-
-  &::before {
-    content: "\002F";
+  &__item,
+  &__link {
     display: inline-block;
-    padding-right: $spacing-x;
-    color: $grey-700;
+  }
+
+  &__item {
+    color: $blue;
+
+    &--active {
+      color: $grey-600;
+    }
+  }
+
+  &__link:hover {
+    text-decoration: underline;
+    color: darken($blue, 5%);
+  }
+
+  &__item + &__item {
+    padding-left: $spacing-x-xs;
+
+    &::before {
+      content: "\002F";
+      display: inline-block;
+      padding-right: $spacing-x-xs;
+      color: $disabled;
+    }
   }
 }
