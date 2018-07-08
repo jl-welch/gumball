@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = function (callback, thisArg) {
@@ -9,6 +9,25 @@ if (window.NodeList && !NodeList.prototype.forEach) {
   };
 }
 
+if (!Element.prototype.matches) {
+  Element.prototype.matches = Element.prototype.msMatchesSelector;
+}
+// from:https://github.com/jserz/js_piece/blob/master/DOM/ChildNode/remove()/remove().md
+(function (arr) {
+  arr.forEach(function (item) {
+    if (item.hasOwnProperty('remove')) {
+      return;
+    }
+    Object.defineProperty(item, 'remove', {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function remove() {
+        if (this.parentNode !== null) this.parentNode.removeChild(this);
+      }
+    });
+  });
+})([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
 var Collapse = {
   element: document.querySelectorAll("[data-collapse]"),
   duration: 30 / 100 * 60,
@@ -29,14 +48,14 @@ var Collapse = {
     return -c / 2 * (t * (t - 2) - 1) + b;
   },
   animate: function animate(el, from, to, change, ancestor, time) {
-    el.style.height = Collapse.ease(++time, from, change, Collapse.duration) + "px";
+    el.style.height = Collapse.ease(++time, from, change, Collapse.duration) + 'px';
 
     if (time < Collapse.duration) {
       requestAnimationFrame(function (_) {
         return Collapse.animate(el, from, to, change, ancestor, time);
       });
     } else {
-      el.style.height = to === 0 ? "0px" : "100%";
+      el.style.height = to <= 1 ? "0" : "100%";
       if (!ancestor) Collapse.collapsing = false;
     }
   },
@@ -81,7 +100,7 @@ var Collapse = {
   },
   bind: function bind() {
     Collapse.element.forEach(function (el) {
-      var target = document.querySelector("#" + el.dataset.collapse);
+      var target = document.querySelector('#' + el.getAttribute("data-collapse"));
       if (!target) return;
 
       Collapse.hideOnLoad(el, target);
@@ -91,6 +110,37 @@ var Collapse = {
 };
 
 Collapse.init();
+var Dismiss = {
+  element: document.querySelectorAll("[data-dismiss]"),
+  class: "fade-out",
+
+  init: function init() {
+    Dismiss.bind();
+  },
+  remove: function remove(el) {
+    el.addEventListener("transitionend", function (_) {
+      return el.remove();
+    });
+  },
+  close: function close(e, el) {
+    e.preventDefault();
+
+    var target = document.querySelector('#' + el.getAttribute("data-dismiss"));
+    if (target) {
+      Dismiss.remove(target);
+      target.classList.add(Dismiss.class);
+    }
+  },
+  bind: function bind() {
+    Dismiss.element.forEach(function (el) {
+      el.addEventListener("click", function (e) {
+        return Dismiss.close(e, el);
+      });
+    });
+  }
+};
+
+Dismiss.init();
 var Dropdown = {
   element: document.querySelectorAll(".dropdown"),
   class: "dropdown--visible",
@@ -99,7 +149,7 @@ var Dropdown = {
     Dropdown.bind();
   },
   hide: function hide(e) {
-    var el = document.querySelector("." + Dropdown.class);
+    var el = document.querySelector('.' + Dropdown.class);
     if (el && el != e.currentTarget) el.classList.remove(Dropdown.class);
   },
   toggle: function toggle(e) {
@@ -128,7 +178,7 @@ var Modal = {
     Modal.bindClose();
   },
   close: function close() {
-    var el = document.querySelector("." + Modal.class);
+    var el = document.querySelector('.' + Modal.class);
     if (el) el.classList.remove(Modal.class);
   },
   open: function open(e, el) {
@@ -136,7 +186,7 @@ var Modal = {
 
     Modal.close();
 
-    document.querySelector("#" + el.dataset.modal).classList.add(Modal.class);
+    document.querySelector('#' + el.dataset.modal).classList.add(Modal.class);
   },
   bindOpen: function bindOpen() {
     Modal.element.forEach(function (el) {
@@ -163,7 +213,7 @@ var Nav = {
     Nav.bind();
   },
   toggle: function toggle(e) {
-    document.querySelector("#" + e.currentTarget.dataset.nav).classList.toggle(Nav.class);
+    document.querySelector('#' + e.currentTarget.dataset.nav).classList.toggle(Nav.class);
   },
   bind: function bind() {
     if (Nav.element) Nav.element.addEventListener("click", function (e) {

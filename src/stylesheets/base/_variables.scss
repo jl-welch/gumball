@@ -2,8 +2,8 @@
 // Colours
 
 $white:                   #fff !default;
-$grey-100:                #f4f4f4 !default;
-$grey-200:                #eee !default;
+$grey-100:                #f2faf3 !default;
+$grey-200:                #e8eaee !default;
 $grey-300:                #dcdcdc !default;
 $grey-400:                #bdbdbd !default;
 $grey-500:                #adb5bd !default;
@@ -31,7 +31,7 @@ $red:                      #ff5640 !default;
 $green:                    #06c05a !default;
 $blue:                     #4099ff !default;
 $secondary:                 $grey-600 !default;
-$light:                     $grey-100 !default;
+$light:                     $grey-200 !default;
 $dark:                      $grey-800 !default;
 
 $colors: () !default;
@@ -50,7 +50,7 @@ $colors: map-merge((
 // Options
 // Used to modify global styles depending on boolean
 
-$enable-radius:             false !default;
+$enable-radius:             true !default;
 $enable-shadows:            true !default;
 $enable-transitions:        true !default;
 
@@ -60,8 +60,11 @@ $enable-transitions:        true !default;
 $spacing-y:                 1rem !default;
 $spacing-x:                 1.5rem !default;
 
-$spacing-y-sm:              .75rem !default;
-$spacing-x-sm:              1.25rem !default;
+$spacing-y-xs:              .25rem !default;
+$spacing-x-xs:              .45rem !default;
+
+$spacing-y-sm:              .5rem !default;
+$spacing-x-sm:              1rem !default;
 
 $spacing-y-lg:              1.5rem !default;
 $spacing-x-lg:              2.5rem !default;
@@ -133,7 +136,7 @@ $border-radius-lg:            .6rem !default;
 $box-shadow:                  0 .2rem .3rem rgba($grey-300, .2);
 
 $transition-base:             all .2s ease-in-out !default;
-$transition-fade:             opacity .15s linear !default;
+$transition-fade:             opacity .2s linear !default; // If you change this timing value, change the timeout in dismiss.js
 $transition-collapse:         height .35s ease !default;
 
 //
@@ -141,9 +144,9 @@ $transition-collapse:         height .35s ease !default;
 
 $font-family-base:            "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 
-$font-size-base:              1.4rem !default;
-$font-size-sm:                ($font-size-base * .8) !default;
-$font-size-lg:                ($font-size-base * 1.2) !default;
+$font-size-base:              1.6rem !default;
+$font-size-sm:                ($font-size-base * .65) !default;
+$font-size-lg:                ($font-size-base * 1.25) !default;
 
 $font-weight-light:           300 !default;
 $font-weight-normal:          400 !default;

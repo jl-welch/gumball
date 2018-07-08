@@ -14,3 +14,18 @@
     .hidden-down-#{$bp} { display: none !important; }
   }
 }
+
+.fade-out,
+.fade-in {
+  @include transition($transition-base);
+}
+
+.fade-out {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.fade-in {
+  visibility: visible;
+  opacity: 1;
+}
