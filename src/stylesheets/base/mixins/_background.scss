@@ -1,4 +1,4 @@
 @mixin bg($color) {
-  color: contrast-color($color);
-  background-color: $color;
+  color: contrast-color($color) !important;
+  background-color: $color !important;
 }

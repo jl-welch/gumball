@@ -142,26 +142,30 @@ var Dismiss = {
 
 Dismiss.init();
 var Dropdown = {
-  element: document.querySelectorAll(".dropdown"),
+  element: document.querySelectorAll(".dropdown__toggle"),
   class: "dropdown--visible",
 
   init: function init() {
     Dropdown.bind();
   },
-  hide: function hide(e) {
-    var el = document.querySelector('.' + Dropdown.class);
-    if (el && el != e.currentTarget) el.classList.remove(Dropdown.class);
+  hide: function hide(el) {
+    var active = document.querySelector('#' + el.getAttribute("data-dropdown"));
+    var target = document.querySelector('.' + Dropdown.class);
+    if (target && target != active) target.classList.remove(Dropdown.class);
   },
-  toggle: function toggle(e) {
-    e.currentTarget.classList.toggle(Dropdown.class);
+  toggle: function toggle(e, el) {
+    e.preventDefault();
+
+    var target = document.querySelector('#' + el.getAttribute("data-dropdown"));
+    if (target) target.classList.toggle(Dropdown.class);
   },
   bind: function bind() {
     Dropdown.element.forEach(function (el) {
       el.addEventListener("click", function (e) {
-        return Dropdown.toggle(e);
+        return Dropdown.toggle(e, el);
       });
       el.addEventListener("mouseenter", function (e) {
-        return Dropdown.hide(e);
+        return Dropdown.hide(el);
       });
     });
   }

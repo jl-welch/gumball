@@ -2,20 +2,23 @@
   position: relative;
   z-index: $zindex-dropdown;
 
-  &:hover,
   &--visible {
     .dropdown__list {
+      @include transition($transition-fade);
       visibility: visible;
       opacity: 1;
-      transition: .3s;
     }
   }
 }
 
 .dropdown__list {
-  @include transition($transition-base);
   @include absolute($top: 100%, $left: 0);
-  min-width: 100%;
+  @include border-radius($border-radius);
+  @include bg($light);
+  @include transition($transition-base);
+  min-width: 18rem;
+  padding-top: $spacing-y-sm;
+  padding-bottom: $spacing-y-sm;
   white-space: nowrap;
   visibility: hidden;
   opacity: 0;
@@ -32,7 +35,6 @@
   position: relative;
   padding: $spacing-y-lg $spacing-x-lg;
   text-align: center;
-  color: rgba($white, .8);
 
-  &:hover { color: $white; }
+  &:hover { background-color: darken($light, 5%); }
 }
