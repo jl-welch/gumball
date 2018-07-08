@@ -1,30 +1,28 @@
 .dropdown {
   position: relative;
   z-index: $zindex-dropdown;
-
-  &--visible {
-    .dropdown__list {
-      @include transition($transition-fade);
-      visibility: visible;
-      opacity: 1;
-    }
-  }
 }
 
 .dropdown__list {
   @include absolute($top: 100%, $left: 0);
   @include border-radius($border-radius);
-  @include bg($light);
-  @include transition($transition-base);
+  @include box-shadow($box-shadow);
+  @include bg($white);
+  @include transition($transition-fade);
   min-width: 18rem;
   padding-top: $spacing-y-sm;
   padding-bottom: $spacing-y-sm;
+  border: $border-width solid $border-color;
   white-space: nowrap;
   visibility: hidden;
   opacity: 0;
+
+  &--visible {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
-.dropdown__list,
 .dropdown__item,
 .dropdown__link {
   display: block;

@@ -10,7 +10,7 @@
 
   &__toggle {
     @include border-radius($border-radius);
-    padding: $spacing-y $spacing-x;
+    padding: $spacing-y-sm $spacing-x-sm;
     border: $border-width solid $border-color;
     align-items: center;
     font-size: 2rem;

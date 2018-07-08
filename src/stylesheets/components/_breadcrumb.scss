@@ -1,6 +1,7 @@
 .breadcrumb {
   @include border-radius($border-radius);
   display: block;
+  padding: $spacing-y $spacing-x;
   list-style: none;
 
   &__item,
@@ -13,6 +14,7 @@
 
     &--active {
       color: $grey-600;
+      color: inherit;
     }
   }
 

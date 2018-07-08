@@ -3,6 +3,7 @@
   @include bg($light);
   position: relative;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: $spacing-y-sm $spacing-x-sm;
   border: $border-width solid $border-color;
@@ -12,7 +13,8 @@
   }
 
   &__link {
-    font-weight: $font-weight-bold;
+    font-size: $font-size-sm;
+    text-decoration: underline;
   }
 
   &__close {

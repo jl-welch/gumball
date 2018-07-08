@@ -25,7 +25,6 @@
 }
 
 .card__header {
-  @include bg($light);
   @include border-top-radius($border-radius);
   border-bottom: $border-width solid $border-color;
 }
