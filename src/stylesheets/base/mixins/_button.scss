@@ -1,9 +1,8 @@
-@mixin button($color, $hover-color: darken($color, 5%), $active-color: darken($color, 10%)) {
-  @include box-shadow($box-shadow);
-  @include bg($color);
-  border-color: $color;
+@mixin button($color, $hover-color: darken($color, 5%), $active-color: darken($color, 15%)) {
+  &:not(:disabled):not(.btn--disabled) {
+    @include bg($color);
+    border: $border-width solid $color;
 
-  &:not(:disabled):not(.btn--disabled):not(.btn--outline) {
     &:hover {
       @include bg($hover-color);
     }
@@ -12,6 +11,18 @@
     .btn--active {
       @include bg($active-color);
       border-color: $active-color;
+    }
+  }
+}
+
+@mixin button-border($color) {
+  &:not(:disabled):not(.btn--disabled) {
+    border: $border-width solid $color !important;
+    color: $color !important;
+    background-color: transparent !important;
+
+    &:hover {
+      @include bg($color);
     }
   }
 }

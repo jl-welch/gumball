@@ -1,7 +1,18 @@
-@mixin color-variant($map: $colors) {
+@mixin bg-variant($map: $colors) {
   @each $key, $value in $map {
     &--#{$key} {
       @include bg($value);
+      @content;
+    }
+  }
+}
+
+@mixin border-variant($map: $colors) {
+  @each $key, $value in $map {
+    &--border-#{$key} {
+      border: $border-width solid $value !important;
+      color: $value !important;
+      background-color: rgba($value, .15) !important;
       @content;
     }
   }

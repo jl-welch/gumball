@@ -4,7 +4,7 @@
   font-size: $font-size-base;
 
   &:not(:disabled):not(.close--disabled) {
-    color: rgba($dark, .8);
+    color: inherit;
     cursor: pointer;
   }
 

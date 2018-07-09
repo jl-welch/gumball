@@ -1,50 +1,32 @@
 .btn {
+  @include button($light);
   @include button-size($spacing-y, $spacing-x, $border-radius);
+  @include box-shadow($box-shadow);
   @include transition($transition-base);
-  display: inline-flex;
+  display: inline-block;
   font-weight: $font-weight-light;
-  align-items: center;
-  justify-content: center;
   user-select: none;
   border: $border-width solid $light;
   outline: none;
-
-  &:disabled,
-  &--disabled {
-    border: 0;
-    color: rgba($disabled, .4) !important;
-    background: rgba($disabled, .4) !important;
-    cursor: not-allowed;
-  }
 
   &--sm { @include button-size($spacing-y-sm, $spacing-x-sm, $border-radius-sm); }
   &--lg { @include button-size($spacing-y-lg, $spacing-x-lg, $border-radius-lg); }
 
   &--block {
+    display: block;
     width: 100%;
-    flex-basis: 100%;
-    flex-grow: 1;
   }
 
   &--disabled,
   &:disabled {
-    @include bg($disabled);
-    border-color: $grey-600;
+    border-color: darken($disabled, 15%);
+    color: darken($disabled, 20%);
+    background-color: $disabled;
+    cursor: not-allowed;
   }
 
   @each $key, $value in $colors {
-    &--#{$key} {
-      @include button($value);
-    }
-
-    &--border-#{$key} {
-      border-color: $value;
-      color: $value;
-
-      &:hover {
-        color: $white;
-        background-color: $value;
-      }
-    }
+    &--#{$key} { @include button($value); }
+    &--border-#{$key} { @include button-border($value) }
   }
 }
