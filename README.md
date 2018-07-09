@@ -2,6 +2,7 @@
 
 A collection of reusable component, helper and layout classes
 
+[![npm version](https://img.shields.io/npm/v/gumball-css.svg)](https://www.npmjs.com/package/gumball-css)
 [![Dependency Status](https://david-dm.org/jl-welch/gumball/dev-status.svg)](https://david-dm.org/jl-welch/gumball?type=dev)
 [![CSS gzip size](http://img.badgesize.io/jl-welch/gumball/master/dist/stylesheets/gumball.min.css?compression=gzip&label=CSS+gzip+size)](https://github.com/jl-welch/gumball/blob/master/dist/stylesheets/gumball.min.css)
 [![JS gzip size](http://img.badgesize.io/jl-welch/gumball/master/dist/javascripts/gumball.js?compression=gzip&label=JS+gzip+size)](https://github.com/jl-welch/gumball/blob/master/dist/javascripts/gumball.js)
