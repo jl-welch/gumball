@@ -26,8 +26,7 @@
 
     &:focus,
     &:active {
-      @include box-shadow($box-shadow);
-      background: rgba($grey-200, .4);
+      background: rgba($light, .4);
     }
   }
 

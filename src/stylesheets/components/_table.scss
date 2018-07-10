@@ -6,10 +6,11 @@
   &__column {
     position: relative;
     padding: $spacing-y;
-    text-align: left;
     vertical-align: middle;
 
-    &--heading { font-size: map-get($heading-sizes, h5); }
+    &--head {
+      background-color: rgba($light, .25);
+    }
   }
 
   &__row {
