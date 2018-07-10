@@ -1,6 +1,6 @@
 # Gumball
 
-A collection of reusable component, helper and layout classes
+A collection of reusable component, helper and layout classes.
 
 [![npm version](https://img.shields.io/npm/v/gumball-css.svg)](https://www.npmjs.com/package/gumball-css)
 [![Dependency Status](https://david-dm.org/jl-welch/gumball/dev-status.svg)](https://david-dm.org/jl-welch/gumball?type=dev)
@@ -17,19 +17,19 @@ $ npm install gumball-css
 
 Modular framework with meaningful class names.
 
-* A responsive 12 column grid
+* Reset to fix cross browser compatibility issues
 
-* Built-in reset to fix browser specific issues
+* Reusable component & helper classes
 
 * Responsive from the ground up
 
 * A simple, modern look by default
 
-* Reusable components & helpers to avoid page-specfic clutter
+* BEM naming for component classes
 
 ## Build from source
 
-Install & easily customise source code. You'll need Node.js and NPM installed.
+Install & easily customise source code. You'll need Node.js and NPM installed. (Also gulp-cli through NPM).
 
 ```shell
 $ git clone git@github.com:jl-welch/gumball.git
@@ -42,3 +42,11 @@ $ gulp
 
 * IE 10+
 * Modern browsers
+
+## Documentation
+
+Currently not available. Feel free to contribute!
+
+## License
+
+MIT

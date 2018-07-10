@@ -1,0 +1,1 @@
+Guidelines for contributing: https://github.com/jl-welch/gumball/blob/master/CONTRIBUTING.md
