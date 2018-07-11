@@ -1,0 +1,15 @@
+.border         { border: $border-width solid $border-color !important; }
+.border-top     { border-top: $border-width solid $border-color !important; }
+.border-right   { border-right: $border-width solid $border-color !important; }
+.border-bottom  { border-bottom: $border-width solid $border-color !important; }
+.border-left    { border-left: $border-width solid $border-color !important; }
+
+.border-none        { border: 0 !important; }
+.border-top-none    { border-top: 0 !important; }
+.border-right-none  { border-right: 0 !important; }
+.border-bottom-none { border-bottom: 0 !important; }
+.border-left-none   { border-left: 0 !important; }
+
+@each $color, $value in $colors {
+  .border-#{$color} { border-color: $value; }
+}

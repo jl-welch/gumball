@@ -1,7 +1,5 @@
 @each $key, $value in $colors {
-  .bg-#{$key} {
-    @include bg($value);
-  }
+  .bg-#{$key} { @include bg($value); }
 }
 
 .bg-transparent { background-color: transparent !important; }

@@ -44,12 +44,12 @@
   .card__header,
   .card__body,
   .card__footer {
-    border-right: none;
-    border-left: none;
+    border-right: 0;
+    border-left: 0;
   }
 
-  .card__header { border-top: none; }
-  .card__footer { border-bottom: none; }
+  .card__header { border-top: 0; }
+  .card__footer { border-bottom: 0; }
 
   .card__header,
   .card__footer {

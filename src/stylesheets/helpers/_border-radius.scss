@@ -1,1 +1,23 @@
-.round { border-radius: 100%; }
+.round-top {
+  border-top-right-radius: $border-radius !important;
+  border-top-left-radius: $border-radius !important;
+}
+
+.round-right {
+  border-top-right-radius: $border-radius !important;
+  border-bottom-right-radius: $border-radius !important;
+}
+
+.round-bottom {
+  border-bottom-right-radius: $border-radius !important;
+  border-bottom-left-radius: $border-radius !important;
+}
+
+.round-left {
+  border-top-left-radius: $border-radius !important;
+  border-bottom-left-radius: $border-radius !important;
+}
+
+.round-circle { border-radius: 50% !important; }
+
+.round-none { border-radius: 0 !important; }
