@@ -1,17 +1,16 @@
-@each $bp, $value in $breakpoints {
-  @include breakpoint-between($bp) {
-    .visible-#{$bp} { display: block !important; }
-    .hidden-#{$bp} { display: none !important; }
-  }
-
+@each $bp in map-keys($breakpoints) {
   @include breakpoint-up($bp) {
-    .visible-up-#{$bp} { display: block !important; }
-    .hidden-up-#{$bp} { display: none !important; }
-  }
+    $infix: breakpoint-infix($bp);
 
-  @include breakpoint-down($bp) {
-    .visible-down-#{$bp} { display: block !important; }
-    .hidden-down-#{$bp} { display: none !important; }
+    .d#{$infix}-none         { display: none !important; }
+    .d#{$infix}-inline       { display: inline !important; }
+    .d#{$infix}-inline-block { display: inline-block !important; }
+    .d#{$infix}-block        { display: block !important; }
+    .d#{$infix}-flex         { display: flex !important; }
+    .d#{$infix}-inline-flex  { display: inline-flex !important; }
+
+    .hidden#{$infix}  { visibility: hidden !important; }
+    .visible#{$infix} { visibility: visible !important; }
   }
 }
 
@@ -21,11 +20,11 @@
 }
 
 .fade-out {
-  visibility: hidden;
+  @extend .hidden;
   opacity: 0;
 }
 
 .fade-in {
-  visibility: visible;
+  @extend .visible;
   opacity: 1;
 }
