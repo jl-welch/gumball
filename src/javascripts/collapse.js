@@ -26,7 +26,7 @@ const Collapse = {
     if (time < Collapse.duration) {
       requestAnimationFrame(_ => Collapse.animate(el, from, to, change, ancestor, time));
     } else {
-      el.style.height = to <= 1 ? "0" : "100%";
+      el.style.height = to <= 1 ? "0" : "auto";
       if (!ancestor) Collapse.collapsing = false;
     }
   },
