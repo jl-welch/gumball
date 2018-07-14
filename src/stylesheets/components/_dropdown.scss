@@ -33,6 +33,7 @@
   position: relative;
   padding: $spacing-y-lg $spacing-x-lg;
   text-align: center;
+  text-decoration: none;
 
   &:hover { background-color: darken($light, 5%); }
 }
