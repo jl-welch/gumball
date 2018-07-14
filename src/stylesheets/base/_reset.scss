@@ -30,7 +30,8 @@ html {
 
 body {
   height: 100%;
-  font: $font-size-base $font-family-base;
+  font-size: $font-size-base;
+  font-family: $font-family-base;
 }
 
 article, aside, details, figcaption, figure,
@@ -39,7 +40,6 @@ footer, header, hgroup, menu, nav, section {
 }
 
 a {
-  text-decoration: none;
   color: inherit;
 }
 

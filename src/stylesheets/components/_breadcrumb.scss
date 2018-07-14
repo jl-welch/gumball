@@ -9,20 +9,6 @@
     display: inline-block;
   }
 
-  &__item {
-    color: $blue;
-
-    &--active {
-      color: $grey-600;
-      color: inherit;
-    }
-  }
-
-  &__link:hover {
-    text-decoration: underline;
-    color: darken($blue, 5%);
-  }
-
   &__item + &__item {
     padding-left: $spacing-x-xs;
 
