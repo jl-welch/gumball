@@ -6,8 +6,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: $spacing-y-sm $spacing-x-sm;
+  padding: $spacing-y $spacing-x;
   
   &--close {
     padding-right: ($spacing-x * 2);
@@ -15,8 +14,8 @@
   }
 
   &__link {
+    display: inline-block;
     font-size: $font-size-sm;
-    text-decoration: underline;
   }
 
   &__close {
