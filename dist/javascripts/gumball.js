@@ -15,9 +15,7 @@ if (!Element.prototype.matches) {
 // from:https://github.com/jserz/js_piece/blob/master/DOM/ChildNode/remove()/remove().md
 (function (arr) {
   arr.forEach(function (item) {
-    if (item.hasOwnProperty('remove')) {
-      return;
-    }
+    if (item.hasOwnProperty('remove')) return;
     Object.defineProperty(item, 'remove', {
       configurable: true,
       enumerable: true,
@@ -190,7 +188,7 @@ var Modal = {
 
     Modal.close();
 
-    document.querySelector('#' + el.dataset.modal).classList.add(Modal.class);
+    document.querySelector('#' + el.getAttribute("data-modal")).classList.add(Modal.class);
   },
   bindOpen: function bindOpen() {
     Modal.element.forEach(function (el) {
@@ -209,21 +207,3 @@ var Modal = {
 };
 
 Modal.init();
-var Nav = {
-  element: document.querySelector("[data-nav]"),
-  class: "nav--active",
-
-  init: function init() {
-    Nav.bind();
-  },
-  toggle: function toggle(e) {
-    document.querySelector('#' + e.currentTarget.dataset.nav).classList.toggle(Nav.class);
-  },
-  bind: function bind() {
-    if (Nav.element) Nav.element.addEventListener("click", function (e) {
-      return Nav.toggle(e);
-    });
-  }
-};
-
-Nav.init();

@@ -18,7 +18,7 @@ const Modal = {
 
     Modal.close();
 
-    document.querySelector(`#${el.dataset.modal}`)
+    document.querySelector(`#${el.getAttribute("data-modal")}`)
     .classList.add(Modal.class);
   },
 
