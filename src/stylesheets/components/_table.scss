@@ -8,9 +8,7 @@
     padding: $spacing-y;
     vertical-align: middle;
 
-    &--head {
-      background-color: rgba($light, .25);
-    }
+    &--head { background-color: rgba($light, .25); }
   }
 
   &__row {

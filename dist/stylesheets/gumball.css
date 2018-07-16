@@ -167,7 +167,7 @@ input[type="checkbox"] {
 }
 
 strong {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 label,
@@ -1341,7 +1341,6 @@ h6,
   margin-bottom: 1rem;
   font-weight: 700;
   line-height: 1.4;
-  color: #60646a;
   color: inherit;
 }
 

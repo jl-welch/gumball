@@ -19,9 +19,7 @@
   }
 
   &__close {
-    position: absolute;
-    top: 50%;
-    right: 10px;
+    @include absolute($top: 50%, $right: 10px);
     font-size: 2rem;
     cursor: pointer;
     user-select: none;

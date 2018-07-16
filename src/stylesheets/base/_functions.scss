@@ -17,14 +17,6 @@
   }
 }
 
-@function color($key: "blue") {
-  @return map-get($colors, $key);
-}
-
-@function shade($key: "100") {
-  @return map-get($greys, $key);
-}
-
 @function breakpoint-infix($name) {
   @return if(map-min($breakpoints, $name) == null, "", "-#{$name}");
 }

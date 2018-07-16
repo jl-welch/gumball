@@ -11,9 +11,7 @@
     &--#{$key} { @include card($value); }
   }
 
-  &--lg {
-    padding: 10rem;
-  }
+  &--lg { padding: 10rem; }
 }
 
 .card__header,
@@ -28,11 +26,13 @@
 }
 
 .card__header { @include border-top-radius($border-radius); }
+
 .card__body {
   flex: 1 1 auto;
   border-right: $border-width solid $border-color;
   border-left: $border-width solid $border-color;
 }
+
 .card__footer { @include border-bottom-radius($border-radius); }
 
 .card__overlay {
