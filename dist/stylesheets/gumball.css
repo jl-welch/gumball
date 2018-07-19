@@ -2896,14 +2896,6 @@ h6,
     display: inline-flex !important;
   }
 
-  .hidden-sm {
-    visibility: hidden !important;
-  }
-
-  .visible-sm {
-    visibility: visible !important;
-  }
-
   .container {
     max-width: 540px;
   }
@@ -3560,14 +3552,6 @@ h6,
     display: -webkit-inline-box !important;
     display: -ms-inline-flexbox !important;
     display: inline-flex !important;
-  }
-
-  .hidden-md {
-    visibility: hidden !important;
-  }
-
-  .visible-md {
-    visibility: visible !important;
   }
 
   .container {
@@ -4232,14 +4216,6 @@ h6,
     display: inline-flex !important;
   }
 
-  .hidden-lg {
-    visibility: hidden !important;
-  }
-
-  .visible-lg {
-    visibility: visible !important;
-  }
-
   .container {
     max-width: 960px;
   }
@@ -4896,14 +4872,6 @@ h6,
     display: -webkit-inline-box !important;
     display: -ms-inline-flexbox !important;
     display: inline-flex !important;
-  }
-
-  .hidden-xl {
-    visibility: hidden !important;
-  }
-
-  .visible-xl {
-    visibility: visible !important;
   }
 
   .container {

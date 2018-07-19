@@ -8,11 +8,11 @@
     .d#{$infix}-block        { display: block !important; }
     .d#{$infix}-flex         { display: flex !important; }
     .d#{$infix}-inline-flex  { display: inline-flex !important; }
-
-    .hidden#{$infix}  { visibility: hidden !important; }
-    .visible#{$infix} { visibility: visible !important; }
   }
 }
+
+.hidden  { visibility: hidden !important; }
+.visible { visibility: visible !important; }
 
 .fade-out,
 .fade-in {
