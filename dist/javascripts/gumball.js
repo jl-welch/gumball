@@ -38,6 +38,49 @@ if (!Element.prototype.closest) {
     });
   });
 })([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
+var Event = function (_) {
+
+  var Attributes = {
+    EVENT: "data-event",
+    TARGET: "data-target"
+  };
+
+  var Event = {
+    listeners: {},
+
+    // Add custom method to listeners
+    addListener: function addListener(name, cb) {
+      Event.listeners[name] = cb;
+    },
+
+
+    // Run action on element event
+    // element.addEventListener("click", Event.action, false)
+    action: function action(event) {
+      var listeners = Event.listeners,
+          element = event.target.closest('[' + Attributes.EVENT + ']'),
+          action = element ? element.getAttribute(Attributes.EVENT) : null;
+
+      if (listeners[action]) listeners[action](event);
+    },
+    target: function target(event) {
+      var element = event.target.closest('[' + Attributes.TARGET + ']');
+
+      if (element) {
+        var attribute = element.getAttribute(Attributes.TARGET),
+            target = document.querySelector('#' + attribute);
+
+        return target;
+      }
+
+      return null;
+    }
+  };
+
+  return Event;
+}();
+
+document.documentElement.addEventListener("click", Event.action, false);
 (function (_) {
   var Collapse = {
     element: document.querySelectorAll("[data-collapse]"),
@@ -188,42 +231,36 @@ if (!Element.prototype.closest) {
 
   Dropdown.init();
 })();
-(function (_) {
+var Modal = function (_) {
+  var Selector = {
+    TARGET: "[data-target]"
+  };
+
+  var ClassName = {
+    OPEN: "modal--open"
+  };
+
   var Modal = {
-    element: document.querySelectorAll("[data-modal]"),
-    dismiss: document.querySelectorAll("[data-dismiss=\"modal\"]"),
-    class: "modal--open",
-
-    init: function init() {
-      Modal.bindOpen();
-      Modal.bindClose();
-    },
     close: function close() {
-      var el = document.querySelector('.' + Modal.class);
-      if (el) el.classList.remove(Modal.class);
-    },
-    open: function open(e, el) {
-      e.preventDefault();
+      var oldModal = document.querySelector('.' + ClassName.OPEN);
 
-      Modal.close();
-
-      document.querySelector('#' + el.getAttribute("data-modal")).classList.add(Modal.class);
+      if (oldModal) oldModal.classList.remove(ClassName.OPEN);
     },
-    bindOpen: function bindOpen() {
-      Modal.element.forEach(function (el) {
-        return el.addEventListener("click", function (e) {
-          return Modal.open(e, el);
-        });
-      });
-    },
-    bindClose: function bindClose() {
-      Modal.dismiss.forEach(function (el) {
-        return el.addEventListener("click", function (_) {
-          return Modal.close();
-        });
-      });
+    open: function open(target) {
+      if (target && !target.classList.contains(ClassName.OPEN)) {
+        Modal.close();
+        target.classList.add(ClassName.OPEN);
+      }
     }
   };
 
-  Modal.init();
-})();
+  Event.addListener("modal", function (event) {
+    event.preventDefault();
+
+    var target = Event.target(event);
+
+    Modal.open(target);
+  });
+
+  return Modal;
+}();
