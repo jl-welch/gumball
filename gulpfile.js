@@ -22,7 +22,10 @@ gulp.task("sass", function() {
 });
 
 gulp.task("js", function() {
-  gulp.src(["src/javascripts/polyfills/*.js", "src/javascripts/*.js"])
+  gulp.src([
+      "src/javascripts/polyfills/*.js",
+      "src/javascripts/utility/*.js",
+      "src/javascripts/*.js"])
     .pipe(concat("gumball.js"))
     .pipe(babel({presets: ["env"]}))
     .pipe(gulp.dest("dist/javascripts/"));
