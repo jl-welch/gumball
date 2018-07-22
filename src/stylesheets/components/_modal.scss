@@ -1,5 +1,5 @@
 .modal {
-  @include transition($transition-base);
+  @include transition($transition-fade, $transition-visibility);
   @include fixed($top: 0, $right: 0, $bottom: 0, $left: 0);
   outline: 0;
   opacity: 0;
@@ -12,7 +12,6 @@
   }
 
   &__dialog {
-    @include transition($transition-base);
     margin: $spacing-y;
     pointer-events: none;
 

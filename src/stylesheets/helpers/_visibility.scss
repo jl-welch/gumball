@@ -16,15 +16,13 @@
 
 .fade-out,
 .fade-in {
-  @include transition($transition-base);
+  @include transition($transition-fade);
 }
 
 .fade-out {
-  @extend .hidden;
   opacity: 0;
 }
 
 .fade-in {
-  @extend .visible;
   opacity: 1;
 }

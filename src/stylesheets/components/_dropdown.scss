@@ -29,7 +29,7 @@
 }
 
 .dropdown__link {
-  @include transition($transition-base);
+  @include transition($transition-color);
   position: relative;
   padding: $spacing-y-lg $spacing-x-lg;
   text-align: center;

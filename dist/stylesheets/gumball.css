@@ -454,9 +454,9 @@ button::-moz-focus-inner {
 .btn,
 .input__submit {
   padding: 1rem 1.5rem;
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
   display: inline-block;
   font-weight: 300;
   -webkit-user-select: none;
@@ -947,9 +947,9 @@ button::-moz-focus-inner {
   left: 0;
   color: #414042 !important;
   background-color: #fff !important;
-  -webkit-transition: opacity 0.2s linear;
-  -o-transition: opacity 0.2s linear;
-  transition: opacity 0.2s linear;
+  -webkit-transition: opacity 0.15s linear;
+  -o-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
   min-width: 18rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -970,9 +970,9 @@ button::-moz-focus-inner {
 }
 
 .dropdown__link {
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
   position: relative;
   padding: 1.5rem 2.5rem;
   text-align: center;
@@ -1011,9 +1011,9 @@ button::-moz-focus-inner {
 }
 
 .input__text {
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
   position: relative;
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
@@ -1037,9 +1037,9 @@ button::-moz-focus-inner {
 }
 
 .modal {
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+  -webkit-transition: opacity 0.15s linear, visibility 0.15s linear;
+  -o-transition: opacity 0.15s linear, visibility 0.15s linear;
+  transition: opacity 0.15s linear, visibility 0.15s linear;
   position: fixed;
   top: 0;
   right: 0;
@@ -1057,9 +1057,6 @@ button::-moz-focus-inner {
 }
 
 .modal__dialog {
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
   margin: 1rem;
   pointer-events: none;
 }
@@ -1133,9 +1130,6 @@ button::-moz-focus-inner {
 }
 
 .nav {
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1237,9 +1231,9 @@ button::-moz-focus-inner {
 }
 
 .navbar .nav__link {
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.15s ease-in-out;
+  -o-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
   color: rgba(232, 234, 238, 0.6);
 }
 
@@ -1315,9 +1309,6 @@ button::-moz-focus-inner {
 
 .table__row {
   border-bottom: 1px solid #f2faf3;
-  -webkit-transition: opacity .3s ease-out;
-  -o-transition: opacity .3s ease-out;
-  transition: opacity .3s ease-out;
 }
 
 .table__caption {
@@ -2163,21 +2154,19 @@ h6,
   display: inline-flex !important;
 }
 
-.hidden,
-.fade-out {
+.hidden {
   visibility: hidden !important;
 }
 
-.visible,
-.fade-in {
+.visible {
   visibility: visible !important;
 }
 
 .fade-out,
 .fade-in {
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+  -webkit-transition: opacity 0.15s linear;
+  -o-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
 }
 
 .fade-out {
@@ -5002,18 +4991,6 @@ h6,
   }
 
   .modal {
-    -webkit-transition: none;
-    -o-transition: none;
-    transition: none;
-  }
-
-  .modal__dialog {
-    -webkit-transition: none;
-    -o-transition: none;
-    transition: none;
-  }
-
-  .nav {
     -webkit-transition: none;
     -o-transition: none;
     transition: none;

@@ -2,7 +2,7 @@
   @include button($light);
   @include button-size($spacing-y, $spacing-x, $border-radius);
   @include box-shadow($box-shadow);
-  @include transition($transition-base);
+  @include transition($transition-color);
   display: inline-block;
   font-weight: $font-weight-light;
   user-select: none;

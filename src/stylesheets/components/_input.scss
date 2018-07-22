@@ -13,7 +13,7 @@
   }
 
   &__text {
-    @include transition($transition-base);
+    @include transition($transition-color);
     @include border-radius($border-radius);
     position: relative;
     flex: 1 1 auto;
