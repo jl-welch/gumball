@@ -22,7 +22,7 @@ const Modal = (_ => {
   Event.addListener("modal", event => {
     event.preventDefault();
     
-    const target = Event.target(event);
+    const target = Target.query(event);
 
     Modal.open(target);
   });

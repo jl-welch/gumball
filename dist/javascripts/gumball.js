@@ -40,7 +40,7 @@ if (!Element.prototype.closest) {
 })([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
 var Event = function (_) {
 
-  var Attributes = {
+  var Attribute = {
     EVENT: "data-event",
     TARGET: "data-target",
     CLOSE: "data-dismiss"
@@ -59,22 +59,10 @@ var Event = function (_) {
     // element.addEventListener("click", Event.action, false)
     action: function action(event) {
       var listeners = Event.listeners,
-          element = event.target.closest('[' + Attributes.EVENT + ']') || event.target.closest('[' + Attributes.CLOSE + ']'),
-          action = element ? element.getAttribute(Attributes.EVENT) || element.getAttribute(Attributes.CLOSE) : null;
+          element = event.target.closest('[' + Attribute.EVENT + ']') || event.target.closest('[' + Attribute.CLOSE + ']'),
+          action = element ? element.getAttribute(Attribute.EVENT) || element.getAttribute(Attribute.CLOSE) : null;
 
       if (listeners[action]) listeners[action](event);
-    },
-    target: function target(event) {
-      var element = event.target.closest('[' + Attributes.TARGET + ']');
-
-      if (element) {
-        var attribute = element.getAttribute(Attributes.TARGET),
-            target = document.querySelector('#' + attribute);
-
-        return target;
-      }
-
-      return null;
     }
   };
 
@@ -82,6 +70,32 @@ var Event = function (_) {
 }();
 
 document.documentElement.addEventListener("click", Event.action, false);
+var Target = function (_) {
+  var Attribute = {
+    TARGET: "data-target"
+  };
+
+  var Target = {
+    query: function query(event) {
+      var element = event.target.closest('[' + Attribute.TARGET + ']');
+
+      if (element) {
+        var attribute = element.getAttribute(Attribute.TARGET),
+            target = document.querySelector(attribute);
+
+        return target;
+      }
+
+      return null;
+    },
+    queryAncestor: function queryAncestor(className) {
+      var element = event.target.closest('.' + className);
+      return element;
+    }
+  };
+
+  return Target;
+}();
 (function (_) {
   var Collapse = {
     element: document.querySelectorAll("[data-collapse]"),
@@ -168,7 +182,8 @@ document.documentElement.addEventListener("click", Event.action, false);
 })();
 var Dismiss = function (_) {
   var ClassName = {
-    FADE: "fade-out"
+    FADE: "fade-out",
+    ALERT: "alert"
   };
 
   var Dismiss = {
@@ -189,10 +204,18 @@ var Dismiss = function (_) {
     }
   };
 
-  Event.addListener("id", function (event) {
+  Event.addListener("alert", function (event) {
     event.preventDefault();
 
-    var target = Event.target(event);
+    var target = Target.queryAncestor(ClassName.ALERT);
+
+    Dismiss.close(target);
+  });
+
+  Event.addListener("selector", function (event) {
+    event.preventDefault();
+
+    var target = Target.query(event);
 
     Dismiss.close(target);
   });
@@ -255,7 +278,7 @@ var Modal = function (_) {
   Event.addListener("modal", function (event) {
     event.preventDefault();
 
-    var target = Event.target(event);
+    var target = Target.query(event);
 
     Modal.open(target);
   });

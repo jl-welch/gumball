@@ -1,6 +1,7 @@
 const Dismiss = (_ => {
   const ClassName = {
-    FADE: "fade-out"
+    FADE: "fade-out",
+    ALERT: "alert"
   }
 
   const Dismiss = {
@@ -14,7 +15,7 @@ const Dismiss = (_ => {
       target.addEventListener("transitionend", removeElement, false);
     },
   
-    close(target) {  
+    close(target) {
       if (target) {
         Dismiss.remove(target);
         target.classList.toggle(ClassName.FADE);
@@ -22,10 +23,18 @@ const Dismiss = (_ => {
     }
   }
 
-  Event.addListener("id", event => {
+  Event.addListener("alert", event => {
+    event.preventDefault();
+
+    const target = Target.queryAncestor(ClassName.ALERT);
+
+    Dismiss.close(target);
+  });
+
+  Event.addListener("selector", event => {
     event.preventDefault();
     
-    const target = Event.target(event);
+    const target = Target.query(event);
 
     Dismiss.close(target);
   });
