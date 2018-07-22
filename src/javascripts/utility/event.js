@@ -2,7 +2,8 @@ const Event = (_ => {
 
   const Attributes = {
     EVENT:  "data-event",
-    TARGET: "data-target"
+    TARGET: "data-target",
+    CLOSE:  "data-dismiss"
   }
 	
   const Event = {
@@ -17,8 +18,10 @@ const Event = (_ => {
     // element.addEventListener("click", Event.action, false)
     action(event) {			
       const listeners = Event.listeners,
-            element   = event.target.closest(`[${Attributes.EVENT}]`),
-            action    = element ? element.getAttribute(Attributes.EVENT) : null;
+            element   = event.target.closest(`[${Attributes.EVENT}]`) ||
+                        event.target.closest(`[${Attributes.CLOSE}]`),
+            action    = element ? element.getAttribute(Attributes.EVENT) || 
+                                  element.getAttribute(Attributes.CLOSE) : null;
 
       if (listeners[action]) listeners[action](event);
     },

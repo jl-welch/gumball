@@ -42,7 +42,8 @@ var Event = function (_) {
 
   var Attributes = {
     EVENT: "data-event",
-    TARGET: "data-target"
+    TARGET: "data-target",
+    CLOSE: "data-dismiss"
   };
 
   var Event = {
@@ -58,8 +59,8 @@ var Event = function (_) {
     // element.addEventListener("click", Event.action, false)
     action: function action(event) {
       var listeners = Event.listeners,
-          element = event.target.closest('[' + Attributes.EVENT + ']'),
-          action = element ? element.getAttribute(Attributes.EVENT) : null;
+          element = event.target.closest('[' + Attributes.EVENT + ']') || event.target.closest('[' + Attributes.CLOSE + ']'),
+          action = element ? element.getAttribute(Attributes.EVENT) || element.getAttribute(Attributes.CLOSE) : null;
 
       if (listeners[action]) listeners[action](event);
     },
@@ -165,39 +166,39 @@ document.documentElement.addEventListener("click", Event.action, false);
 
   Collapse.init();
 })();
-(function (_) {
+var Dismiss = function (_) {
+  var ClassName = {
+    FADE: "fade-out"
+  };
+
   var Dismiss = {
-    element: document.querySelectorAll("[data-dismiss]"),
-    class: "fade-out",
+    remove: function remove(target) {
 
-    init: function init() {
-      Dismiss.bind();
-    },
-    remove: function remove(el) {
-      el.addEventListener("transitionend", function (_) {
-        return el.remove();
-      });
-    },
-    close: function close(e, el) {
-      e.preventDefault();
+      function removeElement() {
+        target.remove();
+        target.removeEventListener("transitionend", removeElement, false);
+      }
 
-      var target = document.querySelector('#' + el.getAttribute("data-dismiss"));
+      target.addEventListener("transitionend", removeElement, false);
+    },
+    close: function close(target) {
       if (target) {
         Dismiss.remove(target);
-        target.classList.add(Dismiss.class);
+        target.classList.toggle(ClassName.FADE);
       }
-    },
-    bind: function bind() {
-      Dismiss.element.forEach(function (el) {
-        el.addEventListener("click", function (e) {
-          return Dismiss.close(e, el);
-        });
-      });
     }
   };
 
-  Dismiss.init();
-})();
+  Event.addListener("id", function (event) {
+    event.preventDefault();
+
+    var target = Event.target(event);
+
+    Dismiss.close(target);
+  });
+
+  return Dismiss;
+}();
 (function (_) {
   var Dropdown = {
     element: document.querySelectorAll(".dropdown__toggle"),
@@ -232,10 +233,6 @@ document.documentElement.addEventListener("click", Event.action, false);
   Dropdown.init();
 })();
 var Modal = function (_) {
-  var Selector = {
-    TARGET: "[data-target]"
-  };
-
   var ClassName = {
     OPEN: "modal--open"
   };
@@ -247,8 +244,9 @@ var Modal = function (_) {
       if (oldModal) oldModal.classList.remove(ClassName.OPEN);
     },
     open: function open(target) {
+      Modal.close();
+
       if (target && !target.classList.contains(ClassName.OPEN)) {
-        Modal.close();
         target.classList.add(ClassName.OPEN);
       }
     }

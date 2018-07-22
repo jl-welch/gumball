@@ -1,32 +1,34 @@
-(_ => {
+const Dismiss = (_ => {
+  const ClassName = {
+    FADE: "fade-out"
+  }
+
   const Dismiss = {
-    element: document.querySelectorAll("[data-dismiss]"),
-    class:   "fade-out",
-  
-    init() {
-      Dismiss.bind();
+    remove(target) {
+
+      function removeElement() {
+        target.remove();
+        target.removeEventListener("transitionend", removeElement, false);
+      }
+
+      target.addEventListener("transitionend", removeElement, false);
     },
   
-    remove(el) {
-      el.addEventListener("transitionend", _ => el.remove());
-    },
-  
-    close(e, el) {
-      e.preventDefault();
-  
-      let target = document.querySelector(`#${el.getAttribute("data-dismiss")}`);
+    close(target) {  
       if (target) {
         Dismiss.remove(target);
-        target.classList.add(Dismiss.class);
+        target.classList.toggle(ClassName.FADE);
       }
-    },
-  
-    bind() {
-      Dismiss.element.forEach(el => {
-        el.addEventListener("click", e => Dismiss.close(e, el));
-      });
     }
   }
+
+  Event.addListener("id", event => {
+    event.preventDefault();
+    
+    const target = Event.target(event);
+
+    Dismiss.close(target);
+  });
   
-  Dismiss.init();
+  return Dismiss;
 })();

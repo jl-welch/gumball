@@ -1,8 +1,4 @@
 const Modal = (_ => {
-  const Selector = {
-    TARGET: "[data-target]"
-  }
-
   const ClassName = {
     OPEN: "modal--open"
   }
@@ -15,8 +11,9 @@ const Modal = (_ => {
     },
   
     open(target) {
+      Modal.close();
+
       if (target && !target.classList.contains(ClassName.OPEN)) {
-        Modal.close();
         target.classList.add(ClassName.OPEN);
       }
     },
