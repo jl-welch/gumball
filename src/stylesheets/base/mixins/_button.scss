@@ -3,13 +3,14 @@
     @include bg($color);
     border: $border-width solid $color;
 
-    &:hover { @include bg($hover-color); }
-
-    &:active,
-    .btn--active {
-      @include bg($active-color);
-      border-color: $active-color;
+    &.btn--focus,
+    &.btn--active,
+    &:focus,
+    &:active {
+      box-shadow: 0 0 .5rem rgba($active-color, .6);
     }
+
+    &:hover { @include bg($hover-color); }
   }
 }
 
@@ -18,6 +19,13 @@
     border: $border-width solid $color !important;
     color: $color !important;
     background-color: transparent !important;
+
+    &.btn--focus,
+    &.btn--active,
+    &:focus,
+    &:active {
+      box-shadow: 0 0 .5rem rgba($color, .6);
+    }
 
     &:hover { @include bg($color); }
   }

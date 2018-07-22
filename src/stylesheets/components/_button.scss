@@ -7,7 +7,6 @@
   font-weight: $font-weight-light;
   user-select: none;
   border: $border-width solid $light;
-  outline: none;
 
   &--sm { @include button-size($spacing-y-sm, $spacing-x-sm, $border-radius-sm); }
   &--lg { @include button-size($spacing-y-lg, $spacing-x-lg, $border-radius-lg); }
