@@ -49,4 +49,4 @@ Currently not available. Feel free to contribute!
 
 ## License
 
-MIT
+[MIT License](https://github.com/jl-welch/gumball/blob/master/LICENSE)
