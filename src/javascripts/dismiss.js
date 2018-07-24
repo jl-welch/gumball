@@ -1,7 +1,10 @@
 const Dismiss = (_ => {
+  const Selector = {
+    ALERT: "alert"
+  }
+
   const ClassName = {
     FADE: "fade-out",
-    ALERT: "alert"
   }
 
   const Dismiss = {
@@ -26,7 +29,7 @@ const Dismiss = (_ => {
   Event.addListener("alert", event => {
     event.preventDefault();
 
-    const target = Target.queryAncestor(ClassName.ALERT);
+    const target = Target.queryAncestor(Selector.ALERT);
 
     Dismiss.close(target);
   });

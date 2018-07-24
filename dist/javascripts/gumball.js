@@ -181,9 +181,12 @@ var Target = function (_) {
   Collapse.init();
 })();
 var Dismiss = function (_) {
-  var ClassName = {
-    FADE: "fade-out",
+  var Selector = {
     ALERT: "alert"
+  };
+
+  var ClassName = {
+    FADE: "fade-out"
   };
 
   var Dismiss = {
@@ -207,7 +210,7 @@ var Dismiss = function (_) {
   Event.addListener("alert", function (event) {
     event.preventDefault();
 
-    var target = Target.queryAncestor(ClassName.ALERT);
+    var target = Target.queryAncestor(Selector.ALERT);
 
     Dismiss.close(target);
   });
