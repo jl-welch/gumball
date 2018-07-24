@@ -217,7 +217,7 @@ var Dismiss = function (_) {
   Event.addListener("alert", function (event) {
     event.preventDefault();
 
-    var target = Target.queryAncestor(Selector.ALERT);
+    var target = Target.queryAncestor(event, Selector.ALERT);
 
     Dismiss.close(target);
   });

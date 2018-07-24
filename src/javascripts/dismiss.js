@@ -37,7 +37,7 @@ const Dismiss = (_ => {
   Event.addListener("alert", event => {
     event.preventDefault();
 
-    const target = Target.queryAncestor(Selector.ALERT);
+    const target = Target.queryAncestor(event, Selector.ALERT);
 
     Dismiss.close(target);
   });
