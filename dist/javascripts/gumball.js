@@ -88,9 +88,9 @@ var Target = function (_) {
 
       return null;
     },
-    queryAncestor: function queryAncestor(className) {
+    queryAncestor: function queryAncestor(event, className) {
       var element = event.target.closest('.' + className);
-      return element;
+      return element ? element : null;
     }
   };
 
@@ -231,7 +231,9 @@ var Dismiss = function (_) {
   });
 
   Event.addListener("clear", function (event) {
-    Dismiss.clear();
+    var target = Target.queryAncestor(event, ClassName.OPEN);
+
+    if (!target) Dismiss.clear();
   });
 
   return Dismiss;

@@ -17,9 +17,9 @@ const Target = (_ => {
       return null;
     },
 
-    queryAncestor(className) {
+    queryAncestor(event, className) {
       const element = event.target.closest(`.${className}`);
-      return element;
+      return element ? element : null;
     }
   }
 

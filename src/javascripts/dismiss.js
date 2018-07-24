@@ -51,7 +51,9 @@ const Dismiss = (_ => {
   });
 
   Event.addListener("clear", event => {
-    Dismiss.clear();
+    const target = Target.queryAncestor(event, ClassName.OPEN);
+
+    if (!target) Dismiss.clear();
   });
   
   return Dismiss;
