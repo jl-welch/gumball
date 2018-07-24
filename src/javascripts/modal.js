@@ -1,13 +1,12 @@
 const Modal = (_ => {
   const ClassName = {
-    OPEN: "modal--open"
+    OPEN: "open"
   }
 
   const Modal = {
     close() {
-      const oldModal = document.querySelector(`.${ClassName.OPEN}`);
-
-      if (oldModal) oldModal.classList.remove(ClassName.OPEN);
+      const active = document.querySelector(`.${ClassName.OPEN}`);
+      if (active) active.classList.remove(ClassName.OPEN);
     },
   
     open(target) {

@@ -5,6 +5,7 @@ const Dismiss = (_ => {
 
   const ClassName = {
     FADE: "fade-out",
+    OPEN: "open"
   }
 
   const Dismiss = {
@@ -19,10 +20,17 @@ const Dismiss = (_ => {
     },
   
     close(target) {
+      Dismiss.clear();
+
       if (target) {
         Dismiss.remove(target);
         target.classList.toggle(ClassName.FADE);
       }
+    },
+
+    clear() {
+      const target = document.querySelector(`.${ClassName.OPEN}`);
+      if (target) target.classList.remove(ClassName.OPEN);
     }
   }
 
@@ -40,6 +48,10 @@ const Dismiss = (_ => {
     const target = Target.query(event);
 
     Dismiss.close(target);
+  });
+
+  Event.addListener("clear", event => {
+    Dismiss.clear();
   });
   
   return Dismiss;

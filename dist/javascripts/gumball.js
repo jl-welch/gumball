@@ -60,7 +60,7 @@ var Event = function (_) {
     action: function action(event) {
       var listeners = Event.listeners,
           element = event.target.closest('[' + Attribute.EVENT + ']') || event.target.closest('[' + Attribute.CLOSE + ']'),
-          action = element ? element.getAttribute(Attribute.EVENT) || element.getAttribute(Attribute.CLOSE) : null;
+          action = element ? element.getAttribute(Attribute.EVENT) || element.getAttribute(Attribute.CLOSE) : "clear";
 
       if (listeners[action]) listeners[action](event);
     }
@@ -186,7 +186,8 @@ var Dismiss = function (_) {
   };
 
   var ClassName = {
-    FADE: "fade-out"
+    FADE: "fade-out",
+    OPEN: "open"
   };
 
   var Dismiss = {
@@ -200,10 +201,16 @@ var Dismiss = function (_) {
       target.addEventListener("transitionend", removeElement, false);
     },
     close: function close(target) {
+      Dismiss.clear();
+
       if (target) {
         Dismiss.remove(target);
         target.classList.toggle(ClassName.FADE);
       }
+    },
+    clear: function clear() {
+      var target = document.querySelector('.' + ClassName.OPEN);
+      if (target) target.classList.remove(ClassName.OPEN);
     }
   };
 
@@ -223,51 +230,49 @@ var Dismiss = function (_) {
     Dismiss.close(target);
   });
 
+  Event.addListener("clear", function (event) {
+    Dismiss.clear();
+  });
+
   return Dismiss;
 }();
-(function (_) {
+var Dropdown = function (_) {
+  var ClassName = {
+    OPEN: "open"
+  };
+
   var Dropdown = {
-    element: document.querySelectorAll(".dropdown__toggle"),
-    class: "dropdown__list--visible",
-
-    init: function init() {
-      Dropdown.bind();
+    close: function close() {
+      var active = document.querySelector('.' + ClassName.OPEN);
+      if (active) active.classList.remove(ClassName.OPEN);
     },
-    hide: function hide(el) {
-      var active = document.querySelector('#' + el.getAttribute("data-dropdown"));
-      var target = document.querySelector('.' + Dropdown.class);
-      if (target && target != active) target.classList.remove(Dropdown.class);
-    },
-    toggle: function toggle(e, el) {
-      e.preventDefault();
-
-      var target = document.querySelector('#' + el.getAttribute("data-dropdown"));
-      if (target) target.classList.toggle(Dropdown.class);
-    },
-    bind: function bind() {
-      Dropdown.element.forEach(function (el) {
-        el.addEventListener("click", function (e) {
-          return Dropdown.toggle(e, el);
-        });
-        el.addEventListener("mouseenter", function (e) {
-          return Dropdown.hide(el);
-        });
-      });
+    toggle: function toggle(target, current) {
+      if (!current) target.classList.add(ClassName.OPEN);
     }
   };
 
-  Dropdown.init();
-})();
+  Event.addListener("dropdown", function (event) {
+    event.preventDefault();
+
+    var target = Target.query(event);
+    if (target) {
+      var current = target.classList.contains(ClassName.OPEN);
+      Dropdown.close();
+      Dropdown.toggle(target, current);
+    }
+  });
+
+  return Dropdown;
+}();
 var Modal = function (_) {
   var ClassName = {
-    OPEN: "modal--open"
+    OPEN: "open"
   };
 
   var Modal = {
     close: function close() {
-      var oldModal = document.querySelector('.' + ClassName.OPEN);
-
-      if (oldModal) oldModal.classList.remove(ClassName.OPEN);
+      var active = document.querySelector('.' + ClassName.OPEN);
+      if (active) active.classList.remove(ClassName.OPEN);
     },
     open: function open(target) {
       Modal.close();

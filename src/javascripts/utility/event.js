@@ -21,7 +21,7 @@ const Event = (_ => {
             element   = event.target.closest(`[${Attribute.EVENT}]`) ||
                         event.target.closest(`[${Attribute.CLOSE}]`),
             action    = element ? element.getAttribute(Attribute.EVENT) || 
-                                  element.getAttribute(Attribute.CLOSE) : null;
+                                  element.getAttribute(Attribute.CLOSE) : "clear";
 
       if (listeners[action]) listeners[action](event);
     }

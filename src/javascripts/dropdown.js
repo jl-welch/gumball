@@ -1,32 +1,29 @@
-(_ => {
+const Dropdown = (_ => {
+  const ClassName = {
+    OPEN: "open"
+  }
+
   const Dropdown = {
-    element: document.querySelectorAll(".dropdown__toggle"),
-    class:   "dropdown__list--visible",
-  
-    init() {
-      Dropdown.bind();
+    close() {
+      let active = document.querySelector(`.${ClassName.OPEN}`);
+      if (active) active.classList.remove(ClassName.OPEN);
     },
   
-    hide(el) {
-      let active = document.querySelector(`#${el.getAttribute("data-dropdown")}`);
-      let target = document.querySelector(`.${Dropdown.class}`);
-      if (target && target != active) target.classList.remove(Dropdown.class);
-    },
-  
-    toggle(e, el) {
-      e.preventDefault();
-  
-      let target = document.querySelector(`#${el.getAttribute("data-dropdown")}`);
-      if (target) target.classList.toggle(Dropdown.class);
-    },
-  
-    bind() {
-      Dropdown.element.forEach(el => {
-        el.addEventListener("click", e => Dropdown.toggle(e, el));
-        el.addEventListener("mouseenter", e => Dropdown.hide(el));
-      });
+    toggle(target, current) {
+      if (!current) target.classList.add(ClassName.OPEN);
     }
   }
+
+  Event.addListener("dropdown", event => {
+    event.preventDefault();
+
+    const target  = Target.query(event);
+    if (target) {
+      const current = target.classList.contains(ClassName.OPEN);
+      Dropdown.close();
+      Dropdown.toggle(target, current);
+    }
+  });
   
-  Dropdown.init();
+  return Dropdown;
 })();

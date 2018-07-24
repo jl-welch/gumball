@@ -1033,7 +1033,7 @@ button::-moz-focus-inner {
   opacity: 0;
 }
 
-.dropdown__list--visible {
+.dropdown__list.open {
   visibility: visible;
   opacity: 1;
 }
@@ -1125,7 +1125,7 @@ button::-moz-focus-inner {
   z-index: 30;
 }
 
-.modal--open {
+.modal.open {
   visibility: visible;
   opacity: 1;
 }
