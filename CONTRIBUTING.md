@@ -13,8 +13,7 @@ Issues can be bugs, feature requests and more.
 Documentation
 -------------
 
-Gumball is in need of documentation which is currently being worked on. 
-Think you can help? Feel free to contribute!
+In the works.
 
 
 Builds and tests

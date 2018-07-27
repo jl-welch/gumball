@@ -45,7 +45,7 @@ $ gulp
 
 ## Documentation
 
-Currently not available. Feel free to contribute!
+In the works.
 
 ## License
 
