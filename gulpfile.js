@@ -23,7 +23,7 @@ gulp.task("sass", function() {
 
 gulp.task("js", function() {
   gulp.src([
-      "src/javascripts/polyfills/*.js",
+      "src/javascripts/polyfill/*.js",
       "src/javascripts/utility/*.js",
       "src/javascripts/*.js"])
     .pipe(concat("gumball.js"))
