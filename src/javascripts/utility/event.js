@@ -2,26 +2,34 @@ const Event = (_ => {
 
   const Attribute = {
     EVENT:  "data-event",
-    TARGET: "data-target",
     CLOSE:  "data-dismiss"
   }
 	
   const Event = {
     listeners: {},
 
-    // Add custom method to listeners
     addListener(name, cb) {
       Event.listeners[name] = cb;
     },
 
-    // Run action on element event
-    // element.addEventListener("click", Event.action, false)
-    action(event) {			
-      const listeners = Event.listeners,
-            element   = event.target.closest(`[${Attribute.EVENT}]`) ||
-                        event.target.closest(`[${Attribute.CLOSE}]`),
-            action    = element ? element.getAttribute(Attribute.EVENT) || 
-                                  element.getAttribute(Attribute.CLOSE) : "clear";
+    action(event) {
+      const listeners = Event.listeners;
+
+      let element, action;
+
+      // Check if the element we clicked on has one of the above data attributes
+      for (let key in Attribute) {
+        element = event.target.closest(`[${Attribute[key]}]`);
+        // If they do, set action to the attribute value
+        if (element) {
+          action = element.getAttribute(Attribute[key]);
+          break;
+        }
+      }
+      
+      // If what we click on is empty, run the clear listener
+      // Clear removes .shown class names
+      if (!action) action = "clear";
 
       if (listeners[action]) listeners[action](event);
     }

@@ -42,25 +42,34 @@ var Event = function (_) {
 
   var Attribute = {
     EVENT: "data-event",
-    TARGET: "data-target",
     CLOSE: "data-dismiss"
   };
 
   var Event = {
     listeners: {},
 
-    // Add custom method to listeners
     addListener: function addListener(name, cb) {
       Event.listeners[name] = cb;
     },
-
-
-    // Run action on element event
-    // element.addEventListener("click", Event.action, false)
     action: function action(event) {
-      var listeners = Event.listeners,
-          element = event.target.closest('[' + Attribute.EVENT + ']') || event.target.closest('[' + Attribute.CLOSE + ']'),
-          action = element ? element.getAttribute(Attribute.EVENT) || element.getAttribute(Attribute.CLOSE) : "clear";
+      var listeners = Event.listeners;
+
+      var element = void 0,
+          action = void 0;
+
+      // Check if the element we clicked on has one of the above data attributes
+      for (var key in Attribute) {
+        element = event.target.closest('[' + Attribute[key] + ']');
+        // If they do, set action to the attribute value
+        if (element) {
+          action = element.getAttribute(Attribute[key]);
+          break;
+        }
+      }
+
+      // If what we click on is empty, run the clear listener
+      // Clear removes .shown class names
+      if (!action) action = "clear";
 
       if (listeners[action]) listeners[action](event);
     }
