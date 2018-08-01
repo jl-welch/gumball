@@ -28,7 +28,7 @@ const Event = (_ => {
       }
       
       // If what we click on is empty, run the clear listener
-      // Clear removes .shown class names
+      // Clear removes .open class names
       if (!action) action = "clear";
 
       if (listeners[action]) listeners[action](event);
