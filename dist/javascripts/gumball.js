@@ -68,7 +68,7 @@ var Event = function (_) {
       }
 
       // If what we click on is empty, run the clear listener
-      // Clear removes .shown class names
+      // Clear removes .open class names
       if (!action) action = "clear";
 
       if (listeners[action]) listeners[action](event);
@@ -240,8 +240,10 @@ var Dismiss = function (_) {
   });
 
   Event.addListener("clear", function (event) {
+    // Check to see if what we clicked is inside of an .open element
     var target = Target.queryAncestor(event, ClassName.OPEN);
 
+    // If it isn't clear element with .open
     if (!target) Dismiss.clear();
   });
 

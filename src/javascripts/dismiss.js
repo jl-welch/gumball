@@ -51,8 +51,10 @@ const Dismiss = (_ => {
   });
 
   Event.addListener("clear", event => {
+    // Check to see if what we clicked is inside of an .open element
     const target = Target.queryAncestor(event, ClassName.OPEN);
 
+    // If it isn't clear element with .open
     if (!target) Dismiss.clear();
   });
   
