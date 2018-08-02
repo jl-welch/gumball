@@ -282,16 +282,30 @@ var Modal = function (_) {
     OPEN: "open"
   };
 
+  var Attribute = {
+    HIDDEN: "aria-hidden"
+  };
+
   var Modal = {
     close: function close() {
-      var active = document.querySelector('.' + ClassName.OPEN);
-      if (active) active.classList.remove(ClassName.OPEN);
+      var target = document.querySelector('.' + ClassName.OPEN);
+      if (target) {
+        target.classList.remove(ClassName.OPEN);
+        Modal.addHiddenAttr(target);
+      }
+    },
+    addHiddenAttr: function addHiddenAttr(element) {
+      element.setAttribute(Attribute.HIDDEN, "true");
+    },
+    removeHiddenAttr: function removeHiddenAttr(element) {
+      element.removeAttribute(Attribute.HIDDEN);
     },
     open: function open(target) {
       Modal.close();
 
       if (target && !target.classList.contains(ClassName.OPEN)) {
         target.classList.add(ClassName.OPEN);
+        Modal.removeHiddenAttr(target);
       }
     }
   };
