@@ -19,10 +19,6 @@
   @include transition($transition-fade);
 }
 
-.fade-out {
-  opacity: 0;
-}
+.fade-out { opacity: 0; }
 
-.fade-in {
-  opacity: 1;
-}
+.fade-in { opacity: 1; }

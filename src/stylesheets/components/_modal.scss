@@ -6,7 +6,7 @@
   visibility: hidden;
   z-index: $zindex-modal;
 
-  &.open {
+  &.show {
     visibility: visible;
     opacity: 1;
   }

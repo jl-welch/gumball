@@ -1,62 +1,75 @@
 const Dismiss = (_ => {
   const Selector = {
-    ALERT: "alert"
+    MODAL: "modal",
+    ALERT: "alert",
+    TOGGLE: "data-toggle"
   }
 
   const ClassName = {
-    FADE: "fade-out",
-    OPEN: "open"
+    SHOW: "show",
+    FADE: "fade-out"
   }
 
-  const Dismiss = {
-    remove(target) {
-
-      function removeElement() {
-        target.remove();
-        target.removeEventListener("transitionend", removeElement, false);
-      }
-
-      target.addEventListener("transitionend", removeElement, false);
-    },
-  
-    close(target) {
-      Dismiss.clear();
-
-      if (target) {
-        Dismiss.remove(target);
-        target.classList.toggle(ClassName.FADE);
-      }
+  const DismissMethods = {
+    // Temporarily remove show class causing item to be visible
+    clear(selector) {
+      const element = document.querySelector(selector);
+      if (element) element.classList.remove(ClassName.SHOW);
     },
 
-    clear() {
-      const target = document.querySelector(`.${ClassName.OPEN}`);
-      if (target) target.classList.remove(ClassName.OPEN);
+    // Remove element from the DOM
+    removeElement(element) {
+      function removeEvent() {
+        // remove: see polyfill/remove.js
+        element.remove();
+        element.removeEventListener("transitionend", removeEvent, false);
+      }
+
+      element.addEventListener("transitionend", removeEvent, false);
+      element.classList.add(ClassName.FADE);
     }
   }
 
-  Event.addListener("alert", event => {
+  const DismissEvent = new Event("data-dismiss");
+
+  DismissEvent.addListener("alert", event => {
     event.preventDefault();
 
-    const target = Target.queryAncestor(event, Selector.ALERT);
+    DismissMethods.clear(`.${ClassName.SHOW}`);
 
-    Dismiss.close(target);
+    const element = Target.queryAncestor(event, `.${Selector.ALERT}`);
+
+    if (element) DismissMethods.removeElement(element);
   });
 
-  Event.addListener("selector", event => {
+  // This listener will be run if the user doesn't click on an event element
+  // Removing the currently visible show element
+  DismissEvent.addListener("clear", event => {
+    // Look up the list of parents and check to see if we are inside a shown element
+    // This will prevent for example a dropdown closing if you click an element inside
+    const ancestorIsShown    = Target.queryAncestor(event, `.${ClassName.SHOW}`);
+    if (!ancestorIsShown) {
+      const toggleIsClicked = Target.queryAncestor(event, `[${Selector.TOGGLE}]`);
+      if (toggleIsClicked === null) DismissMethods.clear(`.${ClassName.SHOW}`);
+    }
+  });
+
+  DismissEvent.addListener("modal", event => {
     event.preventDefault();
-    
-    const target = Target.query(event);
 
-    Dismiss.close(target);
+    DismissMethods.clear(`.${Selector.MODAL}.${ClassName.SHOW}`);
   });
 
-  Event.addListener("clear", event => {
-    // Check to see if what we clicked is inside of an .open element
-    const target = Target.queryAncestor(event, ClassName.OPEN);
+  DismissEvent.addListener("selector", event => {
+    event.preventDefault();
 
-    // If it isn't clear element with .open
-    if (!target) Dismiss.clear();
+    DismissMethods.clear(`.${ClassName.SHOW}`);
+
+    const element = Target.query(event);
+
+    if (element) DismissMethods.removeElement(element);
   });
-  
-  return Dismiss;
+
+  return DismissEvent;
 })();
+

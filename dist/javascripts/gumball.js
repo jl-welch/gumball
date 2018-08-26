@@ -1,5 +1,9 @@
 'use strict';
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = function (callback, thisArg) {
     thisArg = thisArg || window;
@@ -38,58 +42,48 @@ if (!Element.prototype.closest) {
     });
   });
 })([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
-var Event = function (_) {
 
-  var Attribute = {
-    EVENT: "data-event",
-    CLOSE: "data-dismiss"
-  };
+var Event = function () {
+  function Event(selector) {
+    _classCallCheck(this, Event);
 
-  var Event = {
-    listeners: {},
+    this.Selector = selector;
+    this.listeners = {};
 
-    addListener: function addListener(name, cb) {
-      Event.listeners[name] = cb;
-    },
-    action: function action(event) {
-      var listeners = Event.listeners;
+    document.documentElement.addEventListener("click", this.emit.bind(this), false);
+  }
 
-      var element = void 0,
-          action = void 0;
-
-      // Check if the element we clicked on has one of the above data attributes
-      for (var key in Attribute) {
-        element = event.target.closest('[' + Attribute[key] + ']');
-        // If they do, set action to the attribute value
-        if (element) {
-          action = element.getAttribute(Attribute[key]);
-          break;
-        }
-      }
-
-      // If what we click on is empty, run the clear listener
-      // Clear removes .open class names
-      if (!action) action = "clear";
-
-      if (listeners[action]) listeners[action](event);
+  _createClass(Event, [{
+    key: 'addListener',
+    value: function addListener(name, callback) {
+      this.listeners[name] = callback;
     }
-  };
+  }, {
+    key: 'emit',
+    value: function emit(event) {
+      var element = void 0,
+          action = false;
+
+      element = event.target.closest('[' + this.Selector + ']');
+
+      action = element ? element.getAttribute(this.Selector) : "clear";
+
+      if (this.listeners[action]) this.listeners[action](event);
+    }
+  }]);
 
   return Event;
 }();
 
-document.documentElement.addEventListener("click", Event.action, false);
 var Target = function (_) {
-  var Attribute = {
-    TARGET: "data-target"
-  };
+  var Selector = "data-target";
 
   var Target = {
     query: function query(event) {
-      var element = event.target.closest('[' + Attribute.TARGET + ']');
+      var element = event.target.closest('[' + Selector + ']');
 
       if (element) {
-        var attribute = element.getAttribute(Attribute.TARGET),
+        var attribute = element.getAttribute(Selector),
             target = document.querySelector(attribute);
 
         return target;
@@ -97,8 +91,8 @@ var Target = function (_) {
 
       return null;
     },
-    queryAncestor: function queryAncestor(event, className) {
-      var element = event.target.closest('.' + className);
+    queryAncestor: function queryAncestor(event, selector) {
+      var element = event.target.closest(selector);
       return element ? element : null;
     }
   };
@@ -191,132 +185,139 @@ var Target = function (_) {
 })();
 var Dismiss = function (_) {
   var Selector = {
-    ALERT: "alert"
+    MODAL: "modal",
+    ALERT: "alert",
+    TOGGLE: "data-toggle"
   };
 
   var ClassName = {
-    FADE: "fade-out",
-    OPEN: "open"
+    SHOW: "show",
+    FADE: "fade-out"
   };
 
-  var Dismiss = {
-    remove: function remove(target) {
+  var DismissMethods = {
+    // Temporarily remove show class causing item to be visible
+    clear: function clear(selector) {
+      var element = document.querySelector(selector);
+      if (element) element.classList.remove(ClassName.SHOW);
+    },
 
-      function removeElement() {
-        target.remove();
-        target.removeEventListener("transitionend", removeElement, false);
+
+    // Remove element from the DOM
+    removeElement: function removeElement(element) {
+      function removeEvent() {
+        // remove: see polyfill/remove.js
+        element.remove();
+        element.removeEventListener("transitionend", removeEvent, false);
       }
 
-      target.addEventListener("transitionend", removeElement, false);
-    },
-    close: function close(target) {
-      Dismiss.clear();
-
-      if (target) {
-        Dismiss.remove(target);
-        target.classList.toggle(ClassName.FADE);
-      }
-    },
-    clear: function clear() {
-      var target = document.querySelector('.' + ClassName.OPEN);
-      if (target) target.classList.remove(ClassName.OPEN);
+      element.addEventListener("transitionend", removeEvent, false);
+      element.classList.add(ClassName.FADE);
     }
   };
 
-  Event.addListener("alert", function (event) {
+  var DismissEvent = new Event("data-dismiss");
+
+  DismissEvent.addListener("alert", function (event) {
     event.preventDefault();
 
-    var target = Target.queryAncestor(event, Selector.ALERT);
+    DismissMethods.clear('.' + ClassName.SHOW);
 
-    Dismiss.close(target);
+    var element = Target.queryAncestor(event, '.' + Selector.ALERT);
+
+    if (element) DismissMethods.removeElement(element);
   });
 
-  Event.addListener("selector", function (event) {
+  // This listener will be run if the user doesn't click on an event element
+  // Removing the currently visible show element
+  DismissEvent.addListener("clear", function (event) {
+    // Look up the list of parents and check to see if we are inside a shown element
+    // This will prevent for example a dropdown closing if you click an element inside
+    var ancestorIsShown = Target.queryAncestor(event, '.' + ClassName.SHOW);
+    if (!ancestorIsShown) {
+      var toggleIsClicked = Target.queryAncestor(event, '[' + Selector.TOGGLE + ']');
+      if (toggleIsClicked === null) DismissMethods.clear('.' + ClassName.SHOW);
+    }
+  });
+
+  DismissEvent.addListener("modal", function (event) {
     event.preventDefault();
 
-    var target = Target.query(event);
-
-    Dismiss.close(target);
+    DismissMethods.clear('.' + Selector.MODAL + '.' + ClassName.SHOW);
   });
 
-  Event.addListener("clear", function (event) {
-    // Check to see if what we clicked is inside of an .open element
-    var target = Target.queryAncestor(event, ClassName.OPEN);
+  DismissEvent.addListener("selector", function (event) {
+    event.preventDefault();
 
-    // If it isn't clear element with .open
-    if (!target) Dismiss.clear();
+    DismissMethods.clear('.' + ClassName.SHOW);
+
+    var element = Target.query(event);
+
+    if (element) DismissMethods.removeElement(element);
   });
 
-  return Dismiss;
+  return DismissEvent;
 }();
-var Dropdown = function (_) {
+
+var Toggle = function (_) {
   var ClassName = {
-    OPEN: "open"
+    SHOW: "show"
   };
 
-  var Dropdown = {
-    close: function close() {
-      var active = document.querySelector('.' + ClassName.OPEN);
-      if (active) active.classList.remove(ClassName.OPEN);
-    },
-    toggle: function toggle(target, current) {
-      if (!current) target.classList.add(ClassName.OPEN);
-    }
-  };
-
-  Event.addListener("dropdown", function (event) {
-    event.preventDefault();
-
-    var target = Target.query(event);
-    if (target) {
-      var current = target.classList.contains(ClassName.OPEN);
-      Dropdown.close();
-      Dropdown.toggle(target, current);
-    }
-  });
-
-  return Dropdown;
-}();
-var Modal = function (_) {
-  var ClassName = {
-    OPEN: "open"
-  };
-
-  var Attribute = {
+  var Aria = {
     HIDDEN: "aria-hidden"
   };
 
-  var Modal = {
+  var ModalMethods = {
     close: function close() {
-      var target = document.querySelector('.' + ClassName.OPEN);
-      if (target) {
-        target.classList.remove(ClassName.OPEN);
-        Modal.addHiddenAttr(target);
+      var element = document.querySelector('.' + ClassName.SHOW);
+      if (element) {
+        element.classList.remove(ClassName.SHOW);
+        ModalMethods.addAriaHidden(element);
       }
     },
-    addHiddenAttr: function addHiddenAttr(element) {
-      element.setAttribute(Attribute.HIDDEN, "true");
+    addAriaHidden: function addAriaHidden(element) {
+      element.setAttribute(Aria.HIDDEN, "true");
     },
-    removeHiddenAttr: function removeHiddenAttr(element) {
-      element.removeAttribute(Attribute.HIDDEN);
+    removeAriaHidden: function removeAriaHidden(element) {
+      element.removeAttribute(Aria.HIDDEN);
     },
-    open: function open(target) {
-      Modal.close();
+    open: function open(element) {
+      ModalMethods.close();
 
-      if (target && !target.classList.contains(ClassName.OPEN)) {
-        target.classList.add(ClassName.OPEN);
-        Modal.removeHiddenAttr(target);
+      if (element && !element.classList.contains(ClassName.SHOW)) {
+        element.classList.add(ClassName.SHOW);
+        ModalMethods.removeAriaHidden(element);
       }
     }
   };
 
-  Event.addListener("modal", function (event) {
-    event.preventDefault();
+  var DropdownMethods = {
+    close: function close(element) {
+      element.classList.remove(ClassName.SHOW);
+    },
+    open: function open(target, current) {
+      if (!current) target.classList.add(ClassName.SHOW);
+    }
+  };
 
-    var target = Target.query(event);
+  var ToggleEvent = new Event("data-toggle");
 
-    Modal.open(target);
+  ToggleEvent.addListener("dropdown", function (event) {
+    var element = Target.query(event);
+
+    if (element) {
+      var current = element.classList.contains(ClassName.SHOW);
+      DropdownMethods.close(element);
+      DropdownMethods.open(element, current);
+    }
   });
 
-  return Modal;
+  ToggleEvent.addListener("modal", function (event) {
+    event.preventDefault();
+
+    var element = Target.query(event);
+
+    ModalMethods.open(element);
+  });
 }();
