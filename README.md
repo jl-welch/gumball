@@ -7,12 +7,6 @@ A collection of reusable component, helper and layout classes.
 [![CSS gzip size](http://img.badgesize.io/jl-welch/gumball/master/dist/stylesheets/gumball.min.css?compression=gzip&label=CSS+gzip+size)](https://github.com/jl-welch/gumball/blob/master/dist/stylesheets/gumball.min.css)
 [![JS gzip size](http://img.badgesize.io/jl-welch/gumball/master/dist/javascripts/gumball.js?compression=gzip&label=JS+gzip+size)](https://github.com/jl-welch/gumball/blob/master/dist/javascripts/gumball.js)
 
-**Install through NPM**
-
-```shell
-$ npm install gumball-css
-```
-
 ## Features
 
 Modular framework with meaningful class names.
