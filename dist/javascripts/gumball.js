@@ -99,90 +99,6 @@ var Target = function (_) {
 
   return Target;
 }();
-(function (_) {
-  var Collapse = {
-    element: document.querySelectorAll("[data-collapse]"),
-    duration: 30 / 100 * 60,
-    collapsing: false,
-
-    init: function init() {
-      Collapse.bind();
-    },
-    ancestor: function ancestor(el) {
-      for (; el && el !== document; el = el.parentNode) {
-        if (el.matches(".collapse")) return el;
-      }
-    },
-    ease: function ease(t, b, c, d) {
-      t /= d / 2;
-      if (t < 1) return c / 2 * t * t + b;
-      t--;
-      return -c / 2 * (t * (t - 2) - 1) + b;
-    },
-    animate: function animate(el, from, to, change, ancestor, time) {
-      el.style.height = Collapse.ease(++time, from, change, Collapse.duration) + 'px';
-
-      if (time < Collapse.duration) {
-        requestAnimationFrame(function (_) {
-          return Collapse.animate(el, from, to, change, ancestor, time);
-        });
-      } else {
-        el.style.height = to <= 1 ? "0" : "auto";
-        if (!ancestor) Collapse.collapsing = false;
-      }
-    },
-    toggle: function toggle(el, from, to, cb) {
-      Collapse.collapsing = true;
-
-      var change = to - from,
-          ancestor = Collapse.ancestor(el.parentNode);
-
-      if (ancestor && cb) {
-        var height = ancestor.offsetHeight;
-        cb(ancestor, height, to + height - from, Collapse.toggle);
-      }
-
-      Collapse.animate(el, from, to, change, ancestor, 0);
-    },
-    getAria: function getAria(el) {
-      return el.getAttribute("aria-expanded");
-    },
-    setAria: function setAria(el) {
-      var a = Collapse.getAria(el) === "false" ? "true" : "false";
-      el.setAttribute("aria-expanded", a);
-
-      return a;
-    },
-    hideOnLoad: function hideOnLoad(el, target) {
-      var aria = Collapse.getAria(el);
-      if (aria == 'false') target.style.height = "0px";
-      target.style.overflow = "hidden";
-    },
-    addEvent: function addEvent(el, target) {
-      el.addEventListener("click", function (e) {
-        e.preventDefault();
-
-        Collapse.setAria(el);
-
-        var sHeight = target.scrollHeight,
-            oHeight = target.offsetHeight;
-
-        if (!Collapse.collapsing) Collapse.toggle(target, oHeight, sHeight - oHeight, Collapse.toggle);
-      });
-    },
-    bind: function bind() {
-      Collapse.element.forEach(function (el) {
-        var target = document.querySelector('#' + el.getAttribute("data-collapse"));
-        if (!target) return;
-
-        Collapse.hideOnLoad(el, target);
-        Collapse.addEvent(el, target);
-      });
-    }
-  };
-
-  Collapse.init();
-})();
 var Dismiss = function (_) {
   var Selector = {
     MODAL: "modal",
@@ -268,31 +184,31 @@ var Toggle = function (_) {
     HIDDEN: "aria-hidden"
   };
 
-  var ModalMethods = {
+  var Modal = {
     close: function close() {
       var element = document.querySelector('.' + ClassName.SHOW);
       if (element) {
         element.classList.remove(ClassName.SHOW);
-        ModalMethods.addAriaHidden(element);
+        Modal.setAriaHidden(element);
       }
     },
-    addAriaHidden: function addAriaHidden(element) {
+    setAriaHidden: function setAriaHidden(element) {
       element.setAttribute(Aria.HIDDEN, "true");
     },
     removeAriaHidden: function removeAriaHidden(element) {
       element.removeAttribute(Aria.HIDDEN);
     },
     open: function open(element) {
-      ModalMethods.close();
+      Modal.close();
 
       if (element && !element.classList.contains(ClassName.SHOW)) {
         element.classList.add(ClassName.SHOW);
-        ModalMethods.removeAriaHidden(element);
+        Modal.removeAriaHidden(element);
       }
     }
   };
 
-  var DropdownMethods = {
+  var Dropdown = {
     close: function close(element) {
       element.classList.remove(ClassName.SHOW);
     },
@@ -301,15 +217,75 @@ var Toggle = function (_) {
     }
   };
 
+  var Collapse = {
+    collapsing: false,
+    duration: 24,
+
+    ease: function ease(time, from, change) {
+      time /= Collapse.duration / 2;
+      if (time < 1) return change / 2 * time * time + from;
+      time--;
+      return -change / 2 * (time * (time - 2) - 1) + from;
+    },
+    animate: function animate(el, from, to, change, ancestor, time) {
+      el.style.height = Collapse.ease(++time, from, change) + 'px';
+
+      if (time < Collapse.duration) {
+        requestAnimationFrame(function (_) {
+          return Collapse.animate(el, from, to, change, ancestor, time);
+        });
+      } else {
+        el.style.height = to <= 1 ? "0" : "auto";
+        if (!ancestor) Collapse.collapsing = false;
+      }
+    },
+    toggle: function toggle(el, from, to, callback, ancestor) {
+      Collapse.collapsing = true;
+
+      var change = to - from;
+
+      if (ancestor && callback) {
+        var height = ancestor.offsetHeight;
+        callback(ancestor, height, to + height - from, Collapse.toggle);
+      }
+
+      Collapse.animate(el, from, to, change, ancestor, 0);
+    },
+    getAriaExpanded: function getAriaExpanded(el) {
+      return el.getAttribute("aria-expanded");
+    },
+    setAriaExpanded: function setAriaExpanded(el) {
+      var a = Collapse.getAriaExpanded(el) === "false" ? "true" : "false";
+      el.setAttribute("aria-expanded", a);
+
+      return a;
+    }
+  };
+
   var ToggleEvent = new Event("data-toggle");
+
+  ToggleEvent.addListener("collapse", function (event) {
+    var element = Target.query(event);
+
+    if (element) {
+      Collapse.setAriaExpanded(element);
+
+      var ancestor = Target.queryAncestor(event, '.collapse');
+
+      var sHeight = element.scrollHeight,
+          oHeight = element.offsetHeight;
+
+      if (!Collapse.collapsing) Collapse.toggle(element, oHeight, sHeight - oHeight, Collapse.toggle, ancestor);
+    }
+  });
 
   ToggleEvent.addListener("dropdown", function (event) {
     var element = Target.query(event);
 
     if (element) {
       var current = element.classList.contains(ClassName.SHOW);
-      DropdownMethods.close(element);
-      DropdownMethods.open(element, current);
+      Dropdown.close(element);
+      Dropdown.open(element, current);
     }
   });
 
@@ -318,6 +294,6 @@ var Toggle = function (_) {
 
     var element = Target.query(event);
 
-    ModalMethods.open(element);
+    Modal.open(element);
   });
 }();

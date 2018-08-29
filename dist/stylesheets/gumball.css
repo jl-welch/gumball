@@ -1015,6 +1015,14 @@ button::-moz-focus-inner {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
+.collapse {
+  overflow: hidden;
+}
+
+[data-toggle="collapse"][aria-expanded="false"] ~ .collapse {
+  height: 0px;
+}
+
 .dropdown {
   position: relative;
   z-index: 10;

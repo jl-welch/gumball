@@ -1,0 +1,7 @@
+.collapse {
+  overflow: hidden;
+}
+
+[data-toggle="collapse"][aria-expanded="false"] ~ .collapse {
+  height: 0px;
+}
