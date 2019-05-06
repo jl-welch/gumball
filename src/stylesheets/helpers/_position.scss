@@ -3,11 +3,3 @@ $positions: static, relative, absolute, fixed, sticky;
 @each $position in $positions {
   .position-#{$position} { position: $position !important; }
 }
-
-// Shorthand
-.fixed { @include fixed($top: 0, $right: 0, $left: 0, $z-index: 60); }
-.fixed-right { @include fixed($top: 0, $right: 0, $z-index: 60); }
-.fixed-left { @include fixed($top: 0, $left: 0, $z-index: 60); }
-.fixed-bottom { @include fixed($right: 0, $bottom: 0, $left: 0, $z-index: 60); }
-.fixed-bottom-right { @include fixed($bottom: 0, $right: 0, $z-index: 60); }
-.fixed-bottom-left { @include fixed($bottom: 0, $left: 0, $z-index: 60); }

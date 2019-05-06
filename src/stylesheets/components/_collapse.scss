@@ -1,7 +1,10 @@
-.collapse {
-  overflow: hidden;
+.collapse:not(.collapse--show) {
+  display: none;
 }
 
-[data-toggle="collapse"][aria-expanded="false"] ~ .collapse {
-  height: 0px;
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition: height .4s ease-in-out;
 }

@@ -5,9 +5,13 @@
   @include transition($transition-color);
   display: inline-flex;
   align-items: center;
-  font-weight: $font-weight-light;
-  user-select: none;
   border: $border-width solid $light;
+  font-family: inherit;
+  font-weight: $font-weight-light;
+  font-size: inherit;
+  text-decoration: none;
+  user-select: none;
+  cursor: pointer;
 
   &--sm { @include button-size($spacing-y-sm, $spacing-x-sm, $border-radius-sm); }
   &--lg { @include button-size($spacing-y-lg, $spacing-x-lg, $border-radius-lg); }

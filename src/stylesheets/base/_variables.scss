@@ -9,12 +9,11 @@ $grey-400:                #bdbdbd !default;
 $grey-500:                #adb5bd !default;
 $grey-600:                #60646a !default;
 $grey-700:                #484d53 !default;
-$grey-800:                #414042 !default;
-$grey-900:                #36454f !default;
+$grey-800:                #2a292b !default;
+$grey-900:                #202224 !default;
 $black:                   #000 !default;
 
-$greys: () !default;
-$greys: map-merge((
+$greys: (
   "100":                    $grey-100,
   "200":                    $grey-200,
   "300":                    $grey-300,
@@ -24,7 +23,7 @@ $greys: map-merge((
   "700":                    $grey-700,
   "800":                    $grey-800,
   "900":                    $grey-900
-), $greys);
+) !default;
 
 $primary:                  #243a49 !default;
 $red:                      #ff4136 !default;
@@ -34,8 +33,7 @@ $secondary:                 $grey-600 !default;
 $light:                     $grey-200 !default;
 $dark:                      $grey-800 !default;
 
-$colors: () !default;
-$colors: map-merge((
+$colors: (
   "red":                    $red,
   "green":                  $green,
   "blue":                   $blue,
@@ -44,7 +42,7 @@ $colors: map-merge((
   "dark":                   $dark,
   "black":                  $black,
   "primary":                $primary
-), $colors);
+) !default;
 
 //
 // Options
@@ -69,15 +67,14 @@ $spacing-x-sm:              1rem !default;
 $spacing-y-lg:              1.5rem !default;
 $spacing-x-lg:              2.5rem !default;
 
-$spacers: () !default;
-$spacers: map-merge((
+$spacers: (
   0:                        0,
   1:                        $spacing-y * .5,
   2:                        $spacing-y * .75,
   3:                        $spacing-y,
   4:                        $spacing-y * 2,
   5:                        $spacing-y * 4
-), $spacers);
+) !default;
 
 //
 // Links
@@ -91,11 +88,11 @@ $link-hover-color:          darken($link-color, 5%) !default;
 // For different screen sizes
 
 $breakpoints: (
-  xs:                         0,
-  sm:                         576px,
-  md:                         768px,
-  lg:                         992px,
-  xl:                         1640px
+  xs:                       0,
+  sm:                       576px,
+  md:                       768px,
+  lg:                       992px,
+  xl:                       1640px
 ) !default;
 
 // 
@@ -104,79 +101,78 @@ $breakpoints: (
 // Used alongside breakpoints
 
 $container-widths: (
-  sm:                         540px,
-  md:                         720px,
-  lg:                         960px,
-  xl:                         1140px
+  sm:                       540px,
+  md:                       720px,
+  lg:                       960px,
+  xl:                       1140px
 ) !default;
 
 // 
 // Layout columns
 // Used in the grid system
 
-$grid-columns:                12 !default;
-$grid-gutter:                 5px !default;
+$grid-columns:              12 !default;
+$grid-gutter:               5px !default;
 
 //
 // Components
 // Common property values
 
-$line-height:                 1.4 !default;
-$line-height-sm:              1.3 !default;
-$line-height-lg:              1.6 !default;
+$line-height:               1.4 !default;
+$line-height-sm:            1.3 !default;
+$line-height-lg:            1.6 !default;
 
-$border-width:                1px !default;
-$border-color:                $grey-100 !default;
+$border-width:              1px !default;
+$border-color:              $grey-100 !default;
 
-$border-radius:               .3rem !default;
-$border-radius-sm:            .2rem !default;
-$border-radius-lg:            .6rem !default;
+$border-radius:             .3rem !default;
+$border-radius-sm:          .2rem !default;
+$border-radius-lg:          .6rem !default;
 
-$box-shadow:                  0 .15rem .5rem rgba($grey-400, .25) !default;
+$box-shadow:                0 .15rem .5rem rgba($grey-400, .25) !default;
 
-$transition-base:             all .15s ease-in-out !default;
-$transition-color:            color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out !default;
-$transition-fade:             opacity .15s linear !default;
-$transition-visibility:       visibility .15s linear !default;
+$transition-base:           all .15s ease-in-out !default;
+$transition-color:          color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out !default;
+$transition-fade:           opacity .15s linear !default;
+$transition-visibility:     visibility .15s linear !default;
 
 //
 // Fonts & text
 
-$font-family-base:            Arial, sans-serif !default;
+$font-family-base:          Arial, sans-serif !default;
 
-$font-size-base:              1.6rem !default;
-$font-size-sm:                ($font-size-base * .75) !default;
-$font-size-lg:                ($font-size-base * 1.25) !default;
+$font-size-base:            1.6rem !default;
+$font-size-sm:              ($font-size-base * .75) !default;
+$font-size-lg:              ($font-size-base * 1.25) !default;
 
-$font-weight-light:           300 !default;
-$font-weight-normal:          400 !default;
-$font-weight-bold:            700 !default;
+$font-weight-light:         300 !default;
+$font-weight-normal:        400 !default;
+$font-weight-bold:          700 !default;
 
-$font-weight-base:            $font-weight-normal !default;
-$line-height-base:            $line-height !default;
+$font-weight-base:          $font-weight-normal !default;
+$line-height-base:          $line-height !default;
 
-$small-font-size:             ($font-size-base * .6) !default;
+$small-font-size:           ($font-size-base * .6) !default;
 
-$heading-sizes: () !default;
-$heading-sizes: map-merge((
-  h1:                         ($font-size-base * 2.25),
-  h2:                         ($font-size-base * 1.7),
-  h3:                         ($font-size-base * 1.4),
-  h4:                         ($font-size-base * 1.2),
-  h5:                         ($font-size-base * 1.1),
-  h6:                         $font-size-base
-), $heading-sizes);
+$heading-sizes: (
+  h1:                       ($font-size-base * 2.25),
+  h2:                       ($font-size-base * 1.7),
+  h3:                       ($font-size-base * 1.4),
+  h4:                       ($font-size-base * 1.2),
+  h5:                       ($font-size-base * 1.1),
+  h6:                       $font-size-base
+) !default;
 
-$headings-margin-bottom:      $spacing-y !default;
-$headings-font-weight:        $font-weight-bold !default;
-$headings-line-height:        $line-height !default;
-$headings-color:              $grey-600 !default;
+$headings-margin-bottom:    $spacing-y !default;
+$headings-font-weight:      $font-weight-bold !default;
+$headings-line-height:      $line-height !default;
+$headings-color:            $grey-800 !default;
 
-$disabled:                    $grey-300 !default;
+$disabled:                  $grey-300 !default;
 
 //
 // Z-index
 
-$zindex-dropdown:             10 !default;
-$zindex-nav:                  20 !default;
-$zindex-modal:                30 !default;
+$zindex-dropdown:           10 !default;
+$zindex-nav:                20 !default;
+$zindex-modal:              30 !default;

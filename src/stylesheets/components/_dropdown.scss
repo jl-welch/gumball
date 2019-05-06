@@ -1,6 +1,5 @@
 .dropdown {
   position: relative;
-  z-index: $zindex-dropdown;
 }
 
 .dropdown__list {
@@ -9,6 +8,7 @@
   @include box-shadow($box-shadow);
   @include bg($white);
   @include transition($transition-fade);
+  display: none;
   min-width: 18rem;
   padding-top: $spacing-y-sm;
   padding-bottom: $spacing-y-sm;
@@ -16,8 +16,10 @@
   white-space: nowrap;
   visibility: hidden;
   opacity: 0;
+  z-index: $zindex-dropdown;
 
-  &.show {
+  &.dropdown__list--show {
+    display: block;
     visibility: visible;
     opacity: 1;
   }
@@ -35,5 +37,7 @@
   text-align: center;
   text-decoration: none;
 
-  &:hover { background-color: darken($light, 5%); }
+  &:hover {
+    background-color: darken($light, 5%);
+  }
 }
