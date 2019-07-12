@@ -11,13 +11,9 @@ A collection of reusable component, helper and layout classes.
 Modular framework with meaningful class names.
 
 - Reset to fix cross browser compatibility issues
-
 - Reusable component & helper classes
-
 - Responsive from the ground up
-
 - A simple, modern look by default
-
 - BEM naming for component classes
 
 ## Clone
