@@ -1,14 +1,23 @@
-.vscode/
-.cache/
+# folders
 node_modules/
-*.html
 
-# OS generated files #
-######################
-.DS_Store
-.DS_Store?
+# OS / editor
 ._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
+.cache
+.DS_Store
+.idea
+.project
+.settings
+.tmproj
+*.esproj
+*.sublime-project
+*.sublime-workspace
+nbproject
 Thumbs.db
+
+# unnecessary
+*.diff
+*.err
+*.log
+*.vi
+*.zip

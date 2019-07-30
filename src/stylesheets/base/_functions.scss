@@ -33,5 +33,5 @@
 
 @function map-max($map, $key) {
   $next: map-get-next($map, $key);
-  @return if($next, map-min($map, $next) - .02px, null);
+  @return if($next, map-min($map, $next) - 0.02px, null);
 }

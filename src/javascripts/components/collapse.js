@@ -21,14 +21,7 @@ const Selector = {
   COLLAPSE: "[data-toggle='collapse']",
 };
 
-/** Class representing a collapsable. */
 class Collapse {
-  /**
-   * Initialise collapse instance.
-   * Adds element (key) and instance (value) to Data map.
-   *
-   * @param {HTMLElement} element Element to collapse
-   */
   constructor(element) {
     if (!isElement(element)) {
       throw new TypeError("Element expected");
@@ -41,9 +34,6 @@ class Collapse {
     Data.set(element, this);
   }
 
-  /**
-   * Toggles a collapsable depending on its current state.
-   */
   toggle() {
     const method = this._element.classList.contains(ClassName.SHOW)
       ? "hide"
@@ -52,51 +42,33 @@ class Collapse {
     this[method]();
   }
 
-  /**
-   * Show collapsable.
-   */
   show() {
-    if (
-      this._collapsing ||
-      this._element.classList.contains(ClassName.SHOW)
-    )
+    if (this._collapsing || this._element.classList.contains(ClassName.SHOW)) {
       return;
+    }
 
     this._element.classList.remove(ClassName.COLLAPSE);
     this._element.classList.add(ClassName.COLLAPSING);
 
     this._setCollapsing(true);
 
-    each(this._togglers, toggler =>
-      toggler.setAttribute(Aria.EXPANDED, true)
-    );
+    each(this._togglers, toggler => toggler.setAttribute(Aria.EXPANDED, true));
 
-    this._element.addEventListener(
-      "transitionend",
-      this._showCollapseEnd
-    );
+    this._element.addEventListener("transitionend", this._showCollapseEnd);
     this._element.style.height = `${this._element.scrollHeight}px`;
   }
 
-  /**
-   * Hide collapsable.
-   */
   hide() {
-    if (
-      this._collapsing ||
-      !this._element.classList.contains(ClassName.SHOW)
-    )
+    if (this._collapsing || !this._element.classList.contains(ClassName.SHOW)) {
       return;
+    }
 
     this._element.style.height = `${this._element.scrollHeight}px`;
 
     // Force reflow to recalculate element height before transitioning
     reflow(this._element);
 
-    this._element.classList.remove(
-      ClassName.COLLAPSE,
-      ClassName.SHOW
-    );
+    this._element.classList.remove(ClassName.COLLAPSE, ClassName.SHOW);
     this._element.classList.add(ClassName.COLLAPSING);
 
     this._setCollapsing(true);
@@ -109,15 +81,9 @@ class Collapse {
     });
 
     this._element.style.height = "";
-    this._element.addEventListener(
-      "transitionend",
-      this._hideCollapseEnd
-    );
+    this._element.addEventListener("transitionend", this._hideCollapseEnd);
   }
 
-  /**
-   * Remove element from Data map and set instance values to null.
-   */
   dispose() {
     Data.delete(this._element);
 
@@ -127,57 +93,30 @@ class Collapse {
   }
 
   // private
-
-  /**
-   * Sets value of this._collapsing.
-   *
-   * @param {Boolean} bool
-   * @private
-   */
   _setCollapsing(bool) {
     this._collapsing = bool;
   }
 
-  /**
-   * transitionend callback for show method.
-   *
-   * @private
-   */
   _showCollapseEnd() {
     this._element.classList.remove(ClassName.COLLAPSING);
     this._element.classList.add(ClassName.COLLAPSE, ClassName.SHOW);
     this._element.style.height = "";
-    this._element.removeEventListener(
-      "transitionend",
-      this._showCollapseEnd
-    );
+
+    this._element.removeEventListener("transitionend", this._showCollapseEnd);
+
     this._setCollapsing(false);
   }
 
-  /**
-   * transitionend callback for hide method.
-   *
-   * @private
-   */
   _hideCollapseEnd() {
     this._element.classList.remove(ClassName.COLLAPSING);
     this._element.classList.add(ClassName.COLLAPSE);
-    this._element.removeEventListener(
-      "transitionend",
-      this._hideCollapseEnd
-    );
+
+    this._element.removeEventListener("transitionend", this._hideCollapseEnd);
+
     this._setCollapsing(false);
   }
 
   // Static
-
-  /**
-   * Checks to see if element is set in Data map.
-   * Used for click event listener.
-   *
-   * @param {HTMLElement} element Element to toggle collapse
-   * @static
-   */
   static _toggle(element) {
     let data = Data.get(element);
 
@@ -191,7 +130,9 @@ class Collapse {
 
 document.addEventListener("click", event => {
   const toggler = event.target.closest(Selector.COLLAPSE);
-  if (!toggler) return;
+  if (!toggler) {
+    return;
+  }
 
   if (toggler.tagName === "A") {
     event.preventDefault();

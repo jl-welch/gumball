@@ -18,14 +18,7 @@ const Selector = {
   DROPDOWN: '[data-toggle="dropdown"]',
 };
 
-/** Class respresenting a dropdown element */
 class Dropdown {
-  /**
-   * Initialise dropdown instance.
-   * Adds element (key) and instance (value) to Data map.
-   *
-   * @param {HTMLElement} element Element to dropdown
-   */
   constructor(element) {
     if (!isElement(element)) {
       throw new TypeError("Element expected");
@@ -38,12 +31,10 @@ class Dropdown {
   }
 
   // Public
-
-  /**
-   * Toggle dropdown depending on current state.
-   */
   toggle() {
-    if (!this._menu) return;
+    if (!this._menu) {
+      return;
+    }
 
     this._toggler.focus();
 
@@ -54,11 +45,10 @@ class Dropdown {
     this[method]();
   }
 
-  /**
-   * Show dropdown.
-   */
   show() {
-    if (this._menu.classList.contains(ClassName.SHOW)) return;
+    if (this._menu.classList.contains(ClassName.SHOW)) {
+      return;
+    }
 
     Dropdown._clearActive();
 
@@ -66,25 +56,16 @@ class Dropdown {
     this._toggler.setAttribute(Aria.EXPANDED, true);
   }
 
-  /**
-   * Hide dropdown.
-   */
   hide() {
-    if (!this._menu.classList.contains(ClassName.SHOW)) return;
+    if (!this._menu.classList.contains(ClassName.SHOW)) {
+      return;
+    }
 
     this._menu.classList.remove(ClassName.SHOW);
     this._toggler.setAttribute(Aria.EXPANDED, false);
   }
 
   // Static
-
-  /**
-   * Get current active dropdown.
-   * Only one element should be active at a time.
-   *
-   * @returns {Object}
-   * @static
-   */
   static _getActiveToggler() {
     const active = document.querySelector(`.${ClassName.SHOW}`);
 
@@ -111,34 +92,20 @@ class Dropdown {
     return toggler;
   }
 
-  /**
-   * Get dropdown toggler from dropdown menu.
-   *
-   * @param {HTMLElement} element
-   */
   static _getToggler(element) {
-    if (element.classList.contains(ClassName.TOGGLE)) return element;
+    if (element.classList.contains(ClassName.TOGGLE)) {
+      return element;
+    }
 
     const parent = element.closest(`.${ClassName.DROPDOWN}`);
     return parent.querySelector(Selector.DROPDOWN);
   }
 
-  /**
-   * Get dropdown menu from dropdown toggler.
-   *
-   * @param {HTMLElement} element Dropdown toggler
-   * @static
-   */
   static _getMenu(element) {
     const selector = getSelectorFromTarget(element);
     return document.querySelector(selector);
   }
 
-  /**
-   * Hide current active dropdown.
-   *
-   * @static
-   */
   static _clearActive() {
     const active = document.querySelector(`.${ClassName.SHOW}`);
 
@@ -150,17 +117,10 @@ class Dropdown {
     }
   }
 
-  /**
-   * Keyboard support for dropdown.
-   *
-   * @param {Object} event Keydown event object
-   * @param {string} event.key The keydown key name
-   * @param {HTMLElement} event.target The keydown target element
-   * @static
-   */
   static _keyDownHandler({ key, target }) {
-    if (key !== "Escape" && key !== "ArrowUp" && key !== "ArrowDown")
+    if (key !== "Escape" && key !== "ArrowUp" && key !== "ArrowDown") {
       return;
+    }
 
     const toggler = Dropdown._getToggler(target);
 
@@ -172,9 +132,7 @@ class Dropdown {
     }
 
     const menu = Dropdown._getMenu(toggler);
-    const items = Array.from(
-      menu.querySelectorAll(`.${ClassName.ITEM}`)
-    );
+    const items = Array.from(menu.querySelectorAll(`.${ClassName.ITEM}`));
 
     if (!items.length) {
       return;
@@ -203,13 +161,6 @@ class Dropdown {
     items[index].focus();
   }
 
-  /**
-   * Checks to see if element is set in Data map.
-   * Used for click event listener.
-   *
-   * @param {Object} event Click event object
-   * @static
-   */
   static _toggle(event) {
     const toggler = event.target.closest(Selector.DROPDOWN);
 
@@ -222,10 +173,7 @@ class Dropdown {
       return;
     }
 
-    if (
-      toggler.tagName === "A" &&
-      !toggler.getAttribute("data-follow")
-    ) {
+    if (toggler.tagName === "A" && !toggler.getAttribute("data-follow")) {
       event.preventDefault();
     }
 

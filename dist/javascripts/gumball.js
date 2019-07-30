@@ -3,33 +3,15 @@
   factory();
 }(function () { 'use strict';
 
-  /**
-   * Callback to execute for each array element in loop.
-   *
-   * @callback eachCallback
-   * @param {*} element The current element being processed in array
-   * @param {number} index The index of the current element
-   */
-
-  /**
-   * Loop through an array and execute a callback for each element.
-   *
-   * @param {Array} array The array to loop over
-   * @param {eachCallback} callback The callback function to exectue
-   */
   var each = function each(array, callback) {
     for (var i = 0; i < array.length; i += 1) {
       var response = callback(array[i], i);
-      if (response) break;
+
+      if (response) {
+        break;
+      }
     }
   };
-  /**
-   * Get an elements selector from 'target' containing data-target or href.
-   *
-   * @param {HTMLElement} element The element target to get selector from
-   * @returns {string|null}
-   */
-
 
   var getSelectorFromTarget = function getSelectorFromTarget(element) {
     var selector = element.getAttribute("data-target");
@@ -41,13 +23,6 @@
 
     return document.querySelector(selector) ? selector : null;
   };
-  /**
-   * Get list of all elements that toggle a single element.
-   *
-   * @param {HTMLElement} element Element which is being toggled
-   * @param {string} dataAttr Data target attribute for targeting element
-   */
-
 
   var getToggleList = function getToggleList(element, dataAttr) {
     // DEVTODO - Check for elements toggling with href
@@ -55,30 +30,25 @@
     var toggleList = [];
     each(toggleElements, function (toggleElement) {
       var selector = getSelectorFromTarget(toggleElement);
-      if (!selector) return;
+
+      if (!selector) {
+        return;
+      }
+
       var filteredList = Array.from(document.querySelectorAll(selector)).filter(function (el) {
         return el === element;
       });
-      if (filteredList.length) toggleList.push(toggleElement);
+
+      if (filteredList.length) {
+        toggleList.push(toggleElement);
+      }
     });
     return toggleList.length ? toggleList : null;
   };
-  /**
-   * Check for valid HTML element.
-   *
-   * @param {HTMLElement} element Element to check
-   */
-
 
   var isElement = function isElement(element) {
     return (element[0] || element).nodeType;
   };
-  /**
-   * Force reflow to recalculate element height before transitioning.
-   *
-   * @param {*} element Element to get offsetHeight, forcing reflow
-   */
-
 
   var reflow = function reflow(element) {
     return element.offsetHeight;
@@ -119,17 +89,10 @@
   var Selector = {
     COLLAPSE: "[data-toggle='collapse']"
   };
-  /** Class representing a collapsable. */
 
   var Collapse =
   /*#__PURE__*/
   function () {
-    /**
-     * Initialise collapse instance.
-     * Adds element (key) and instance (value) to Data map.
-     *
-     * @param {HTMLElement} element Element to collapse
-     */
     function Collapse(element) {
       _classCallCheck(this, Collapse);
 
@@ -142,10 +105,6 @@
       this._collapsing = false;
       Data.set(element, this);
     }
-    /**
-     * Toggles a collapsable depending on its current state.
-     */
-
 
     _createClass(Collapse, [{
       key: "toggle",
@@ -153,14 +112,12 @@
         var method = this._element.classList.contains(ClassName.SHOW) ? "hide" : "show";
         this[method]();
       }
-      /**
-       * Show collapsable.
-       */
-
     }, {
       key: "show",
       value: function show() {
-        if (this._collapsing || this._element.classList.contains(ClassName.SHOW)) return;
+        if (this._collapsing || this._element.classList.contains(ClassName.SHOW)) {
+          return;
+        }
 
         this._element.classList.remove(ClassName.COLLAPSE);
 
@@ -176,14 +133,13 @@
 
         this._element.style.height = "".concat(this._element.scrollHeight, "px");
       }
-      /**
-       * Hide collapsable.
-       */
-
     }, {
       key: "hide",
       value: function hide() {
-        if (this._collapsing || !this._element.classList.contains(ClassName.SHOW)) return;
+        if (this._collapsing || !this._element.classList.contains(ClassName.SHOW)) {
+          return;
+        }
+
         this._element.style.height = "".concat(this._element.scrollHeight, "px"); // Force reflow to recalculate element height before transitioning
 
         reflow(this._element);
@@ -205,37 +161,20 @@
 
         this._element.addEventListener("transitionend", this._hideCollapseEnd);
       }
-      /**
-       * Remove element from Data map and set instance values to null.
-       */
-
     }, {
       key: "dispose",
       value: function dispose() {
-        Data["delete"](this._element);
+        Data.delete(this._element);
         this._element = null;
         this._togglers = null;
         this._collapsing = null;
       } // private
-
-      /**
-       * Sets value of this._collapsing.
-       *
-       * @param {Boolean} bool
-       * @private
-       */
 
     }, {
       key: "_setCollapsing",
       value: function _setCollapsing(bool) {
         this._collapsing = bool;
       }
-      /**
-       * transitionend callback for show method.
-       *
-       * @private
-       */
-
     }, {
       key: "_showCollapseEnd",
       value: function _showCollapseEnd() {
@@ -249,12 +188,6 @@
 
         this._setCollapsing(false);
       }
-      /**
-       * transitionend callback for hide method.
-       *
-       * @private
-       */
-
     }, {
       key: "_hideCollapseEnd",
       value: function _hideCollapseEnd() {
@@ -266,14 +199,6 @@
 
         this._setCollapsing(false);
       } // Static
-
-      /**
-       * Checks to see if element is set in Data map.
-       * Used for click event listener.
-       *
-       * @param {HTMLElement} element Element to toggle collapse
-       * @static
-       */
 
     }], [{
       key: "_toggle",
@@ -293,7 +218,10 @@
 
   document.addEventListener("click", function (event) {
     var toggler = event.target.closest(Selector.COLLAPSE);
-    if (!toggler) return;
+
+    if (!toggler) {
+      return;
+    }
 
     if (toggler.tagName === "A") {
       event.preventDefault();
@@ -319,17 +247,10 @@
   var Selector$1 = {
     DROPDOWN: '[data-toggle="dropdown"]'
   };
-  /** Class respresenting a dropdown element */
 
   var Dropdown =
   /*#__PURE__*/
   function () {
-    /**
-     * Initialise dropdown instance.
-     * Adds element (key) and instance (value) to Data map.
-     *
-     * @param {HTMLElement} element Element to dropdown
-     */
     function Dropdown(element) {
       _classCallCheck(this, Dropdown);
 
@@ -342,29 +263,25 @@
       Data.set(element, this);
     } // Public
 
-    /**
-     * Toggle dropdown depending on current state.
-     */
-
 
     _createClass(Dropdown, [{
       key: "toggle",
       value: function toggle() {
-        if (!this._menu) return;
+        if (!this._menu) {
+          return;
+        }
 
         this._toggler.focus();
 
         var method = this._menu.classList.contains(ClassName$1.SHOW) ? "hide" : "show";
         this[method]();
       }
-      /**
-       * Show dropdown.
-       */
-
     }, {
       key: "show",
       value: function show() {
-        if (this._menu.classList.contains(ClassName$1.SHOW)) return;
+        if (this._menu.classList.contains(ClassName$1.SHOW)) {
+          return;
+        }
 
         Dropdown._clearActive();
 
@@ -372,27 +289,17 @@
 
         this._toggler.setAttribute(Aria$1.EXPANDED, true);
       }
-      /**
-       * Hide dropdown.
-       */
-
     }, {
       key: "hide",
       value: function hide() {
-        if (!this._menu.classList.contains(ClassName$1.SHOW)) return;
+        if (!this._menu.classList.contains(ClassName$1.SHOW)) {
+          return;
+        }
 
         this._menu.classList.remove(ClassName$1.SHOW);
 
         this._toggler.setAttribute(Aria$1.EXPANDED, false);
       } // Static
-
-      /**
-       * Get current active dropdown.
-       * Only one element should be active at a time.
-       *
-       * @returns {Object}
-       * @static
-       */
 
     }], [{
       key: "_getActiveToggler",
@@ -417,38 +324,22 @@
         });
         return toggler;
       }
-      /**
-       * Get dropdown toggler from dropdown menu.
-       *
-       * @param {HTMLElement} element
-       */
-
     }, {
       key: "_getToggler",
       value: function _getToggler(element) {
-        if (element.classList.contains(ClassName$1.TOGGLE)) return element;
+        if (element.classList.contains(ClassName$1.TOGGLE)) {
+          return element;
+        }
+
         var parent = element.closest(".".concat(ClassName$1.DROPDOWN));
         return parent.querySelector(Selector$1.DROPDOWN);
       }
-      /**
-       * Get dropdown menu from dropdown toggler.
-       *
-       * @param {HTMLElement} element Dropdown toggler
-       * @static
-       */
-
     }, {
       key: "_getMenu",
       value: function _getMenu(element) {
         var selector = getSelectorFromTarget(element);
         return document.querySelector(selector);
       }
-      /**
-       * Hide current active dropdown.
-       *
-       * @static
-       */
-
     }, {
       key: "_clearActive",
       value: function _clearActive() {
@@ -461,21 +352,15 @@
           toggler.setAttribute(Aria$1.EXPANDED, false);
         }
       }
-      /**
-       * Keyboard support for dropdown.
-       *
-       * @param {Object} event Keydown event object
-       * @param {string} event.key The keydown key name
-       * @param {HTMLElement} event.target The keydown target element
-       * @static
-       */
-
     }, {
       key: "_keyDownHandler",
       value: function _keyDownHandler(_ref) {
         var key = _ref.key,
             target = _ref.target;
-        if (key !== "Escape" && key !== "ArrowUp" && key !== "ArrowDown") return;
+
+        if (key !== "Escape" && key !== "ArrowUp" && key !== "ArrowDown") {
+          return;
+        }
 
         var toggler = Dropdown._getToggler(target);
 
@@ -517,14 +402,6 @@
 
         items[index].focus();
       }
-      /**
-       * Checks to see if element is set in Data map.
-       * Used for click event listener.
-       *
-       * @param {Object} event Click event object
-       * @static
-       */
-
     }, {
       key: "_toggle",
       value: function _toggle(event) {
