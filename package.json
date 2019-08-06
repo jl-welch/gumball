@@ -15,7 +15,7 @@
     "dev:css": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 src/stylesheets/gumball.scss dist/stylesheets/gumball.css",
     "dev:js": "npm run lint:js && rollup --config build/rollup.config.js",
     "build": "run-p build:*",
-    "build:css": "postcss --use autoprefixer < dist/stylesheets/gumball.css | postcss --use cssnano > dist/stylesheets/gumball.min.css",
+    "build:css": "postcss --use autoprefixer < dist/stylesheets/gumball.css | postcss --use cssnano > dist/stylesheets/gumball.min.css --no-map",
     "build:js": "run-s dev:js minify:js",
     "watch:css": "nodemon --watch src/stylesheets/ --ext scss --exec \"npm run dev:css\"",
     "watch:js": "nodemon --watch src/javascripts/ --ext js --exec \"npm run dev:js\"",
