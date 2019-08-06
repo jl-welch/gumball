@@ -1,58 +1,8 @@
-(function (factory) {
-  typeof define === 'function' && define.amd ? define(factory) :
-  factory();
-}(function () { 'use strict';
-
-  var each = function each(array, callback) {
-    for (var i = 0; i < array.length; i += 1) {
-      var response = callback(array[i], i);
-
-      if (response) {
-        break;
-      }
-    }
-  };
-
-  var getSelectorFromTarget = function getSelectorFromTarget(element) {
-    var selector = element.getAttribute("data-target");
-
-    if (!selector || selector === "#") {
-      var hrefAttr = element.getAttribute("href");
-      selector = hrefAttr && hrefAttr !== "#" ? hrefAttr.trim() : null;
-    }
-
-    return document.querySelector(selector) ? selector : null;
-  };
-
-  var getToggleList = function getToggleList(element, dataAttr) {
-    // DEVTODO - Check for elements toggling with href
-    var toggleElements = document.querySelectorAll(dataAttr);
-    var toggleList = [];
-    each(toggleElements, function (toggleElement) {
-      var selector = getSelectorFromTarget(toggleElement);
-
-      if (!selector) {
-        return;
-      }
-
-      var filteredList = Array.from(document.querySelectorAll(selector)).filter(function (el) {
-        return el === element;
-      });
-
-      if (filteredList.length) {
-        toggleList.push(toggleElement);
-      }
-    });
-    return toggleList.length ? toggleList : null;
-  };
-
-  var isElement = function isElement(element) {
-    return (element[0] || element).nodeType;
-  };
-
-  var reflow = function reflow(element) {
-    return element.offsetHeight;
-  };
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (global = global || self, factory(global.gumball = {}));
+}(this, function (exports) { 'use strict';
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -76,7 +26,107 @@
     return Constructor;
   }
 
+  function selectorMatches(element, selector) {
+    var proto = Element.prototype;
+    var func = proto.matches || proto.webkitMatchesSelector || proto.mozMatchesSelector || proto.msMatchesSelector;
+    return func.call(element, selector);
+  }
+
+  function closest(element, string) {
+    do {
+      if (selectorMatches(element, string)) return element; // eslint-disable-next-line no-param-reassign
+
+      element = element.parentElement || element.parentNode;
+    } while (element !== null && element.nodeType === 1);
+
+    return null;
+  }
+
   var Data = new Map();
+
+  // polyfill
+  /**
+   * Run-of-the-mill for loop wrapped up.
+   * Allow to return "break" to break out of loop early.
+   */
+
+  var each = function each(array, callback) {
+    for (var i = 0; i < array.length; i += 1) {
+      var response = callback(array[i], i);
+
+      if (response === "break") {
+        break;
+      }
+    }
+  };
+  /**
+   * Create array, useful for converting nodeList to array.
+   */
+
+
+  var makeArray = function makeArray(nodeList) {
+    if (!nodeList) {
+      return [];
+    }
+
+    return [].slice.call(nodeList);
+  };
+  /**
+   * Return target string from data-target or href attribute.
+   */
+
+
+  var getSelectorFromTarget = function getSelectorFromTarget(element) {
+    var selector = element.getAttribute("data-target");
+
+    if (!selector) {
+      var hrefAttr = element.getAttribute("href");
+      selector = hrefAttr && hrefAttr !== "#" ? hrefAttr : null;
+    }
+
+    return document.querySelector(selector) ? selector : null;
+  };
+  /**
+   * Find 'togglers' which contain the data attribute parameter.
+   * Add 'toggler' to array if they point to the element parameter.
+   * Return array if not empty.
+   */
+
+
+  var getToggleList = function getToggleList(element, dataAttr) {
+    var toggleElements = document.querySelectorAll(dataAttr);
+    var toggleList = [];
+    each(toggleElements, function (toggleElement) {
+      var selector = getSelectorFromTarget(toggleElement);
+
+      if (!selector) {
+        return;
+      }
+
+      var match = selectorMatches(element, selector);
+
+      if (match) {
+        toggleList.push(toggleElement);
+      }
+    });
+    return toggleList.length ? toggleList : null;
+  };
+  /**
+   * Check if data passed is valid HTML element.
+   */
+
+
+  var isElement = function isElement(element) {
+    return (element[0] || element).nodeType;
+  };
+  /**
+   * Force reflow to recalculate element position / geometry.
+   */
+
+
+  var reflow = function reflow(element) {
+    return element.offsetHeight;
+  };
 
   var Aria = {
     EXPANDED: "aria-expanded"
@@ -100,6 +150,8 @@
         throw new TypeError("Element expected");
       }
 
+      this._showCollapseEnd = this._showCollapseEnd.bind(this);
+      this._hideCollapseEnd = this._hideCollapseEnd.bind(this);
       this._element = element;
       this._togglers = getToggleList(element, Selector.COLLAPSE);
       this._collapsing = false;
@@ -140,11 +192,12 @@
           return;
         }
 
-        this._element.style.height = "".concat(this._element.scrollHeight, "px"); // Force reflow to recalculate element height before transitioning
-
+        this._element.style.height = "".concat(this._element.scrollHeight, "px");
         reflow(this._element);
 
-        this._element.classList.remove(ClassName.COLLAPSE, ClassName.SHOW);
+        this._element.classList.remove(ClassName.COLLAPSE);
+
+        this._element.classList.remove(ClassName.SHOW);
 
         this._element.classList.add(ClassName.COLLAPSING);
 
@@ -180,7 +233,9 @@
       value: function _showCollapseEnd() {
         this._element.classList.remove(ClassName.COLLAPSING);
 
-        this._element.classList.add(ClassName.COLLAPSE, ClassName.SHOW);
+        this._element.classList.add(ClassName.COLLAPSE);
+
+        this._element.classList.add(ClassName.SHOW);
 
         this._element.style.height = "";
 
@@ -217,7 +272,7 @@
   }();
 
   document.addEventListener("click", function (event) {
-    var toggler = event.target.closest(Selector.COLLAPSE);
+    var toggler = closest(event.target, Selector.COLLAPSE);
 
     if (!toggler) {
       return;
@@ -233,6 +288,13 @@
     Collapse._toggle(element);
   });
 
+  var ARROW_UP = "ArrowUp";
+  var IE_ARROW_UP = "Up";
+  var ARROW_DOWN = "ArrowDown";
+  var IE_ARROW_DOWN = "Down";
+  var ESC = "Escape";
+  var IE_ESC = "Esc";
+  var TAB = "Tab";
   var Aria$1 = {
     EXPANDED: "aria-expanded",
     POPUP: "aria-haspopup"
@@ -240,8 +302,8 @@
   var ClassName$1 = {
     DROPDOWN: "dropdown",
     TOGGLE: "dropdown__toggle",
-    LIST: "dropdown__list",
-    SHOW: "dropdown__list--show",
+    LIST: "dropdown__menu",
+    SHOW: "dropdown__menu--show",
     ITEM: "dropdown__item"
   };
   var Selector$1 = {
@@ -317,10 +379,10 @@
 
           if (selector === active) {
             toggler = togglerItem;
-            return true;
+            return "break";
           }
 
-          return false;
+          return null;
         });
         return toggler;
       }
@@ -331,8 +393,8 @@
           return element;
         }
 
-        var parent = element.closest(".".concat(ClassName$1.DROPDOWN));
-        return parent.querySelector(Selector$1.DROPDOWN);
+        var parent = closest(element, ".".concat(ClassName$1.DROPDOWN));
+        return parent ? parent.querySelector(Selector$1.DROPDOWN) : null;
       }
     }, {
       key: "_getMenu",
@@ -354,17 +416,23 @@
       }
     }, {
       key: "_keyDownHandler",
-      value: function _keyDownHandler(_ref) {
-        var key = _ref.key,
-            target = _ref.target;
+      value: function _keyDownHandler(event) {
+        var key = event.key,
+            shiftKey = event.shiftKey,
+            target = event.target;
+        var keys = [ARROW_UP, ARROW_DOWN, ESC, IE_ARROW_UP, IE_ARROW_DOWN, IE_ESC, TAB];
 
-        if (key !== "Escape" && key !== "ArrowUp" && key !== "ArrowDown") {
+        if (keys.indexOf(key) === -1) {
           return;
         }
 
         var toggler = Dropdown._getToggler(target);
 
-        if (key === "Escape") {
+        if (!toggler) {
+          return;
+        }
+
+        if (key === ESC || key === IE_ESC) {
           Dropdown._clearActive(); // Re-focus the toggler button after closing
 
 
@@ -374,7 +442,8 @@
 
         var menu = Dropdown._getMenu(toggler);
 
-        var items = Array.from(menu.querySelectorAll(".".concat(ClassName$1.ITEM)));
+        var elementList = menu.querySelectorAll(".".concat(ClassName$1.ITEM));
+        var items = makeArray(elementList);
 
         if (!items.length) {
           return;
@@ -383,20 +452,27 @@
 
         if (!menu.classList.contains(ClassName$1.SHOW)) {
           toggler.click();
-        }
-
-        if (target === toggler) {
           items[0].focus();
           return;
         }
 
         var index = items.indexOf(target);
 
-        if (key === "ArrowUp" && index > 0) {
+        if (key === TAB) {
+          if (index + 1 >= items.length && !shiftKey) {
+            Dropdown._clearActive();
+          }
+
+          return;
+        }
+
+        event.preventDefault();
+
+        if ((key === ARROW_UP || key === IE_ARROW_UP) && index > 0) {
           index -= 1;
         }
 
-        if (key === "ArrowDown" && index < items.length - 1) {
+        if ((key === ARROW_DOWN || key === IE_ARROW_DOWN) && index < items.length - 1) {
           index += 1;
         }
 
@@ -405,10 +481,11 @@
     }, {
       key: "_toggle",
       value: function _toggle(event) {
-        var toggler = event.target.closest(Selector$1.DROPDOWN);
+        var target = event.target;
+        var toggler = closest(target, Selector$1.DROPDOWN);
 
         if (!toggler) {
-          var menu = event.target.closest(".".concat(ClassName$1.LIST));
+          var menu = closest(target, ".".concat(ClassName$1.LIST));
 
           if (!menu) {
             Dropdown._clearActive();
@@ -436,5 +513,10 @@
 
   document.addEventListener("keydown", Dropdown._keyDownHandler);
   document.addEventListener("click", Dropdown._toggle);
+
+  exports.Collapse = Collapse;
+  exports.Dropdown = Dropdown;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
