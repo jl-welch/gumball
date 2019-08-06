@@ -1,9 +1,0 @@
-@mixin card($color, $border: darken($color, 10%)) {
-  @include bg($color);
-
-  .card__header,
-  .card__body,
-  .card__footer {
-    border-color: $border;
-  }
-}
