@@ -1,0 +1,43 @@
+.form__control,
+.input {
+  display: block;
+  width: 100%;
+  padding: $input-padding-y $input-padding-x;
+  border: $input-border-width solid $input-border-color;
+  font-size: $input-font-size;
+  line-height: $input-line-height;
+  vertical-align: middle;
+
+  &:focus {
+    @include focus();
+  }
+
+  &[type="radio"],
+  &[type="checkbox"] {
+    display: inline-block;
+    width: auto;
+    margin-right: $input-radio-margin-right;
+    vertical-align: middle;
+  }
+
+  @each $key, $value in $colors {
+    &.bg-#{$key} {
+      @extend .btn.bg-#{$key};
+    }
+  }
+}
+
+textarea.form__control,
+textarea.input {
+  min-height: $input-textarea-min-height;
+}
+
+select.form__control,
+select.input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  &::-ms-expand {
+    display: none;
+  }
+}

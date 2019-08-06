@@ -1,0 +1,23 @@
+.form {
+  @each $bp, $size in $breakpoints {
+    @include breakpoint-up($bp) {
+      $infix: if($bp != xs, "-#{$bp}", "");
+
+      &--inline#{$infix} {
+        flex-direction: row;
+
+        .form__control {
+          display: inline-block;
+          width: auto;
+        }
+      }
+    }
+  }
+}
+
+.form-group {
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: row wrap;
+  align-items: center;
+}
