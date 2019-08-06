@@ -5,19 +5,20 @@
 
   &__column {
     position: relative;
-    padding: $spacing-y;
+    padding: $table-column-padding;
+    text-align: left;
     vertical-align: middle;
 
-    &--head { background-color: rgba($light, .25); }
+    &--head { background-color: $table-column-head-bg; }
   }
 
   &__row {
-    border-bottom: $border-width solid $border-color;
+    border-bottom: $table-row-border-width solid $table-row-border-color;
   }
 
   &__caption {
     text-align: right;
-    font-weight: 300;
-    color: $grey-500;
+    font-weight: $table-caption-font-weight;
+    color: $table-caption-color;
   }
 }

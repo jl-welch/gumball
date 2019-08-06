@@ -1,8 +1,8 @@
 .navbar {
-  @include bg($primary);
+  @include bg($navbar-bg);
   position: relative;
   display: flex;
-  padding: $spacing-y $spacing-x;
+  padding: $navbar-padding-y $navbar-padding-x;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -11,21 +11,21 @@
 
 .navbar__brand {
   display: inline-block;
-  margin-right: $spacing-x;
+  margin-right: $navbar-brand-margin-x;
   margin-bottom: 0;
-  padding-top: $spacing-y-sm;
-  padding-bottom: $spacing-y-sm;
-  font-size: $font-size-sm;
+  padding-top: $navbar-brand-padding-y;
+  padding-bottom: $navbar-brand-padding-y;
+  font-size: $navbar-brand-font-size;
   line-height: inherit;
   white-space: nowrap;
 }
 
 .navbar__toggle {
-  @include border-radius($border-radius);
-  padding: $spacing-y-sm $spacing-x-sm;
-  border: $border-width solid $border-color;
+  @include border-radius($navbar-toggle-border-radius);
+  padding: $navbar-toggle-padding-y $navbar-toggle-padding-x;
+  border: $navbar-toggle-border-width solid $navbar-toggle-border-color;
   align-items: center;
-  color: $light;
+  color: $navbar-toggle-color;
 }
 
 .navbar__collapse {
@@ -47,26 +47,25 @@
 
 .navbar__link {
   @extend .nav__link;
-  @include transition($transition-base);
+  @include transition($navbar-link-transition);
   padding-right: 0;
   padding-left: 0;
-  color: rgba($light, .6);
-  &:hover { color: $light; }
+  color: $navbar-link-color;
+
+  &:hover { color: $navbar-link-hover-color; }
 }
 
-.navbar--dark { @include bg($dark); }
-
-.navbar--light {
-  @include bg($light);
+.navbar--dark {
+  @include bg($dark);
 
   .navbar__toggle {
-    border-color: $dark;
-    color: $dark;
+    border-color: $light;
+    color: $light;
   }
 
   .navbar__link {
-    color: rgba($dark, .6);
-    &:hover { color: $dark; }
+    color: rgba($light, .6);
+    &:hover { color: $light; }
   }
 }
 
@@ -84,7 +83,7 @@
           display: flex;
           height: 100%;
           flex-basis: auto;
-          flex-grow: 0;
+          flex-grow: 1;
           overflow: visible;
         }
 

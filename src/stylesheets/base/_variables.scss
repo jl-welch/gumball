@@ -2,15 +2,15 @@
 // Colours
 
 $white:                           #fff !default;
-$grey-100:                        #f1f2f1 !default;
-$grey-200:                        #dedede !default;
-$grey-300:                        #c2c2c2 !default;
-$grey-400:                        #a8a8a8 !default;
-$grey-500:                        #8c8c8c !default;
-$grey-600:                        #707070 !default;
-$grey-700:                        #545454 !default;
-$grey-800:                        #383838 !default;
-$grey-900:                        #1c1c1c !default;
+$grey-100:                        #f8f9fa !default;
+$grey-200:                        #e8eef3 !default;
+$grey-300:                        #d8dee4 !default;
+$grey-400:                        #ccd3da !default;
+$grey-500:                        #adb6be !default;
+$grey-600:                        #6d767e !default;
+$grey-700:                        #474e55 !default;
+$grey-800:                        #343a41 !default;
+$grey-900:                        #1e2225 !default;
 $black:                           #000 !default;
 
 $greys: (
@@ -32,7 +32,7 @@ $blue:                            #54a0ff !default;
 $secondary:                       #7fdbff !default;
 $light:                             $grey-200 !default;
 $dark:                              $grey-800 !default;
-$base-bg:                           $grey-100 !default;
+$base-bg:                           $light !default;
 
 $colors: (
   "red":                            $red,
@@ -268,6 +268,31 @@ $card-border-radius:                $border-radius !default;
 $card-box-shadow:                   $box-shadow !default;
 
 //
+// collapse
+
+$collapse-transition:               height .4s ease-in-out !default;
+
+//
+// dropdown
+
+$dropdown-padding-y:                $spacing-y-sm !default;
+
+$dropdown-border-width:             $border-width !default;
+$dropdown-border-color:             $border-color !default;
+
+$dropdown-border-radius:            $border-radius !default;
+
+$dropdown-box-shadow:               $box-shadow !default;
+
+$dropdown-menu-bg:                  $white !default;
+
+$dropdown-item-padding-y:           $spacing-y-lg !default;
+$dropdown-item-padding-x:           $spacing-x-lg !default;
+
+$dropdown-item-hover-bg:            darken($dropdown-menu-bg, 5%) !default;
+
+
+//
 // form
 
 $form-padding-y:                    $spacing-y !default;
@@ -281,6 +306,8 @@ $input-padding-x:                   $spacing-x !default;
 
 $input-border-width:                $border-width !default;
 $input-border-color:                $base-bg !default;
+
+$input-border-radius:               $border-radius !default;
 
 $input-box-shadow:                  $box-shadow !default;
 
@@ -314,3 +341,44 @@ $nav-tabs-border-radius:            $border-radius !default;
 $nav-tabs-link-active-bg:           $body-bg !default;
 
 $nav-tabs-link-hover-border-color:  $grey-100 !default;
+
+//
+// navbar
+
+$navbar-bg:                         $grey-100 !default;
+
+$navbar-padding-y:                  $spacing-y !default;
+$navbar-padding-x:                  $spacing-x !default;
+
+$navbar-brand-margin-x:             $spacing-x !default;
+$navbar-brand-padding-y:            $spacing-y-sm !default;
+
+$navbar-brand-font-size:            $font-size-sm !default;
+
+$navbar-toggle-padding-y:           $spacing-y-sm !default;
+$navbar-toggle-padding-x:           $spacing-x-sm !default;
+
+$navbar-toggle-border-width:        $border-width !default;
+$navbar-toggle-border-color:        $dark !default;
+
+$navbar-toggle-border-radius:       $border-radius !default;
+
+$navbar-toggle-color:               $navbar-toggle-border-color !default;
+
+$navbar-link-transition:            $transition-color !default;
+
+$navbar-link-color:                 rgba($dark, .6) !default;
+$navbar-link-hover-color:           $dark !default;
+
+//
+// table
+
+$table-column-padding:              $spacing-y !default;
+
+$table-column-head-bg:              rgba($light, .3) !default;
+
+$table-row-border-width:            $border-width !default;
+$table-row-border-color:            $border-color !default;
+
+$table-caption-font-weight:         $font-weight-light !default;
+$table-caption-color:                $grey-500 !default;

@@ -4,16 +4,15 @@
 
 .dropdown__menu {
   @include absolute($top: 100%, $left: 0);
-  @include border-radius($border-radius);
-  @include box-shadow($box-shadow);
-  @include bg($white);
+  @include border-radius($dropdown-border-radius);
+  @include box-shadow($dropdown-box-shadow);
+  @include bg($dropdown-menu-bg);
   @include transition($transition-fade);
   display: none;
-  width: 100%;
   min-width: 18rem;
-  padding-top: $spacing-y-sm;
-  padding-bottom: $spacing-y-sm;
-  border: $border-width solid $border-color;
+  padding-top: $dropdown-padding-y;
+  padding-bottom: $dropdown-padding-y;
+  border: $dropdown-border-width solid $dropdown-border-color;
   white-space: nowrap;
   visibility: hidden;
   opacity: 0;
@@ -23,6 +22,18 @@
     display: block;
     visibility: visible;
     opacity: 1;
+  }
+
+  @each $key, $value in $colors {
+    &.bg-#{$key} {
+      a.dropdown__item,
+      button.dropdown__item:not(.btn) {
+        &:hover,
+        &:focus {
+          background-color: darken($value, 5%);
+        }
+      }
+    }
   }
 }
 
@@ -34,12 +45,12 @@ a.dropdown__item,
 button.dropdown__item:not(.btn) {
   @include transition($transition-color);
   position: relative;
-  padding: $spacing-y-lg $spacing-x-lg;
+  padding: $dropdown-item-padding-y $dropdown-item-padding-x;
   text-align: center;
   text-decoration: none;
 
   &:hover,
   &:focus {
-    background-color: darken($light, 5%);
+    background-color: $dropdown-item-hover-bg;
   }
 }

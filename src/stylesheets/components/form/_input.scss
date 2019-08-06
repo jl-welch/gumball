@@ -1,12 +1,12 @@
 .form__control,
 .input {
+  @include border-radius($input-border-radius);
   display: block;
   width: 100%;
   padding: $input-padding-y $input-padding-x;
   border: $input-border-width solid $input-border-color;
   font-size: $input-font-size;
   line-height: $input-line-height;
-  vertical-align: middle;
 
   &:focus {
     @include focus();

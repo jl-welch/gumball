@@ -3,8 +3,8 @@
 }
 
 .collapsing {
+  @include transition($collapse-transition);
   position: relative;
   height: 0;
   overflow: hidden;
-  transition: height .4s ease-in-out;
 }
