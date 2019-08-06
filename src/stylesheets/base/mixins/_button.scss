@@ -1,37 +1,18 @@
 @mixin button($color, $hover-color: darken($color, 5%), $active-color: darken($color, 15%)) {
-  &:not(:disabled):not(.btn--disabled) {
+  &:not(:disabled) {
     @include bg($color);
     border: $border-width solid $color;
 
-    &.btn--focus,
-    &.btn--active,
-    &:focus,
-    &:active {
-      box-shadow: 0 0 .5rem rgba($active-color, .6);
+    &:focus {
+      @include focus($active-color);
     }
 
     &:hover { @include bg($hover-color); }
   }
 }
 
-@mixin button-border($color) {
-  &:not(:disabled):not(.btn--disabled) {
-    border: $border-width solid $color !important;
-    color: $color !important;
-    background-color: transparent !important;
-
-    &.btn--focus,
-    &.btn--active,
-    &:focus,
-    &:active {
-      box-shadow: 0 0 .5rem rgba($color, .6);
-    }
-
-    &:hover { @include bg($color); }
-  }
-}
-
-@mixin button-size($spacing-y, $spacing-x, $border-radius) {
+@mixin button-size($spacing-y, $spacing-x, $font-size, $border-radius) {
   @include border-radius($border-radius);
   padding: $spacing-y $spacing-x;
+  font-size: $font-size;
 }

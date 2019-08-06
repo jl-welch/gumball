@@ -1,86 +1,96 @@
 //
 // Colours
 
-$white:                   #fff !default;
-$grey-100:                #f2faf3 !default;
-$grey-200:                #e8eaee !default;
-$grey-300:                #dcdcdc !default;
-$grey-400:                #bdbdbd !default;
-$grey-500:                #adb5bd !default;
-$grey-600:                #60646a !default;
-$grey-700:                #484d53 !default;
-$grey-800:                #2a292b !default;
-$grey-900:                #202224 !default;
-$black:                   #000 !default;
+$white:                           #fff !default;
+$grey-100:                        #f1f2f1 !default;
+$grey-200:                        #dedede !default;
+$grey-300:                        #c2c2c2 !default;
+$grey-400:                        #a8a8a8 !default;
+$grey-500:                        #8c8c8c !default;
+$grey-600:                        #707070 !default;
+$grey-700:                        #545454 !default;
+$grey-800:                        #383838 !default;
+$grey-900:                        #1c1c1c !default;
+$black:                           #000 !default;
 
 $greys: (
-  "100":                    $grey-100,
-  "200":                    $grey-200,
-  "300":                    $grey-300,
-  "400":                    $grey-400,
-  "500":                    $grey-500,
-  "600":                    $grey-600,
-  "700":                    $grey-700,
-  "800":                    $grey-800,
-  "900":                    $grey-900
+  "100":                            $grey-100,
+  "200":                            $grey-200,
+  "300":                            $grey-300,
+  "400":                            $grey-400,
+  "500":                            $grey-500,
+  "600":                            $grey-600,
+  "700":                            $grey-700,
+  "800":                            $grey-800,
+  "900":                            $grey-900,
 ) !default;
 
-$primary:                  #243a49 !default;
-$red:                      #ff4136 !default;
-$green:                    #3cc47c !default;
-$blue:                     #0293f0 !default;
-$secondary:                 $grey-600 !default;
-$light:                     $grey-200 !default;
-$dark:                      $grey-800 !default;
+$primary:                         #5f27cd !default;
+$red:                             #ff6b6b !default;
+$green:                           #1dd1a1 !default;
+$blue:                            #54a0ff !default;
+$secondary:                       #7fdbff !default;
+$light:                             $grey-200 !default;
+$dark:                              $grey-800 !default;
+$base-bg:                           $grey-100 !default;
 
 $colors: (
-  "red":                    $red,
-  "green":                  $green,
-  "blue":                   $blue,
-  "white":                  $white,
-  "light":                  $light,
-  "dark":                   $dark,
-  "black":                  $black,
-  "primary":                $primary
+  "red":                            $red,
+  "green":                          $green,
+  "blue":                           $blue,
+  "light":                          $light,
+  "dark":                           $dark,
+  "white":                          $white,
+  "black":                          $black,
+  "primary":                        $primary,
+  "secondary":                      $secondary,
 ) !default;
 
 //
 // Options
 // Used to modify global styles depending on boolean
 
-$enable-radius:             false !default;
-$enable-shadows:            false !default;
-$enable-transitions:        true !default;
+$enable-radius:                     false !default;
+$enable-shadows:                    false !default;
+$enable-transitions:                true !default;
+
+//
+// body
+
+$body-bg:                           $white !default;
+
+//
+// links
+
+$link-color:                        rgba($primary, .8) !default;
+$link-decoration:                   none !default;
+
+$link-hover-color:                  $primary !default;
+$link-hover-decoration:             none !default;
 
 //
 // Spacing
 
-$spacing-y:                 1rem !default;
-$spacing-x:                 1.5rem !default;
+$spacing-y:                         1rem !default;
+$spacing-x:                         1.5rem !default;
 
-$spacing-y-xs:              .25rem !default;
-$spacing-x-xs:              .45rem !default;
+$spacing-y-xs:                      .6rem !default;
+$spacing-x-xs:                      .8rem !default;
 
-$spacing-y-sm:              .5rem !default;
-$spacing-x-sm:              1rem !default;
+$spacing-y-sm:                      .8rem !default;
+$spacing-x-sm:                      1rem !default;
 
-$spacing-y-lg:              1.5rem !default;
-$spacing-x-lg:              2.5rem !default;
+$spacing-y-lg:                      1.25rem !default;
+$spacing-x-lg:                      2.5rem !default;
 
 $spacers: (
-  0:                        0,
-  1:                        $spacing-y * .5,
-  2:                        $spacing-y * .75,
-  3:                        $spacing-y,
-  4:                        $spacing-y * 2,
-  5:                        $spacing-y * 4
+  0:                                0,
+  1:                                $spacing-y * .5,
+  2:                                $spacing-y * .75,
+  3:                                $spacing-y,
+  4:                                $spacing-y * 2,
+  5:                                $spacing-y * 4
 ) !default;
-
-//
-// Links
-
-$link-color:                darken($blue, 10%) !default;
-$link-hover-color:          darken($link-color, 5%) !default;
 
 //
 // Layout Breakpoints
@@ -88,11 +98,11 @@ $link-hover-color:          darken($link-color, 5%) !default;
 // For different screen sizes
 
 $breakpoints: (
-  xs:                       0,
-  sm:                       576px,
-  md:                       768px,
-  lg:                       992px,
-  xl:                       1640px
+  xs:                               0,
+  sm:                               576px,
+  md:                               768px,
+  lg:                               992px,
+  xl:                               1640px,
 ) !default;
 
 // 
@@ -101,78 +111,206 @@ $breakpoints: (
 // Used alongside breakpoints
 
 $container-widths: (
-  sm:                       540px,
-  md:                       720px,
-  lg:                       960px,
-  xl:                       1140px
+  sm:                               540px,
+  md:                               720px,
+  lg:                               960px,
+  xl:                               1140px,
 ) !default;
 
 // 
 // Layout columns
 // Used in the grid system
 
-$grid-columns:              12 !default;
-$grid-gutter:               5px !default;
+$grid-columns:                      12 !default;
+$grid-gutter:                       5px !default;
 
 //
 // Components
 // Common property values
 
-$line-height:               1.4 !default;
-$line-height-sm:            1.3 !default;
-$line-height-lg:            1.6 !default;
+$line-height:                       1.4 !default;
+$line-height-sm:                    1.3 !default;
+$line-height-lg:                    1.6 !default;
 
-$border-width:              1px !default;
-$border-color:              $grey-100 !default;
+$border-width:                      1px !default;
+$border-color:                      $grey-100 !default;
 
-$border-radius:             .3rem !default;
-$border-radius-sm:          .2rem !default;
-$border-radius-lg:          .6rem !default;
+$border-radius:                     .3rem !default;
+$border-radius-sm:                  .2rem !default;
+$border-radius-lg:                  .5rem !default;
 
-$box-shadow:                0 .15rem .5rem rgba($grey-400, .25) !default;
+$box-shadow:                        0 .15rem .5rem rgba($grey-400, .25) !default;
 
-$transition-base:           all .15s ease-in-out !default;
-$transition-color:          color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out !default;
-$transition-fade:           opacity .15s linear !default;
-$transition-visibility:     visibility .15s linear !default;
+$transition-base:                   all .15s ease-in-out !default;
+$transition-color:                  color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out !default;
+$transition-fade:                   opacity .15s linear !default;
+$transition-visibility:             visibility .15s linear !default;
+
+$focus-style:                       0 0 0 .2rem rgba($blue, .5) !default;
 
 //
 // Fonts & text
 
-$font-family-base:          Arial, sans-serif !default;
+$font-family-base:                  -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 
-$font-size-base:            1.6rem !default;
-$font-size-sm:              ($font-size-base * .75) !default;
-$font-size-lg:              ($font-size-base * 1.25) !default;
+$font-size-base:                    1.6rem !default;
+$font-size-sm:                      ($font-size-base * .75) !default;
+$font-size-lg:                      ($font-size-base * 1.25) !default;
 
-$font-weight-light:         300 !default;
-$font-weight-normal:        400 !default;
-$font-weight-bold:          700 !default;
+$font-weight-light:                 300 !default;
+$font-weight-normal:                400 !default;
+$font-weight-bold:                  600 !default;
 
-$font-weight-base:          $font-weight-normal !default;
-$line-height-base:          $line-height !default;
+$font-weight-base:                  $font-weight-normal !default;
+$line-height-base:                  $line-height !default;
 
-$small-font-size:           ($font-size-base * .6) !default;
+$small-font-size:                   ($font-size-base * .6) !default;
 
 $heading-sizes: (
-  h1:                       ($font-size-base * 2.25),
-  h2:                       ($font-size-base * 1.7),
-  h3:                       ($font-size-base * 1.4),
-  h4:                       ($font-size-base * 1.2),
-  h5:                       ($font-size-base * 1.1),
-  h6:                       $font-size-base
+  h1:                               ($font-size-base * 2.5),
+  h2:                               ($font-size-base * 2.125),
+  h3:                               ($font-size-base * 1.75),
+  h4:                               ($font-size-base * 1.325),
+  h5:                               ($font-size-base * 1.125),
+  h6:                               $font-size-base,
 ) !default;
 
-$headings-margin-bottom:    $spacing-y !default;
-$headings-font-weight:      $font-weight-bold !default;
-$headings-line-height:      $line-height !default;
-$headings-color:            $grey-800 !default;
+$headings-margin-bottom:            $spacing-y !default;
+$headings-font-weight:              $font-weight-bold !default;
+$headings-line-height:              $line-height !default;
+$headings-color:                    $grey-800 !default;
 
-$disabled:                  $grey-300 !default;
+$disabled:                          $grey-300 !default;
 
 //
 // Z-index
 
-$zindex-dropdown:           10 !default;
-$zindex-nav:                20 !default;
-$zindex-modal:              30 !default;
+$zindex-nav:                        10 !default;
+$zindex-dropdown:                   20 !default;
+$zindex-modal:                      30 !default;
+
+//
+// Components
+// Easy to customise
+
+//
+// alert
+
+$alert-padding-y:                   $spacing-y-lg !default;
+$alert-padding-x:                   $spacing-x-lg !default;
+
+$alert-border-radius:               $border-radius !default;
+
+$alert-box-shadow:                  $box-shadow !default;
+
+$alert-font-size:                   $font-size-base !default;
+
+$alert-close-font-size:             1.4rem !default;
+
+//
+// badge
+
+$badge-padding-y:                   $spacing-y-xs !default;
+$badge-padding-x:                   $spacing-x-xs !default;
+
+$badge-border-radius:               $border-radius !default;
+
+$badge-box-shadow:                  $box-shadow !default;
+
+$badge-font-size:                   $font-size-sm !default;
+$badge-font-weight:                 $font-weight-bold !default;
+
+//
+// breadcrumb
+
+$breadcrumb-padding-y:              $spacing-y !default;
+$breadcrumb-padding-x:              $spacing-x !default;
+
+$breadcrumb-font-size:              $font-size-base !default;
+
+$breadcrumb-item-padding-x:         $spacing-x-xs !default;
+
+//
+// button
+
+$btn-padding-y:                     $spacing-y !default;
+$btn-padding-x:                     $spacing-x !default;
+
+$btn-padding-y-sm:                  $spacing-y-sm !default;
+$btn-padding-x-sm:                  $spacing-x-sm !default;
+
+$btn-padding-y-lg:                  $spacing-y !default;
+$btn-padding-x-lg:                  $spacing-x !default;
+
+$btn-border-width:                  $border-width !default;
+
+$btn-box-shadow:                    $box-shadow !default;
+
+$btn-border-radius:                 $border-radius !default;
+$btn-border-radius-sm:              $border-radius-sm !default;
+$btn-border-radius-lg:              $border-radius-lg !default;
+
+$btn-font-size:                     $font-size-base !default;
+$btn-font-size-sm:                  $font-size-sm !default;
+$btn-font-size-lg:                  $font-size-lg !default;
+$btn-font-weight:                   $font-weight-base !default;
+
+$btn-line-height:                   $line-height-base !default;
+
+//
+// card
+
+$card-padding-y:                    $spacing-y-lg !default;
+$card-padding-x:                    $spacing-x-lg !default;
+
+$card-border-radius:                $border-radius !default;
+
+$card-box-shadow:                   $box-shadow !default;
+
+//
+// form
+
+$form-padding-y:                    $spacing-y !default;
+$form-padding-x:                    $spacing-x !default;
+
+//
+// input
+
+$input-padding-y:                   $spacing-y !default;
+$input-padding-x:                   $spacing-x !default;
+
+$input-border-width:                $border-width !default;
+$input-border-color:                $base-bg !default;
+
+$input-box-shadow:                  $box-shadow !default;
+
+$input-font-size:                   $font-size-base !default;
+
+$input-line-height:                 $line-height-base !default;
+
+$input-radio-margin-right:          1rem !default;
+
+$input-textarea-min-height:         80px !default;
+
+//
+// label
+
+$label-margin-bottom:               .5rem !default;
+
+$label-font-size:                   $font-size-sm !default;
+
+// nav
+
+$nav-link-padding-y:                $spacing-y !default;
+$nav-link-padding-x:                $spacing-x !default;
+
+$nav-link-active-color:             $link-hover-color !default;
+$nav-link-active-decoration:        $link-hover-decoration !default;
+
+$nav-tabs-border-width:             1px !default;
+$nav-tabs-border-color:             $grey-200 !default;
+$nav-tabs-border-radius:            $border-radius !default;
+
+$nav-tabs-link-active-bg:           $body-bg !default;
+
+$nav-tabs-link-hover-border-color:  $grey-100 !default;

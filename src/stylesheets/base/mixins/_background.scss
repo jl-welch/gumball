@@ -1,4 +1,11 @@
 @mixin bg($color) {
-  color: contrast-color($color) !important;
-  background-color: $color !important;
+  background-color: $color;
+}
+
+@mixin bg-variant($map: $colors) {
+  @each $key, $value in $map {
+    &--#{$key} {
+      @include bg($value);
+    }
+  }
 }
