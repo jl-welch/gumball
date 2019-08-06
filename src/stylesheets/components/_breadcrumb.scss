@@ -1,7 +1,7 @@
 .breadcrumb {
-  @include border-radius($border-radius);
   display: block;
-  padding: $spacing-y $spacing-x;
+  padding: $breadcrumb-padding-y $breadcrumb-padding-x;
+  font-size: $breadcrumb-font-size;
   list-style: none;
 
   &__item,
@@ -10,12 +10,12 @@
   }
 
   &__item + &__item {
-    padding-left: $spacing-x-xs;
+    padding-left: $breadcrumb-item-padding-x;
 
     &::before {
       content: "\002F";
       display: inline-block;
-      padding-right: $spacing-x-xs;
+      padding-right: $breadcrumb-item-padding-x;
       color: $disabled;
     }
   }

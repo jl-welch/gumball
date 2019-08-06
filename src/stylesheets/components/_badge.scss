@@ -1,13 +1,10 @@
 .badge {
-  @include border-radius($border-radius);
-  @include bg-variant($colors);
-  @include border-variant($colors);
-  @include bg($primary);
+  @include border-radius($badge-border-radius);
+  @include bg($base-bg);
   display: inline-block;
-  padding: $spacing-y-xs $spacing-x-xs;
-  font-size: $font-size-sm;
-  font-weight: $font-weight-bold;
-  line-height: 1;
+  padding: $badge-padding-y $badge-padding-x;
+  font-size: $badge-font-size;
+  font-weight: $badge-font-weight;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;

@@ -1,28 +1,36 @@
+$alert-close-width: 50px;
+$alert-close-position-right: 10px;
+$alert-closed-padding-right: $alert-close-width + ($alert-close-position-right * 2);
+
 .alert {
-  @include border-radius($border-radius);
-  @include bg($light);
-  @include bg-variant($colors);
-  @include border-variant($colors);
+  @include border-radius($alert-border-radius);
+  @include box-shadow($alert-box-shadow);
+  @include bg($base-bg);
   position: relative;
-  display: flex;
-  align-items: center;
-  padding: $spacing-y $spacing-x;
+  padding: $alert-padding-y $alert-padding-x;
+  font-size: $alert-font-size;
   
   &--close {
-    padding-right: ($spacing-x * 2);
+    padding-right: $alert-closed-padding-right;
     color: inherit;
   }
 
-  &__link {
-    display: inline-block;
-    font-size: $font-size-sm;
-  }
-
   &__close {
-    @include absolute($top: 50%, $right: 10px);
-    font-size: 2rem;
+    @include absolute($top: 50%, $right: $alert-close-position-right);
+    width: $alert-close-width;
+    font-size: $alert-close-font-size;
     cursor: pointer;
     user-select: none;
     transform: translateY(-50%);
+
+    &:focus {
+      @include focus();
+    }
+
+    @each $key, $value in $colors {
+      &.bg-#{$key} {
+        @extend .btn.bg-#{$key};
+      }
+    }
   }
 }

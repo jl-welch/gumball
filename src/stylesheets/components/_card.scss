@@ -1,14 +1,26 @@
 .card {
-  @include card($light);
-  @include border-radius($border-radius);
-  @include box-shadow($box-shadow);
+  @include border-radius($card-border-radius);
+  @include box-shadow($card-box-shadow);
   position: relative;
   display: flex;
+  border: 1px solid $base-bg;
   flex-direction: column;
   background-clip: border-box;
+  overflow: hidden;
 
   @each $key, $value in $colors {
-    &--#{$key} { @include card($value); }
+    &.bg-#{$key} {
+      &,
+      .card__header,
+      .card__footer {
+        border-color: $value;
+      }
+
+      .card__header,
+      .card__footer {
+        background-color: darken($value, 3%);  
+      }
+    }
   }
 
   &--lg { padding: 10rem; }
@@ -17,51 +29,43 @@
 .card__header,
 .card__body,
 .card__footer {
-  padding: $spacing-y $spacing-x;
+  padding: $card-padding-y $card-padding-x;
 }
 
 .card__header,
 .card__footer {
-  border: $border-width solid $border-color;
+  background-color: $base-bg;
 }
 
-.card__header { @include border-top-radius($border-radius); }
-
-.card__body {
-  flex: 1 1 auto;
-  border-right: $border-width solid $border-color;
-  border-left: $border-width solid $border-color;
+.card__header {
+  @include border-top-radius($card-border-radius);
+  border-bottom: 1px solid $base-bg;
 }
 
-.card__footer { @include border-bottom-radius($border-radius); }
+.card__body { flex: 1 1 auto; }
+
+.card__footer {
+  @include border-bottom-radius($card-border-radius);
+  border-top: 1px solid $base-bg;
+}
 
 .card__overlay {
   @include absolute($top: 0, $right: 0, $bottom: 0, $left: 0);
-  @include border-radius($border-radius);
-  @include bg(rgba($grey-800, .8));
-  padding: $spacing-x-lg;
-
-  .card__header,
-  .card__body,
-  .card__footer {
-    border-right: 0;
-    border-left: 0;
-  }
-
-  .card__header { border-top: 0; }
-  .card__footer { border-bottom: 0; }
+  @include border-radius($card-border-radius);
+  @include bg(rgba($grey-800, .6));
+  padding: $card-padding-x;
 
   .card__header,
   .card__footer {
+    border: none;
     color: inherit;
     background-color: transparent !important;
   }
 }
 
 .card__img {
-  @include border-radius($border-radius);
+  @include border-radius($card-border-radius);
   width: 100%;
-  overflow: hidden;
 
   &--top { @include border-bottom-radius(0); }
   &--bottom { @include border-top-radius(0); }

@@ -1,27 +1,27 @@
 .btn {
-  @include button($light);
-  @include button-size($spacing-y, $spacing-x, $border-radius);
-  @include box-shadow($box-shadow);
+  @include button($base-bg);
+  @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-border-radius);
+  @include box-shadow($btn-box-shadow);
   @include transition($transition-color);
-  display: inline-flex;
-  align-items: center;
-  border: $border-width solid $light;
+  display: inline-block;
+  border: $btn-border-width solid $base-bg;
   font-family: inherit;
-  font-weight: $font-weight-light;
-  font-size: inherit;
+  font-weight: $btn-font-weight;
+  line-height: $btn-line-height;
+  vertical-align: middle;
   text-decoration: none;
   user-select: none;
+  color: inherit;
   cursor: pointer;
 
-  &--sm { @include button-size($spacing-y-sm, $spacing-x-sm, $border-radius-sm); }
-  &--lg { @include button-size($spacing-y-lg, $spacing-x-lg, $border-radius-lg); }
+  &--sm { @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm); }
+  &--lg { @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg); }
 
   &--block {
     display: block;
     width: 100%;
   }
 
-  &--disabled,
   &:disabled {
     border-color: darken($disabled, 15%);
     color: darken($disabled, 20%);
@@ -30,7 +30,6 @@
   }
 
   @each $key, $value in $colors {
-    &--#{$key} { @include button($value); }
-    &--border-#{$key} { @include button-border($value) }
+    &.bg-#{$key} { @include button($value); }
   }
 }

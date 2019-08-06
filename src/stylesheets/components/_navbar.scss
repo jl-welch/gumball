@@ -2,79 +2,98 @@
   @include bg($primary);
   position: relative;
   display: flex;
-  padding-top: $spacing-y;
-  padding-bottom: $spacing-y;
+  padding: $spacing-y $spacing-x;
   align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   z-index: $zindex-nav;
+}
 
-  &__toggle {
-    @include border-radius($border-radius);
-    padding: $spacing-y-sm $spacing-x-sm;
-    border: $border-width solid $border-color;
-    align-items: center;
-    font-size: 2rem;
-    color: $light;
+.navbar__brand {
+  display: inline-block;
+  margin-right: $spacing-x;
+  margin-bottom: 0;
+  padding-top: $spacing-y-sm;
+  padding-bottom: $spacing-y-sm;
+  font-size: $font-size-sm;
+  line-height: inherit;
+  white-space: nowrap;
+}
+
+.navbar__toggle {
+  @include border-radius($border-radius);
+  padding: $spacing-y-sm $spacing-x-sm;
+  border: $border-width solid $border-color;
+  align-items: center;
+  color: $light;
+}
+
+.navbar__collapse {
+  flex-basis: 100%;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.navbar__container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.navbar__menu {
+  @extend .nav;
+  flex-direction: column;
+}
+
+.navbar__link {
+  @extend .nav__link;
+  @include transition($transition-base);
+  padding-right: 0;
+  padding-left: 0;
+  color: rgba($light, .6);
+  &:hover { color: $light; }
+}
+
+.navbar--dark { @include bg($dark); }
+
+.navbar--light {
+  @include bg($light);
+
+  .navbar__toggle {
+    border-color: $dark;
+    color: $dark;
   }
 
-  &__collapse {
-    flex-basis: 100%;
-    flex-grow: 1;
-    align-items: center;
+  .navbar__link {
+    color: rgba($dark, .6);
+    &:hover { color: $dark; }
   }
+}
 
-  > .container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-  }
+.navbar--expand {
+  @each $breakpoint in map-keys($breakpoints) {
+    @include breakpoint-up($breakpoint) {
+      $infix: breakpoint-infix($breakpoint);
 
-  .nav__link {
-    @include transition($transition-base);
-    color: rgba($light, .6);
-    &:hover { color: $light; }
-  }
+      &#{$infix} {
+        justify-content: flex-start;
 
-  &--dark { @include bg($dark); }
+        .navbar__toggle { display: none; }
 
-  &--light {
-    @include bg($light);
+        .navbar__collapse {
+          display: flex;
+          height: 100%;
+          flex-basis: auto;
+          flex-grow: 0;
+          overflow: visible;
+        }
 
-    .navbar__toggle {
-      border-color: $dark;
-      color: $dark;
-    }
+        .navbar__menu { flex-direction: row; }
 
-    .nav__link {
-      color: rgba($dark, .6);
-      &:hover { color: $dark; }
-    }
-  }
-
-  &--expand {
-    @each $breakpoint in map-keys($breakpoints) {
-      @include breakpoint-up($breakpoint) {
-        $infix: breakpoint-infix($breakpoint);
-
-        &#{$infix} {
-          .navbar__toggle { display: none; }
-
-          .navbar__collapse {
-            height: 100% !important;
-            flex-basis: auto;
-            flex-grow: 0;
-            overflow: visible !important;
-          }
-
-          .nav {
-            flex-direction: row;
-
-            .nav__link {
-              width: auto;
-              padding-right: $spacing-x;
-              padding-left: $spacing-x;
-            }
-          }
+        .navbar__link {
+          width: auto;
+          padding-right: $nav-link-padding-x;
+          padding-left: $nav-link-padding-x;
         }
       }
     }
