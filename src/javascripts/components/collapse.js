@@ -1,11 +1,17 @@
-import Data from "../struct/data";
+// polyfill
+import { closest } from "../polyfill";
+
+// data map
+import Data from "../util/data";
+
+// util
 import {
   getToggleList,
   each,
   reflow,
   isElement,
   getSelectorFromTarget,
-} from "./utility";
+} from "../util";
 
 const Aria = {
   EXPANDED: "aria-expanded",
@@ -26,6 +32,9 @@ class Collapse {
     if (!isElement(element)) {
       throw new TypeError("Element expected");
     }
+
+    this._showCollapseEnd = this._showCollapseEnd.bind(this);
+    this._hideCollapseEnd = this._hideCollapseEnd.bind(this);
 
     this._element = element;
     this._togglers = getToggleList(element, Selector.COLLAPSE);
@@ -65,10 +74,10 @@ class Collapse {
 
     this._element.style.height = `${this._element.scrollHeight}px`;
 
-    // Force reflow to recalculate element height before transitioning
     reflow(this._element);
 
-    this._element.classList.remove(ClassName.COLLAPSE, ClassName.SHOW);
+    this._element.classList.remove(ClassName.COLLAPSE);
+    this._element.classList.remove(ClassName.SHOW);
     this._element.classList.add(ClassName.COLLAPSING);
 
     this._setCollapsing(true);
@@ -99,7 +108,8 @@ class Collapse {
 
   _showCollapseEnd() {
     this._element.classList.remove(ClassName.COLLAPSING);
-    this._element.classList.add(ClassName.COLLAPSE, ClassName.SHOW);
+    this._element.classList.add(ClassName.COLLAPSE);
+    this._element.classList.add(ClassName.SHOW);
     this._element.style.height = "";
 
     this._element.removeEventListener("transitionend", this._showCollapseEnd);
@@ -129,7 +139,7 @@ class Collapse {
 }
 
 document.addEventListener("click", event => {
-  const toggler = event.target.closest(Selector.COLLAPSE);
+  const toggler = closest(event.target, Selector.COLLAPSE);
   if (!toggler) {
     return;
   }

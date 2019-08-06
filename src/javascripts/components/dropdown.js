@@ -1,5 +1,24 @@
-import Data from "../struct/data";
-import { isElement, getSelectorFromTarget, each } from "./utility";
+// polyfill
+import { closest } from "../polyfill";
+
+// data map
+import Data from "../util/data";
+
+// util
+import {
+  each, //
+  makeArray,
+  getSelectorFromTarget,
+  isElement,
+} from "../util";
+
+const ARROW_UP = "ArrowUp";
+const IE_ARROW_UP = "Up";
+const ARROW_DOWN = "ArrowDown";
+const IE_ARROW_DOWN = "Down";
+const ESC = "Escape";
+const IE_ESC = "Esc";
+const TAB = "Tab";
 
 const Aria = {
   EXPANDED: "aria-expanded",
@@ -9,8 +28,8 @@ const Aria = {
 const ClassName = {
   DROPDOWN: "dropdown",
   TOGGLE: "dropdown__toggle",
-  LIST: "dropdown__list",
-  SHOW: "dropdown__list--show",
+  LIST: "dropdown__menu",
+  SHOW: "dropdown__menu--show",
   ITEM: "dropdown__item",
 };
 
@@ -83,10 +102,10 @@ class Dropdown {
 
       if (selector === active) {
         toggler = togglerItem;
-        return true;
+        return "break";
       }
 
-      return false;
+      return null;
     });
 
     return toggler;
@@ -97,8 +116,8 @@ class Dropdown {
       return element;
     }
 
-    const parent = element.closest(`.${ClassName.DROPDOWN}`);
-    return parent.querySelector(Selector.DROPDOWN);
+    const parent = closest(element, `.${ClassName.DROPDOWN}`);
+    return parent ? parent.querySelector(Selector.DROPDOWN) : null;
   }
 
   static _getMenu(element) {
@@ -117,14 +136,29 @@ class Dropdown {
     }
   }
 
-  static _keyDownHandler({ key, target }) {
-    if (key !== "Escape" && key !== "ArrowUp" && key !== "ArrowDown") {
+  static _keyDownHandler(event) {
+    const { key, shiftKey, target } = event;
+    const keys = [
+      ARROW_UP,
+      ARROW_DOWN,
+      ESC,
+      IE_ARROW_UP,
+      IE_ARROW_DOWN,
+      IE_ESC,
+      TAB,
+    ];
+
+    if (keys.indexOf(key) === -1) {
       return;
     }
 
     const toggler = Dropdown._getToggler(target);
 
-    if (key === "Escape") {
+    if (!toggler) {
+      return;
+    }
+
+    if (key === ESC || key === IE_ESC) {
       Dropdown._clearActive();
       // Re-focus the toggler button after closing
       toggler.focus();
@@ -132,7 +166,8 @@ class Dropdown {
     }
 
     const menu = Dropdown._getMenu(toggler);
-    const items = Array.from(menu.querySelectorAll(`.${ClassName.ITEM}`));
+    const elementList = menu.querySelectorAll(`.${ClassName.ITEM}`);
+    const items = makeArray(elementList);
 
     if (!items.length) {
       return;
@@ -141,20 +176,30 @@ class Dropdown {
     // Simulate click to open and apply attributes
     if (!menu.classList.contains(ClassName.SHOW)) {
       toggler.click();
-    }
-
-    if (target === toggler) {
       items[0].focus();
       return;
     }
 
     let index = items.indexOf(target);
 
-    if (key === "ArrowUp" && index > 0) {
+    if (key === TAB) {
+      if (index + 1 >= items.length && !shiftKey) {
+        Dropdown._clearActive();
+      }
+
+      return;
+    }
+
+    event.preventDefault();
+
+    if ((key === ARROW_UP || key === IE_ARROW_UP) && index > 0) {
       index -= 1;
     }
 
-    if (key === "ArrowDown" && index < items.length - 1) {
+    if (
+      (key === ARROW_DOWN || key === IE_ARROW_DOWN) &&
+      index < items.length - 1
+    ) {
       index += 1;
     }
 
@@ -162,10 +207,11 @@ class Dropdown {
   }
 
   static _toggle(event) {
-    const toggler = event.target.closest(Selector.DROPDOWN);
+    const { target } = event;
+    const toggler = closest(target, Selector.DROPDOWN);
 
     if (!toggler) {
-      const menu = event.target.closest(`.${ClassName.LIST}`);
+      const menu = closest(target, `.${ClassName.LIST}`);
 
       if (!menu) {
         Dropdown._clearActive();
