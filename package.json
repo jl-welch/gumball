@@ -1,7 +1,7 @@
 {
   "name": "gumball-ui",
   "version": "0.0.1",
-  "description": "A responsive UI framework with BEM style components",
+  "description": "A modern CSS Framework with a simplistic style.",
   "repository": {
     "type": "git",
     "url": "git://github.com/jl-welch/gumball.git"
@@ -52,7 +52,7 @@
     "ui",
     "javascript"
   ],
-  "author": "James Welch <dev.jlw@gmail.com>",
+  "author": "James Welch",
   "license": "MIT",
   "dependencies": {}
 }
