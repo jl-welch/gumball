@@ -1,18 +1,19 @@
-const path = require("path");
-const babel = require("rollup-plugin-babel");
-const resolve = require("rollup-plugin-node-resolve");
+import { resolve as pathResolve } from "path";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
+import { babel } from "@rollup/plugin-babel";
 
 module.exports = {
-  input: path.resolve(__dirname, "../src/javascripts/gumball.js"),
+  input: pathResolve(__dirname, "../src/javascripts/gumball.js"),
   output: {
-    file: path.resolve(__dirname, "../dist/javascripts/gumball.js"),
+    file: pathResolve(__dirname, "../dist/javascripts/gumball.js"),
     format: "umd",
-    name: "gumball",
+    name: "gumball-ui",
   },
   plugins: [
-    resolve(),
+    nodeResolve(),
     babel({
       exclude: "node_modules/**",
+      presets: [["@babel/preset-env"]],
     }),
   ],
 };

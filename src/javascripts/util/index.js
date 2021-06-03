@@ -18,7 +18,7 @@ const each = (array, callback) => {
 /**
  * Create array, useful for converting nodeList to array.
  */
-const makeArray = nodeList => {
+const makeArray = (nodeList) => {
   if (!nodeList) {
     return [];
   }
@@ -29,7 +29,7 @@ const makeArray = nodeList => {
 /**
  * Return target string from data-target or href attribute.
  */
-const getSelectorFromTarget = element => {
+const getSelectorFromTarget = (element) => {
   let selector = element.getAttribute("data-target");
 
   if (!selector) {
@@ -50,7 +50,7 @@ const getToggleList = (element, dataAttr) => {
   const toggleElements = document.querySelectorAll(dataAttr);
   const toggleList = [];
 
-  each(toggleElements, toggleElement => {
+  each(toggleElements, (toggleElement) => {
     const selector = getSelectorFromTarget(toggleElement);
     if (!selector) {
       return;
@@ -69,12 +69,12 @@ const getToggleList = (element, dataAttr) => {
 /**
  * Check if data passed is valid HTML element.
  */
-const isElement = element => (element[0] || element).nodeType;
+const isElement = (element) => (element[0] || element).nodeType;
 
 /**
  * Force reflow to recalculate element position / geometry.
  */
-const reflow = element => element.offsetHeight;
+const reflow = (element) => element.offsetHeight;
 
 export {
   each,

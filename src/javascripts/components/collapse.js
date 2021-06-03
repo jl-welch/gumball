@@ -61,7 +61,9 @@ class Collapse {
 
     this._setCollapsing(true);
 
-    each(this._togglers, toggler => toggler.setAttribute(Aria.EXPANDED, true));
+    each(this._togglers, (toggler) =>
+      toggler.setAttribute(Aria.EXPANDED, true)
+    );
 
     this._element.addEventListener("transitionend", this._showCollapseEnd);
     this._element.style.height = `${this._element.scrollHeight}px`;
@@ -82,7 +84,7 @@ class Collapse {
 
     this._setCollapsing(true);
 
-    each(this._togglers, toggler => {
+    each(this._togglers, (toggler) => {
       const active = toggler.querySelectorAll(`.${ClassName.SHOW}`);
       if (!active.length) {
         toggler.setAttribute(Aria.EXPANDED, false);
@@ -138,7 +140,7 @@ class Collapse {
   }
 }
 
-document.addEventListener("click", event => {
+document.addEventListener("click", (event) => {
   const toggler = closest(event.target, Selector.COLLAPSE);
   if (!toggler) {
     return;

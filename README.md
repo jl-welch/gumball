@@ -1,6 +1,9 @@
-<h1 align="center">Gumball UI</h1>
+<h1 align="center">Gumball</h1>
 
-<p align="center">A modern CSS Framework with a simplistic style. Includes a few JavaScript modules for interactivity which can all be set up with just HTML5 data attributes such as dropdown menus.</p>
+<p align="center">
+  Gumball is a utility-first CSS framework with self-described utility classes such as `flex`, `md:block`, `mb-2`, `lg:mb-5`, `text-primary`, `bg-secondary`.
+  It has a few commonly used component and layout classes, along with a bit of JavaScript to handle functionality for accordions, carousels, modals etc.
+</p>
 
 [![Dependency Status](https://david-dm.org/jl-welch/gumball/dev-status.svg)](https://david-dm.org/jl-welch/gumball?type=dev)
 [![CSS gzip size](http://img.badgesize.io/jl-welch/gumball/master/dist/stylesheets/gumball.min.css?compression=gzip&label=CSS+gzip+size)](https://github.com/jl-welch/gumball/blob/master/dist/stylesheets/gumball.min.css)
@@ -8,45 +11,31 @@
 
 ## Base
 
-Base files contain variables, mixins, functions and normalized styles.
+Variables, mixins, functions and normalized styles.
 
-## Components
+## Utility
 
-Components take on a type of BEM approach using double underscore for elements and double hyphen for modifiers.
+Gumball is utility first framework with self-described utility classes such as `.flex`, `.md:block`, `mb-2`, `lg:mb-5`, `.text-primary`, `bg-secondary`.
 
-Usually, components do not contain margins as we want them to fit anywhere when placed on the page. Use spacing helpers where needed for margins etc.
+## Elements
 
-## Helpers
-
-Helper classes to help with page layout, spacing and other useful stuff, great for customizing components.
+Elements are great for when you want to quickly throw up something commonly used such as accordions, buttons, carousels, modals etc.
 
 ## Layout
 
-Layout classes are for grids and containers.
+Layout classes are used for styles affecting the flow of the web page such as:
 
-## Installation
-
-```shell
-$ git clone git@github.com:jl-welch/gumball.git
-$ cd gumball
-$ npm install
-```
+- containers, a common usage for containing content and centering in the page
+- grid, which is used for creating rows and columns such as `.row` and `.col-12`, `.md:col-6`, `.lg:col-4` etc
 
 ## Contributing
 
-Fork & clone the project. Make sure to have [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) extensions installed for your code editor.
-
-Check the package.json file for a list of local development npm scripts.
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome. For major changes please open an issue to discuss the change.
 
 ## Browser support
 
-- IE 10+
-
-## Note on development:
-
-Currently in the process of finishing off documentation with Hugo.
+last 1 version
+> 1%
 
 ## License
 

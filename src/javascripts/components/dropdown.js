@@ -95,7 +95,7 @@ class Dropdown {
     let toggler = null;
     const togglerList = document.querySelectorAll(Selector.DROPDOWN);
 
-    each(togglerList, togglerItem => {
+    each(togglerList, (togglerItem) => {
       const selector = document.querySelector(
         getSelectorFromTarget(togglerItem)
       );
