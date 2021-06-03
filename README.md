@@ -15,27 +15,22 @@ Variables, mixins, functions and normalized styles.
 
 ## Utility
 
-Gumball is utility first framework with self-described utility classes such as `.flex`, `.md:block`, `mb-2`, `lg:mb-5`, `.text-primary`, `bg-secondary`.
+Utility classes such as `.flex`, `.md:block`, `mb-2`, `lg:mb-5`, `.text-primary`, `bg-secondary`.
 
 ## Elements
 
-Elements are great for when you want to quickly throw up something commonly used such as accordions, buttons, carousels, modals etc.
+Elements are for when you want to quickly create something commonly used such as accordions, buttons, carousels, modals etc.
 
 ## Layout
 
 Layout classes are used for styles affecting the flow of the web page such as:
 
-- containers, a common usage for containing content and centering in the page
+- containers, a common usage for containing content and centring in the page
 - grid, which is used for creating rows and columns such as `.row` and `.col-12`, `.md:col-6`, `.lg:col-4` etc
 
 ## Contributing
 
 Pull requests are welcome. For major changes please open an issue to discuss the change.
-
-## Browser support
-
-last 1 version
-> 1%
 
 ## License
 
