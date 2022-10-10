@@ -1,8 +1,8 @@
 <h1 align="center">Gumball</h1>
 
 <p align="center">
-  Gumball is a utility-first CSS framework with self-described utility classes such as `flex`, `md:block`, `mb-2`, `lg:mb-5`, `text-primary`, `bg-secondary`.
-  It has a few commonly used component and layout classes, along with a bit of JavaScript to handle functionality for accordions, carousels, modals etc.
+  Gumball is a utility-first CSS framework with self-described utility classes.
+  It has a few commonly used component and layout classes, along with a bit of JavaScript to handle functionality for accordions, carousels and modals.
 </p>
 
 [![Dependency Status](https://david-dm.org/jl-welch/gumball/dev-status.svg)](https://david-dm.org/jl-welch/gumball?type=dev)
